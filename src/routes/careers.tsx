@@ -4,7 +4,6 @@ export const Route = createFileRoute("/careers")({
   beforeLoad: () => {
     throw redirect({
       to: "/",
-      hash: "careers",
       replace: true,
     });
   },

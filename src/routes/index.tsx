@@ -2,11 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   BadgeCheck,
-  Briefcase,
   CheckCircle2,
   Clock,
-  GraduationCap,
-  HeartHandshake,
   Mail,
   MapPin,
   MessageCircle,
@@ -30,7 +27,6 @@ import {
   faqs,
   images,
   industries,
-  jobs,
   whyChooseUs,
   workProcess,
 } from "@/data/site";
@@ -302,95 +298,7 @@ function Home() {
         </ol>
       </Section>
 
-      {/* Careers */}
-      <Section id="careers" className="scroll-mt-20 lg:scroll-mt-24">
-        <SectionHeading
-          eyebrow="Join Our Team"
-          title="Build a stable career with a company that pays on time"
-          description="We employ over 2,500 professionals across India. Salary on the 7th of every month, full PF and ESI, uniform and training provided."
-        />
-        <div className="mt-12 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <img
-            src={images.galleryTraining}
-            alt="Security guard training and drill session conducted by SR Security Services"
-            loading="lazy"
-            width={1200}
-            height={900}
-            className="w-full rounded-3xl object-cover shadow-[var(--shadow-lift)]"
-          />
-          <div>
-            <SectionHeading
-              align="left"
-              eyebrow="Why Work With Us"
-              title="Fair employment is the foundation of good security"
-            />
-            <div className="mt-8 grid gap-6 sm:grid-cols-2">
-              {[
-                {
-                  icon: HeartHandshake,
-                  t: "On-time salary",
-                  d: "Credited by the 7th of every month, with a digital payslip.",
-                },
-                {
-                  icon: GraduationCap,
-                  t: "Paid training",
-                  d: "Induction and refresher training at our own centres.",
-                },
-                {
-                  icon: Briefcase,
-                  t: "Career growth",
-                  d: "Internal promotions to supervisor and operations roles.",
-                },
-                {
-                  icon: MapPin,
-                  t: "Postings near home",
-                  d: "We try to place you at sites close to your residence.",
-                },
-              ].map((b) => (
-                <div key={b.t}>
-                  <b.icon className="size-5 text-accent" aria-hidden="true" />
-                  <p className="mt-3 font-display text-sm font-semibold text-primary">{b.t}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{b.d}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
 
-        <div className="mt-16">
-          <SectionHeading
-            eyebrow="Current Openings"
-            title="Roles we are hiring for right now"
-            description="Walk in to our office with your documents, or email/WhatsApp our HR team to apply."
-          />
-          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {jobs.slice(0, 6).map((job) => (
-              <div key={job.role} className="card-premium flex flex-col p-6">
-                <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4">
-                  <h3 className="min-w-0 font-display text-base font-semibold text-primary">
-                    {job.role}
-                  </h3>
-                  <span className="shrink-0 rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold text-accent-foreground">
-                    {job.type}
-                  </span>
-                </div>
-                <p className="mt-2 flex items-center gap-1.5 text-xs text-muted-foreground">
-                  <MapPin className="size-3.5 text-accent" aria-hidden="true" />
-                  {job.location}
-                </p>
-                <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
-                  {job.detail}
-                </p>
-                <Button asChild variant="hero" size="sm" className="mt-6 self-start">
-                  <a href={`mailto:${company.email}?subject=Application for ${job.role}`}>
-                    Apply Now
-                  </a>
-                </Button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Section>
 
       {/* Contact & Enquiry */}
       <Section tone="surface" id="contact" className="scroll-mt-20 lg:scroll-mt-24">
