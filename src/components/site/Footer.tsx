@@ -11,11 +11,13 @@ export function Footer() {
       <div className="container-page grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4 lg:py-20">
         <div>
           <div className="flex items-center gap-3">
-            <img
-              src={images.logo}
-              alt="SR Security Services Logo"
-              className="h-11 w-auto shrink-0 object-contain mix-blend-multiply"
-            />
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white p-1.5 shadow-md">
+              <img
+                src={images.logo}
+                alt="SR Security Services Logo"
+                className="h-full w-full object-contain"
+              />
+            </div>
             <span>
               <span className="block font-display text-lg font-bold text-primary-foreground">
                 SR Security Services

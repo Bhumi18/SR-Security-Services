@@ -6,7 +6,7 @@ import galleryEvents from "@/assets/gallery-events.jpg";
 import galleryCommand from "@/assets/gallery-command.jpg";
 import galleryCorporate from "@/assets/gallery-corporate.jpg";
 import galleryTraining from "@/assets/gallery-training.jpg";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-cropped.png";
 
 export const images = {
   logo,
