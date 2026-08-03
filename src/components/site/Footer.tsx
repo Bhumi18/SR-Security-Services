@@ -3,7 +3,7 @@ import { Mail, MapPin, Phone, ShieldCheck, Clock, ArrowRight } from "lucide-reac
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { company, industries, nav, serviceGroups } from "@/data/site";
+import { company, images, industries, nav, serviceGroups } from "@/data/site";
 
 export function Footer() {
   return (
@@ -11,9 +11,11 @@ export function Footer() {
       <div className="container-page grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4 lg:py-20">
         <div>
           <div className="flex items-center gap-3">
-            <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-primary-foreground/10">
-              <ShieldCheck className="size-6 text-accent" aria-hidden="true" />
-            </span>
+            <img
+              src={images.logo}
+              alt="SR Security Services Logo"
+              className="h-11 w-auto shrink-0 object-contain mix-blend-multiply"
+            />
             <span>
               <span className="block font-display text-lg font-bold text-primary-foreground">
                 SR Security Services

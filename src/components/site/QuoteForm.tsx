@@ -87,7 +87,7 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
           name="phone"
           type="tel"
           className="mt-2 h-11"
-          placeholder="+91 98000 00000"
+          placeholder="+91 9825902217"
         />
         {err("phone")}
       </div>

@@ -52,7 +52,7 @@ const sections = [
   },
   {
     h: "Governing law",
-    p: "These terms are governed by the laws of India, with jurisdiction of the courts at Noida, Uttar Pradesh.",
+    p: "These terms are governed by the laws of India, with jurisdiction of the courts at Ahmedabad, Gujarat.",
   },
 ];
 

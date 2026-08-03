@@ -6,8 +6,10 @@ import galleryEvents from "@/assets/gallery-events.jpg";
 import galleryCommand from "@/assets/gallery-command.jpg";
 import galleryCorporate from "@/assets/gallery-corporate.jpg";
 import galleryTraining from "@/assets/gallery-training.jpg";
+import logo from "@/assets/logo.png";
 
 export const images = {
+  logo,
   heroSecurity,
   aboutTeam,
   galleryIndustrial,
@@ -22,17 +24,17 @@ export const company = {
   name: "ABC Security & Facility Management Pvt. Ltd.",
   shortName: "ABC Security",
   tagline: "Protecting People. Securing Businesses. Building Trust.",
-  phone: "+91 98000 00000",
-  phoneHref: "tel:+919800000000",
-  whatsapp: "https://wa.me/919800000000",
-  email: "info@abcsecurity.example",
+  phone: "+91 98259 02217",
+  phoneHref: "tel:+919825902217",
+  whatsapp: "https://wa.me/919825902217",
+  email: "sr.personnelservices@gmail.com",
   address: {
-    line1: "Plot 24, Corporate Tower, Sector 62",
-    line2: "Noida, Uttar Pradesh 201301, India",
+    line1: "A-11, 1st Floor, Ajanta Commercial Center",
+    line2: "Nr. Income Tax Circle, Ashram Road, Ahmedabad - 380014, Gujarat, India",
   },
   hours: "Office: Mon – Sat, 9:30 AM – 7:00 PM · Operations & Control Room: 24x7",
   mapEmbed:
-    "https://www.google.com/maps?q=Sector+62+Noida+Uttar+Pradesh&output=embed",
+    "https://www.google.com/maps?q=Ajanta+Commercial+Center+Income+Tax+Circle+Ashram+Road+Ahmedabad+380014&output=embed",
   social: [
     { label: "LinkedIn", href: "https://linkedin.com" },
     { label: "Facebook", href: "https://facebook.com" },
@@ -431,9 +433,9 @@ export const jobs = [
   { role: "Security Supervisor", type: "Full time", location: "Metro cities", detail: "12th pass with 2+ years of supervisory experience in guarding operations." },
   { role: "Housekeeping Staff", type: "Full time", location: "PAN India", detail: "Experience in office, hospital or industrial cleaning is an advantage." },
   { role: "Bouncer", type: "Full / Part time", location: "Metro cities", detail: "Strong build, minimum height 5'10\", calm temperament, event experience preferred." },
-  { role: "Office Staff", type: "Full time", location: "Noida HQ", detail: "Graduate with basic computer proficiency for operations coordination." },
-  { role: "HR Executive", type: "Full time", location: "Noida HQ", detail: "2+ years in payroll, statutory compliance and workforce administration." },
-  { role: "Recruiter", type: "Full time", location: "Noida / Regional", detail: "Bulk hiring experience for blue-collar and security manpower." },
+  { role: "Office Staff", type: "Full time", location: "Ahmedabad HQ", detail: "Graduate with basic computer proficiency for operations coordination." },
+  { role: "HR Executive", type: "Full time", location: "Ahmedabad HQ", detail: "2+ years in payroll, statutory compliance and workforce administration." },
+  { role: "Recruiter", type: "Full time", location: "Ahmedabad / Regional", detail: "Bulk hiring experience for blue-collar and security manpower." },
 ];
 
 export const serviceOptions = [

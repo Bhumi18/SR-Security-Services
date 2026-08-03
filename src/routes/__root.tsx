@@ -129,9 +129,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           address: {
             "@type": "PostalAddress",
             streetAddress: company.address.line1,
-            addressLocality: "Noida",
-            addressRegion: "Uttar Pradesh",
-            postalCode: "201301",
+            addressLocality: "Ahmedabad",
+            addressRegion: "Gujarat",
+            postalCode: "380014",
             addressCountry: "IN",
           },
           openingHours: "Mo-Sa 09:30-19:00",

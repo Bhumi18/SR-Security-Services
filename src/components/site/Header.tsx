@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Clock, Mail, Menu, Phone, ShieldCheck, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { company, nav } from "@/data/site";
+import { company, images, nav } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -123,9 +123,11 @@ export function Header() {
             onClick={(e) => handleNavClick(e, "hero")}
             className="flex min-w-0 items-center gap-3"
           >
-            <span className="grid size-11 shrink-0 place-items-center rounded-xl navy-panel">
-              <ShieldCheck className="size-6 text-accent" aria-hidden="true" />
-            </span>
+            <img
+              src={images.logo}
+              alt="SR Security Services Logo"
+              className="h-11 w-auto shrink-0 object-contain mix-blend-multiply"
+            />
             <span className="min-w-0">
               <span className="block truncate font-display text-base leading-tight font-bold text-primary sm:text-lg">
                 SR Security Services
