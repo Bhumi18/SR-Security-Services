@@ -1,0 +1,258 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * SR Security Services — design system
+ * Navy #0B1F3A · White · Charcoal #222222 · Gold #C9A227 · Light #F7F9FC
+ * All colors use oklch. Never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Poppins", "Inter", ui-sans-serif, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-light: var(--primary-light);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-soft: var(--accent-soft);
+  --color-charcoal: var(--charcoal);
+  --color-surface: var(--surface);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --shadow-card: 0 1px 2px oklch(0.23 0.055 258 / 0.04), 0 12px 32px -18px oklch(0.23 0.055 258 / 0.22);
+  --shadow-lift: 0 2px 4px oklch(0.23 0.055 258 / 0.06), 0 28px 50px -24px oklch(0.23 0.055 258 / 0.3);
+  --shadow-inset-border: inset 0 0 0 1px oklch(0.23 0.055 258 / 0.07);
+}
+
+:root {
+  --radius: 0.875rem;
+
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.245 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.245 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.245 0 0);
+
+  /* Navy #0B1F3A */
+  --primary: oklch(0.245 0.055 258);
+  --primary-foreground: oklch(1 0 0);
+  --primary-light: oklch(0.34 0.06 258);
+
+  --secondary: oklch(0.972 0.006 250);
+  --secondary-foreground: oklch(0.245 0.055 258);
+
+  --muted: oklch(0.972 0.006 250);
+  --muted-foreground: oklch(0.52 0.015 258);
+
+  /* Gold #C9A227 */
+  --accent: oklch(0.715 0.128 87);
+  --accent-foreground: oklch(0.2 0.03 258);
+  --accent-soft: oklch(0.955 0.038 92);
+
+  --charcoal: oklch(0.385 0.014 258);
+  --surface: oklch(0.978 0.006 250);
+
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(1 0 0);
+
+  --border: oklch(0.915 0.008 250);
+  --input: oklch(0.9 0.008 250);
+  --ring: oklch(0.715 0.128 87);
+
+  --chart-1: oklch(0.245 0.055 258);
+  --chart-2: oklch(0.34 0.06 258);
+  --chart-3: oklch(0.715 0.128 87);
+  --chart-4: oklch(0.55 0.03 258);
+  --chart-5: oklch(0.8 0.02 250);
+
+  --sidebar: oklch(0.978 0.006 250);
+  --sidebar-foreground: oklch(0.245 0 0);
+  --sidebar-primary: oklch(0.245 0.055 258);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.955 0.038 92);
+  --sidebar-accent-foreground: oklch(0.2 0.03 258);
+  --sidebar-border: oklch(0.915 0.008 250);
+  --sidebar-ring: oklch(0.715 0.128 87);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: var(--color-accent-soft);
+    color: var(--color-primary);
+  }
+
+  img {
+    color: transparent;
+  }
+}
+
+/* Layout helpers */
+@utility container-page {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 80rem;
+  padding-inline: 1.25rem;
+
+  @media (width >= 768px) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility section-y {
+  padding-block: 4.5rem;
+
+  @media (width >= 768px) {
+    padding-block: 6.5rem;
+  }
+}
+
+/* Small gold eyebrow label */
+@utility eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* Gold hairline used under headings */
+@utility gold-rule {
+  display: block;
+  height: 3px;
+  width: 3rem;
+  border-radius: 999px;
+  background: var(--color-accent);
+}
+
+@utility card-premium {
+  border-radius: var(--radius-2xl);
+  background: var(--color-card);
+  box-shadow: var(--shadow-inset-border), var(--shadow-card);
+  transition:
+    box-shadow 300ms ease,
+    transform 300ms ease;
+
+  &:hover {
+    box-shadow: var(--shadow-inset-border), var(--shadow-lift);
+    transform: translateY(-3px);
+  }
+}
+
+@utility navy-panel {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--color-primary) 100%, transparent),
+      color-mix(in oklab, var(--color-primary-light) 92%, black)
+    );
+  color: var(--color-primary-foreground);
+}
+
+@utility marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility fade-up {
+  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
