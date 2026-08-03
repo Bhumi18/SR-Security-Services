@@ -1,8 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, MapPin, Phone, ShieldCheck, Clock, ArrowRight } from "lucide-react";
+import { Mail, MapPin, Phone, ShieldCheck, Clock } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { company, images, industries, nav, serviceGroups } from "@/data/site";
 
 export function Footer() {
@@ -133,33 +131,6 @@ export function Footer() {
               <span>{company.hours}</span>
             </li>
           </ul>
-
-          <h3 className="mt-8 font-display text-sm font-semibold tracking-[0.12em] text-primary-foreground uppercase">
-            Newsletter
-          </h3>
-          <span className="gold-rule mt-3" />
-          <form
-            className="mt-4 flex gap-2"
-            onSubmit={(e) => {
-              e.preventDefault();
-              e.currentTarget.reset();
-            }}
-          >
-            <label htmlFor="newsletter-email" className="sr-only">
-              Email address
-            </label>
-            <Input
-              id="newsletter-email"
-              type="email"
-              required
-              placeholder="Your email address"
-              className="h-11 border-primary-foreground/20 bg-primary-foreground/5 text-primary-foreground placeholder:text-primary-foreground/45"
-            />
-            <Button type="submit" variant="gold" size="icon" className="h-11 w-11 shrink-0">
-              <ArrowRight className="size-4" />
-              <span className="sr-only">Subscribe</span>
-            </Button>
-          </form>
         </div>
       </div>
 

@@ -28,7 +28,7 @@ export const Route = createFileRoute("/privacy-policy")({
 const sections = [
   {
     h: "Information we collect",
-    p: "We collect only the details you choose to submit through our enquiry, quotation or newsletter forms — typically your name, organisation, phone number, email address, site location and requirement description.",
+    p: "We collect only the details you choose to submit through our enquiry or quotation forms — typically your name, organisation, phone number, email address, site location and requirement description.",
   },
   {
     h: "How we use your information",

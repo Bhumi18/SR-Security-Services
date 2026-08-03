@@ -21,8 +21,8 @@ export const images = {
 };
 
 export const company = {
-  name: "ABC Security & Facility Management Pvt. Ltd.",
-  shortName: "ABC Security",
+  name: "SR Security Services Pvt. Ltd.",
+  shortName: "SR Security Services",
   tagline: "Protecting People. Securing Businesses. Building Trust.",
   phone: "+91 98259 02217",
   phoneHref: "tel:+919825902217",
@@ -290,7 +290,7 @@ export const testimonials = [
     designation: "Managing Director",
     org: "Patel Precision Industries",
     quote:
-      "We run three shifts across a 12-acre plant. ABC restructured our gate and material-movement checks and pilferage dropped noticeably within the first quarter.",
+      "We run three shifts across a 12-acre plant. SR Security Services restructured our gate and material-movement checks and pilferage dropped noticeably within the first quarter.",
     initials: "RP",
   },
   {
