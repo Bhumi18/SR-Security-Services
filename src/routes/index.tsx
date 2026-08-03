@@ -13,7 +13,6 @@ import {
 
 import { ClientLogos } from "@/components/site/ClientLogos";
 import { CtaBand } from "@/components/site/CtaBand";
-import { FaqAccordion } from "@/components/site/FaqAccordion";
 import { Icon } from "@/components/site/Icon";
 import { QuoteForm } from "@/components/site/QuoteForm";
 import { Section, SectionHeading } from "@/components/site/Section";
@@ -24,7 +23,6 @@ import { Button } from "@/components/ui/button";
 import {
   certifications,
   company,
-  faqs,
   images,
   industries,
   whyChooseUs,
@@ -51,20 +49,6 @@ export const Route = createFileRoute("/")({
     links: [
       { rel: "canonical", href: "/" },
       { rel: "preload", as: "image", href: images.heroSecurity, fetchpriority: "high" },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: faqs.slice(0, 10).map((f) => ({
-            "@type": "Question",
-            name: f.q,
-            acceptedAnswer: { "@type": "Answer", text: f.a },
-          })),
-        }),
-      },
     ],
   }),
 });
@@ -300,6 +284,43 @@ function Home() {
 
 
 
+      {/* Certifications */}
+      <Section id="certifications" className="scroll-mt-20 lg:scroll-mt-24">
+        <SectionHeading
+          eyebrow="Certifications & Compliance"
+          title="Fully licensed, registered and statutorily compliant"
+          description="Documentation is available for verification at the proposal stage and refreshed for you every month."
+        />
+        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
+          {certifications.map((c) => (
+            <div
+              key={c}
+              className="flex items-center gap-3 rounded-2xl border border-border bg-card px-5 py-5 shadow-[var(--shadow-card)]"
+            >
+              <BadgeCheck className="size-5 shrink-0 text-accent" aria-hidden="true" />
+              <span className="font-display text-sm font-semibold text-primary">{c}</span>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Testimonials + logos */}
+      <Section tone="surface" id="testimonials" className="scroll-mt-20 lg:scroll-mt-24">
+        <SectionHeading
+          eyebrow="Client Testimonials"
+          title="What our clients say about working with us"
+        />
+        <Testimonials />
+        <div className="mt-20">
+          <p className="text-center text-xs font-semibold tracking-[0.16em] text-muted-foreground uppercase">
+            Trusted by 500+ organisations across India
+          </p>
+          <ClientLogos />
+        </div>
+      </Section>
+
+      <CtaBand />
+
       {/* Contact & Enquiry */}
       <Section tone="surface" id="contact" className="scroll-mt-20 lg:scroll-mt-24">
         <SectionHeading
@@ -363,53 +384,6 @@ function Home() {
           </div>
         </div>
       </Section>
-
-      {/* Certifications */}
-      <Section id="certifications" className="scroll-mt-20 lg:scroll-mt-24">
-        <SectionHeading
-          eyebrow="Certifications & Compliance"
-          title="Fully licensed, registered and statutorily compliant"
-          description="Documentation is available for verification at the proposal stage and refreshed for you every month."
-        />
-        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
-          {certifications.map((c) => (
-            <div
-              key={c}
-              className="flex items-center gap-3 rounded-2xl border border-border bg-card px-5 py-5 shadow-[var(--shadow-card)]"
-            >
-              <BadgeCheck className="size-5 shrink-0 text-accent" aria-hidden="true" />
-              <span className="font-display text-sm font-semibold text-primary">{c}</span>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* Testimonials + logos */}
-      <Section tone="surface" id="testimonials" className="scroll-mt-20 lg:scroll-mt-24">
-        <SectionHeading
-          eyebrow="Client Testimonials"
-          title="What our clients say about working with us"
-        />
-        <Testimonials />
-        <div className="mt-20">
-          <p className="text-center text-xs font-semibold tracking-[0.16em] text-muted-foreground uppercase">
-            Trusted by 500+ organisations across India
-          </p>
-          <ClientLogos />
-        </div>
-      </Section>
-
-      {/* FAQ */}
-      <Section id="faq" className="scroll-mt-20 lg:scroll-mt-24">
-        <SectionHeading
-          eyebrow="FAQ"
-          title="Answers to the questions clients ask us most"
-          description="Still unsure about something? Call our operations desk and we will walk you through it."
-        />
-        <FaqAccordion limit={10} />
-      </Section>
-
-      <CtaBand />
     </>
   );
 }
