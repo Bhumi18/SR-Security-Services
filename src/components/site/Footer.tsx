@@ -52,19 +52,19 @@ export function Footer() {
             <span className="gold-rule mt-3" />
             <ul className="mt-4 space-y-2.5 text-sm">
               {nav.map((item) => (
-                <li key={item.to}>
-                  <Link
-                    to={item.to}
+                <li key={item.sectionId}>
+                  <a
+                    href={item.to}
                     className="text-primary-foreground/70 transition-colors hover:text-accent"
                   >
                     {item.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
               <li>
-                <Link to="/quote" className="text-accent transition-colors hover:underline">
+                <a href="/#contact" className="text-accent transition-colors hover:underline">
                   Get a Free Quote
-                </Link>
+                </a>
               </li>
             </ul>
           </div>

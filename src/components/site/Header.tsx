@@ -1,6 +1,6 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, Phone, ShieldCheck, X, Mail, Clock } from "lucide-react";
+import { Clock, Mail, Menu, Phone, ShieldCheck, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { company, nav } from "@/data/site";
@@ -9,6 +9,10 @@ import { cn } from "@/lib/utils";
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("hero");
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -23,6 +27,60 @@ export function Header() {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  // Track active section on scroll
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const sectionIds = nav.map((item) => item.sectionId);
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 140;
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sectionIds[i]);
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveSection(sectionIds[i]);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Handle hash scrolling on page mount or route change
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const el = document.getElementById(id);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: "smooth" });
+        }, 150);
+      }
+    }
+  }, [location.hash, location.pathname]);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    setOpen(false);
+    if (location.pathname === "/" || location.pathname === "") {
+      e.preventDefault();
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        window.history.pushState(null, "", `#${sectionId}`);
+      }
+    } else {
+      e.preventDefault();
+      navigate({ to: "/", hash: sectionId }).then(() => {
+        setTimeout(() => {
+          const el = document.getElementById(sectionId);
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        }, 150);
+      });
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50">
@@ -60,7 +118,11 @@ export function Header() {
         )}
       >
         <div className="container-page grid h-18 grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-3 lg:h-20">
-          <Link to="/" className="flex min-w-0 items-center gap-3" onClick={() => setOpen(false)}>
+          <a
+            href="/#hero"
+            onClick={(e) => handleNavClick(e, "hero")}
+            className="flex min-w-0 items-center gap-3"
+          >
             <span className="grid size-11 shrink-0 place-items-center rounded-xl navy-panel">
               <ShieldCheck className="size-6 text-accent" aria-hidden="true" />
             </span>
@@ -72,27 +134,39 @@ export function Header() {
                 & Facility Management
               </span>
             </span>
-          </Link>
+          </a>
 
           <nav className="hidden items-center gap-0.5 xl:flex" aria-label="Main navigation">
-            {nav.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                activeOptions={{ exact: item.to === "/" }}
-                className="rounded-md px-3 py-2 text-sm font-medium text-charcoal transition-colors hover:text-accent data-[status=active]:text-primary data-[status=active]:underline data-[status=active]:decoration-accent data-[status=active]:decoration-2 data-[status=active]:underline-offset-8"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {nav.map((item) => {
+              const isActive = activeSection === item.sectionId;
+              return (
+                <a
+                  key={item.sectionId}
+                  href={item.to}
+                  onClick={(e) => handleNavClick(e, item.sectionId)}
+                  className={cn(
+                    "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-accent",
+                    isActive
+                      ? "text-primary font-semibold underline decoration-accent decoration-2 underline-offset-8"
+                      : "text-charcoal",
+                  )}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
             <Button asChild variant="hero" size="default" className="ml-3">
-              <Link to="/quote">Get Quote</Link>
+              <a href="/#contact" onClick={(e) => handleNavClick(e, "contact")}>
+                Get Quote
+              </a>
             </Button>
           </nav>
 
           <div className="flex items-center gap-2 xl:hidden">
             <Button asChild variant="hero" size="sm" className="hidden sm:inline-flex">
-              <Link to="/quote">Get Quote</Link>
+              <a href="/#contact" onClick={(e) => handleNavClick(e, "contact")}>
+                Get Quote
+              </a>
             </Button>
             <button
               type="button"
@@ -110,22 +184,28 @@ export function Header() {
       {open && (
         <div className="fixed inset-x-0 top-[calc(4.5rem+0.5rem)] bottom-0 z-40 overflow-y-auto border-t border-border bg-background px-5 pt-4 pb-24 xl:hidden">
           <nav className="flex flex-col" aria-label="Mobile navigation">
-            {nav.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                onClick={() => setOpen(false)}
-                className="border-b border-border py-3.5 font-display text-base font-semibold text-primary"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {nav.map((item) => {
+              const isActive = activeSection === item.sectionId;
+              return (
+                <a
+                  key={item.sectionId}
+                  href={item.to}
+                  onClick={(e) => handleNavClick(e, item.sectionId)}
+                  className={cn(
+                    "border-b border-border py-3.5 font-display text-base font-semibold transition-colors",
+                    isActive ? "text-accent" : "text-primary",
+                  )}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </nav>
           <div className="mt-6 flex flex-col gap-3">
             <Button asChild variant="hero" size="lg">
-              <Link to="/quote" onClick={() => setOpen(false)}>
+              <a href="/#contact" onClick={(e) => handleNavClick(e, "contact")}>
                 Request Free Quote
-              </Link>
+              </a>
             </Button>
             <Button asChild variant="subtle" size="lg">
               <a href={company.phoneHref}>Call {company.phone}</a>

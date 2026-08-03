@@ -42,13 +42,13 @@ export const company = {
 };
 
 export const nav = [
-  { label: "Home", to: "/" },
-  { label: "About Us", to: "/about" },
-  { label: "Services", to: "/services" },
-  { label: "Industries", to: "/industries" },
-  { label: "Why Choose Us", to: "/why-choose-us" },
-  { label: "Careers", to: "/careers" },
-  { label: "Contact", to: "/contact" },
+  { label: "Home", sectionId: "hero", to: "/#hero" },
+  { label: "About Us", sectionId: "about", to: "/#about" },
+  { label: "Services", sectionId: "services", to: "/#services" },
+  { label: "Industries", sectionId: "industries", to: "/#industries" },
+  { label: "Why Choose Us", sectionId: "why-choose-us", to: "/#why-choose-us" },
+  { label: "Careers", sectionId: "careers", to: "/#careers" },
+  { label: "Contact", sectionId: "contact", to: "/#contact" },
 ] as const;
 
 export const stats = [

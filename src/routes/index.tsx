@@ -2,15 +2,23 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   BadgeCheck,
+  Briefcase,
   CheckCircle2,
+  Clock,
+  GraduationCap,
+  HeartHandshake,
+  Mail,
+  MapPin,
+  MessageCircle,
   Phone,
   ShieldCheck,
 } from "lucide-react";
 
-import { CtaBand } from "@/components/site/CtaBand";
 import { ClientLogos } from "@/components/site/ClientLogos";
+import { CtaBand } from "@/components/site/CtaBand";
 import { FaqAccordion } from "@/components/site/FaqAccordion";
 import { Icon } from "@/components/site/Icon";
+import { QuoteForm } from "@/components/site/QuoteForm";
 import { Section, SectionHeading } from "@/components/site/Section";
 import { ServiceGrid } from "@/components/site/ServiceGrid";
 import { StatsBand } from "@/components/site/StatsBand";
@@ -22,7 +30,7 @@ import {
   faqs,
   images,
   industries,
-  posts,
+  jobs,
   whyChooseUs,
   workProcess,
 } from "@/data/site";
@@ -66,10 +74,23 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const contactDetails = [
+    {
+      icon: MapPin,
+      label: "Registered Office",
+      value: `${company.address.line1}, ${company.address.line2}`,
+      href: undefined,
+    },
+    { icon: Phone, label: "Phone", value: company.phone, href: company.phoneHref },
+    { icon: MessageCircle, label: "WhatsApp", value: company.phone, href: company.whatsapp },
+    { icon: Mail, label: "Email", value: company.email, href: `mailto:${company.email}` },
+    { icon: Clock, label: "Working Hours", value: company.hours, href: undefined },
+  ];
+
   return (
     <>
       {/* Hero */}
-      <section className="relative isolate overflow-hidden">
+      <section id="hero" className="relative isolate overflow-hidden scroll-mt-20 lg:scroll-mt-24">
         <img
           src={images.heroSecurity}
           alt="Uniformed security guards of SR Security Services standing outside a corporate office building"
@@ -101,10 +122,10 @@ function Home() {
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Button asChild variant="gold" size="xl">
-                <Link to="/quote">
+                <a href="#contact">
                   Request Free Quote
                   <ArrowRight className="size-4" />
-                </Link>
+                </a>
               </Button>
               <Button asChild variant="onNavy" size="xl">
                 <a href={company.phoneHref}>
@@ -128,14 +149,14 @@ function Home() {
       </section>
 
       {/* Trust indicators */}
-      <section className="bg-surface py-14 md:py-16">
+      <section id="stats" className="bg-surface py-14 md:py-16 scroll-mt-20 lg:scroll-mt-24">
         <div className="container-page">
           <StatsBand />
         </div>
       </section>
 
       {/* About */}
-      <Section>
+      <Section id="about" className="scroll-mt-20 lg:scroll-mt-24">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="relative">
             <img
@@ -189,17 +210,17 @@ function Home() {
               ))}
             </ul>
             <Button asChild variant="hero" size="lg" className="mt-9">
-              <Link to="/about">
-                More About Us
+              <a href="#services">
+                Explore Our Services
                 <ArrowRight className="size-4" />
-              </Link>
+              </a>
             </Button>
           </div>
         </div>
       </Section>
 
       {/* Services */}
-      <Section tone="surface" id="services">
+      <Section tone="surface" id="services" className="scroll-mt-20 lg:scroll-mt-24">
         <SectionHeading
           eyebrow="Our Services"
           title="Complete security and facility solutions under one contract"
@@ -208,16 +229,16 @@ function Home() {
         <ServiceGrid />
         <div className="mt-12 text-center">
           <Button asChild variant="hero" size="lg">
-            <Link to="/services">
-              Explore All Services
+            <a href="#contact">
+              Request Service Quote
               <ArrowRight className="size-4" />
-            </Link>
+            </a>
           </Button>
         </div>
       </Section>
 
       {/* Industries */}
-      <Section>
+      <Section id="industries" className="scroll-mt-20 lg:scroll-mt-24">
         <SectionHeading
           eyebrow="Industries We Serve"
           title="Sector-specific deployment, not one-size-fits-all guarding"
@@ -236,14 +257,14 @@ function Home() {
       </Section>
 
       {/* Why choose us */}
-      <Section tone="surface">
+      <Section tone="surface" id="why-choose-us" className="scroll-mt-20 lg:scroll-mt-24">
         <SectionHeading
           eyebrow="Why Choose Us"
           title="Fourteen reasons clients stay with us for years"
           description="We compete on reliability and compliance, not on the lowest quotation."
         />
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {whyChooseUs.slice(0, 9).map((item) => (
+          {whyChooseUs.map((item) => (
             <div key={item.title} className="card-premium p-6">
               <span className="grid size-12 place-items-center rounded-xl bg-accent-soft">
                 <Icon name={item.icon} className="size-5 text-accent-foreground" />
@@ -255,18 +276,10 @@ function Home() {
             </div>
           ))}
         </div>
-        <div className="mt-12 text-center">
-          <Button asChild variant="subtle" size="lg">
-            <Link to="/why-choose-us">
-              See All Advantages
-              <ArrowRight className="size-4" />
-            </Link>
-          </Button>
-        </div>
       </Section>
 
       {/* Work process */}
-      <Section tone="navy">
+      <Section tone="navy" id="process" className="scroll-mt-20 lg:scroll-mt-24">
         <SectionHeading
           onNavy
           eyebrow="Our Work Process"
@@ -289,8 +302,162 @@ function Home() {
         </ol>
       </Section>
 
+      {/* Careers */}
+      <Section id="careers" className="scroll-mt-20 lg:scroll-mt-24">
+        <SectionHeading
+          eyebrow="Join Our Team"
+          title="Build a stable career with a company that pays on time"
+          description="We employ over 2,500 professionals across India. Salary on the 7th of every month, full PF and ESI, uniform and training provided."
+        />
+        <div className="mt-12 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <img
+            src={images.galleryTraining}
+            alt="Security guard training and drill session conducted by SR Security Services"
+            loading="lazy"
+            width={1200}
+            height={900}
+            className="w-full rounded-3xl object-cover shadow-[var(--shadow-lift)]"
+          />
+          <div>
+            <SectionHeading
+              align="left"
+              eyebrow="Why Work With Us"
+              title="Fair employment is the foundation of good security"
+            />
+            <div className="mt-8 grid gap-6 sm:grid-cols-2">
+              {[
+                {
+                  icon: HeartHandshake,
+                  t: "On-time salary",
+                  d: "Credited by the 7th of every month, with a digital payslip.",
+                },
+                {
+                  icon: GraduationCap,
+                  t: "Paid training",
+                  d: "Induction and refresher training at our own centres.",
+                },
+                {
+                  icon: Briefcase,
+                  t: "Career growth",
+                  d: "Internal promotions to supervisor and operations roles.",
+                },
+                {
+                  icon: MapPin,
+                  t: "Postings near home",
+                  d: "We try to place you at sites close to your residence.",
+                },
+              ].map((b) => (
+                <div key={b.t}>
+                  <b.icon className="size-5 text-accent" aria-hidden="true" />
+                  <p className="mt-3 font-display text-sm font-semibold text-primary">{b.t}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{b.d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-16">
+          <SectionHeading
+            eyebrow="Current Openings"
+            title="Roles we are hiring for right now"
+            description="Walk in to our office with your documents, or email/WhatsApp our HR team to apply."
+          />
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {jobs.slice(0, 6).map((job) => (
+              <div key={job.role} className="card-premium flex flex-col p-6">
+                <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4">
+                  <h3 className="min-w-0 font-display text-base font-semibold text-primary">
+                    {job.role}
+                  </h3>
+                  <span className="shrink-0 rounded-full bg-accent-soft px-3 py-1 text-xs font-semibold text-accent-foreground">
+                    {job.type}
+                  </span>
+                </div>
+                <p className="mt-2 flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <MapPin className="size-3.5 text-accent" aria-hidden="true" />
+                  {job.location}
+                </p>
+                <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
+                  {job.detail}
+                </p>
+                <Button asChild variant="hero" size="sm" className="mt-6 self-start">
+                  <a href={`mailto:${company.email}?subject=Application for ${job.role}`}>
+                    Apply Now
+                  </a>
+                </Button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* Contact & Enquiry */}
+      <Section tone="surface" id="contact" className="scroll-mt-20 lg:scroll-mt-24">
+        <SectionHeading
+          eyebrow="Contact & Enquiry"
+          title="Talk to our operations desk today"
+          description="Whether you need two guards for a warehouse or a 200-person facility workforce across four cities, we will respond with a clear plan and a compliant quotation."
+        />
+        <div className="mt-12 grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+          <div>
+            <SectionHeading align="left" eyebrow="Reach Us" title="Contact information" />
+            <ul className="mt-8 space-y-6">
+              {contactDetails.map((d) => (
+                <li key={d.label} className="flex gap-4">
+                  <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-accent-soft">
+                    <d.icon className="size-5 text-accent-foreground" aria-hidden="true" />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-xs font-semibold tracking-[0.12em] text-muted-foreground uppercase">
+                      {d.label}
+                    </p>
+                    {d.href ? (
+                      <a
+                        href={d.href}
+                        target={d.href.startsWith("http") ? "_blank" : undefined}
+                        rel={d.href.startsWith("http") ? "noreferrer noopener" : undefined}
+                        className="mt-1 block text-sm leading-relaxed font-medium text-primary transition-colors hover:text-accent"
+                      >
+                        {d.value}
+                      </a>
+                    ) : (
+                      <p className="mt-1 text-sm leading-relaxed font-medium text-primary">
+                        {d.value}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-10 overflow-hidden rounded-3xl border border-border shadow-[var(--shadow-card)]">
+              <iframe
+                title="SR Security Services & Facility Management office location on Google Maps"
+                src={company.mapEmbed}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="h-72 w-full border-0"
+              />
+            </div>
+          </div>
+
+          <div className="card-premium p-7 md:p-9">
+            <h2 className="font-display text-xl font-semibold text-primary">
+              Send us an enquiry / Get a Quote
+            </h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Fields marked * are required. We reply within 24 working hours.
+            </p>
+            <div className="mt-8">
+              <QuoteForm />
+            </div>
+          </div>
+        </div>
+      </Section>
+
       {/* Certifications */}
-      <Section>
+      <Section id="certifications" className="scroll-mt-20 lg:scroll-mt-24">
         <SectionHeading
           eyebrow="Certifications & Compliance"
           title="Fully licensed, registered and statutorily compliant"
@@ -310,7 +477,7 @@ function Home() {
       </Section>
 
       {/* Testimonials + logos */}
-      <Section tone="surface">
+      <Section tone="surface" id="testimonials" className="scroll-mt-20 lg:scroll-mt-24">
         <SectionHeading
           eyebrow="Client Testimonials"
           title="What our clients say about working with us"
@@ -325,21 +492,13 @@ function Home() {
       </Section>
 
       {/* FAQ */}
-      <Section tone="surface">
+      <Section id="faq" className="scroll-mt-20 lg:scroll-mt-24">
         <SectionHeading
           eyebrow="FAQ"
           title="Answers to the questions clients ask us most"
           description="Still unsure about something? Call our operations desk and we will walk you through it."
         />
-        <FaqAccordion limit={8} />
-        <div className="mt-10 text-center">
-          <Button asChild variant="subtle" size="lg">
-            <Link to="/contact">
-              View All FAQs & Contact Us
-              <ArrowRight className="size-4" />
-            </Link>
-          </Button>
-        </div>
+        <FaqAccordion limit={10} />
       </Section>
 
       <CtaBand />

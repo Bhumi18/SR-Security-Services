@@ -32,13 +32,13 @@ export function FloatingActions() {
       >
         <Phone className="size-5" aria-hidden="true" />
       </a>
-      <Link
-        to="/quote"
+      <a
+        href="/#contact"
         aria-label="Get a free quote"
         className="grid size-12 place-items-center rounded-full bg-accent text-accent-foreground shadow-[var(--shadow-lift)] transition-transform hover:scale-105"
       >
         <FileText className="size-5" aria-hidden="true" />
-      </Link>
+      </a>
       {showTop && (
         <button
           type="button"
