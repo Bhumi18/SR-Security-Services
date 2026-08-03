@@ -21,7 +21,6 @@ import { StatsBand } from "@/components/site/StatsBand";
 import { Testimonials } from "@/components/site/Testimonials";
 import { Button } from "@/components/ui/button";
 import {
-  certifications,
   company,
   images,
   industries,
@@ -284,25 +283,7 @@ function Home() {
 
 
 
-      {/* Certifications */}
-      <Section id="certifications" className="scroll-mt-20 lg:scroll-mt-24">
-        <SectionHeading
-          eyebrow="Certifications & Compliance"
-          title="Fully licensed, registered and statutorily compliant"
-          description="Documentation is available for verification at the proposal stage and refreshed for you every month."
-        />
-        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
-          {certifications.map((c) => (
-            <div
-              key={c}
-              className="flex items-center gap-3 rounded-2xl border border-border bg-card px-5 py-5 shadow-[var(--shadow-card)]"
-            >
-              <BadgeCheck className="size-5 shrink-0 text-accent" aria-hidden="true" />
-              <span className="font-display text-sm font-semibold text-primary">{c}</span>
-            </div>
-          ))}
-        </div>
-      </Section>
+
 
       {/* Testimonials + logos */}
       <Section tone="surface" id="testimonials" className="scroll-mt-20 lg:scroll-mt-24">
