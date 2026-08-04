@@ -222,15 +222,32 @@ function Home() {
           title="Sector-specific deployment, not one-size-fits-all guarding"
           description="Each industry carries a different risk profile. Our site orders, checks and reporting formats are designed for the sector you operate in."
         />
-        <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-          {industries.map((item) => (
-            <div
-              key={item}
-              className="rounded-xl border border-border bg-card px-4 py-4 text-center text-sm font-medium text-charcoal transition-colors hover:border-accent hover:text-primary"
-            >
-              {item}
-            </div>
-          ))}
+        
+        {/* Single line horizontal marquee */}
+        <div className="relative mt-10 overflow-hidden py-3">
+          <div className="marquee-track gap-4 hover:[animation-play-state:paused]">
+            {[...industries, ...industries].map((item, i) => (
+              <div
+                key={`${item}-${i}`}
+                className="group flex shrink-0 items-center gap-3 rounded-full border border-border/80 bg-card px-5 py-3 shadow-xs transition-all duration-300 hover:border-accent/60 hover:bg-accent-soft/80 hover:shadow-md hover:-translate-y-0.5"
+              >
+                <span className="size-2 rounded-full bg-accent transition-transform duration-300 group-hover:scale-125" />
+                <span className="font-display text-sm font-semibold text-charcoal transition-colors group-hover:text-primary whitespace-nowrap">
+                  {item}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* Left and Right Gradient Fades */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-background via-background/80 to-transparent z-10"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-background via-background/80 to-transparent z-10"
+          />
         </div>
       </Section>
 
