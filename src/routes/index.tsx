@@ -18,7 +18,6 @@ import { OurClients } from "@/components/site/OurClients";
 import { QuoteForm } from "@/components/site/QuoteForm";
 import { Section, SectionHeading } from "@/components/site/Section";
 import { ServiceGrid } from "@/components/site/ServiceGrid";
-import { StatsBand } from "@/components/site/StatsBand";
 import { Button } from "@/components/ui/button";
 import {
   company,
@@ -124,13 +123,6 @@ function Home() {
               )}
             </ul>
           </div>
-        </div>
-      </section>
-
-      {/* Trust indicators */}
-      <section id="stats" className="bg-surface py-14 md:py-16 scroll-mt-20 lg:scroll-mt-24">
-        <div className="container-page">
-          <StatsBand />
         </div>
       </section>
 
