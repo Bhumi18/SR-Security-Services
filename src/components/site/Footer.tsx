@@ -16,13 +16,8 @@ export function Footer() {
                 className="h-full w-full object-contain"
               />
             </div>
-            <span>
-              <span className="block font-display text-lg font-bold text-primary-foreground">
-                SR Security Services
-              </span>
-              <span className="block text-[0.68rem] tracking-[0.14em] text-primary-foreground/60 uppercase">
-                & Facility Management
-              </span>
+            <span className="font-display text-lg font-bold tracking-tight text-primary-foreground sm:text-xl">
+              SR Security Services
             </span>
           </div>
           <p className="mt-5 text-sm leading-relaxed text-primary-foreground/70">

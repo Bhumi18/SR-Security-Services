@@ -150,7 +150,7 @@ function Home() {
               align="left"
               eyebrow="About the Company"
               title="Fifteen years of disciplined, compliant and dependable service"
-              description="SR Security Services & Facility Management Pvt. Ltd. was founded on a simple principle — security is a discipline, not a headcount. We build every deployment around verified people, written procedures and accountable supervision."
+              description="SR Security Services Pvt. Ltd. was founded on a simple principle — security is a discipline, not a headcount. We build every deployment around verified people, written procedures and accountable supervision."
             />
             <ul className="mt-8 space-y-4">
               {[
@@ -215,7 +215,7 @@ function Home() {
           title="Sector-specific deployment, not one-size-fits-all guarding"
           description="Each industry carries a different risk profile. Our site orders, checks and reporting formats are designed for the sector you operate in."
         />
-        
+
         {/* Single line horizontal marquee */}
         <div className="relative mt-10 overflow-hidden py-3">
           <div className="marquee-track gap-4 hover:[animation-play-state:paused]">

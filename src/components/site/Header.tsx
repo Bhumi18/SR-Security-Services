@@ -131,11 +131,8 @@ export function Header() {
               className="h-11 w-auto shrink-0 object-contain mix-blend-multiply"
             />
             <span className="min-w-0">
-              <span className="block truncate font-display text-base leading-tight font-bold text-primary sm:text-lg">
+              <span className="block truncate font-display text-base font-bold tracking-tight text-primary sm:text-lg lg:text-xl">
                 SR Security Services
-              </span>
-              <span className="block truncate text-[0.68rem] tracking-[0.14em] text-muted-foreground uppercase">
-                & Facility Management
               </span>
             </span>
           </a>
