@@ -28,9 +28,9 @@ import {
   workProcess,
 } from "@/data/site";
 
-const title = "India's Trusted Security & Facility Management Company | SR Security Services";
+const title = "Trusted Security & Facility Management in Gujarat | SR Security Services";
 const description =
-  "SR Security Services & Facility Management Pvt. Ltd. provides PSARA-licensed security guards, event security, bouncers, housekeeping and skilled manpower across India. 15+ years, 500+ clients, 2500+ trained professionals.";
+  "SR Security Services & Facility Management Pvt. Ltd. provides PSARA-licensed security guards, event security, bouncers, housekeeping and skilled manpower across 5 key districts in Gujarat: Ahmedabad, Gandhinagar, Kheda, Mehsana, and Sabarkantha.";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -90,11 +90,11 @@ function Home() {
               PSARA Licensed · UDYAM Registered · AMC Certified
             </p>
             <h1 className="mt-6 text-4xl leading-[1.08] font-bold text-primary-foreground md:text-5xl lg:text-6xl">
-              India's Trusted Security & Facility Management Company
+              Trusted Security & Facility Management in Gujarat
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/80 md:text-lg">
               Providing professional security guards, event management, housekeeping, bouncer
-              services, and skilled & unskilled manpower across India.
+              services, and contract manpower across 5 key districts in Gujarat: Ahmedabad, Gandhinagar, Kheda, Mehsana, and Sabarkantha.
             </p>
             <p className="mt-4 font-display text-sm font-medium text-accent md:text-base">
               {company.tagline}
@@ -114,7 +114,7 @@ function Home() {
               </Button>
             </div>
             <ul className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-primary-foreground/75">
-              {["Background Verified Staff", "24x7 Control Room", "Deployment in 24–48 Hours"].map(
+              {["Background Verified Staff", "5 Gujarat Districts Covered", "24x7 Control Room"].map(
                 (t) => (
                   <li key={t} className="flex items-center gap-2">
                     <CheckCircle2 className="size-4 shrink-0 text-accent" aria-hidden="true" />
@@ -149,7 +149,7 @@ function Home() {
             <div className="card-premium absolute -right-3 -bottom-6 hidden w-52 p-5 sm:block lg:-right-8">
               <p className="font-display text-3xl font-bold text-primary">15+</p>
               <p className="mt-1 text-xs text-muted-foreground">
-                Years of protecting Indian businesses
+                Years protecting Gujarat businesses & facilities
               </p>
             </div>
           </div>

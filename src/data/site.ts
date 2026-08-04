@@ -52,13 +52,21 @@ export const nav = [
   { label: "Contact", sectionId: "contact", to: "/#contact" },
 ] as const;
 
+export const coverageDistricts = [
+  { name: "Ahmedabad", role: "HQ & Operations Hub" },
+  { name: "Gandhinagar", role: "Capital Region & Corporate" },
+  { name: "Kheda", role: "Industrial & Manufacturing" },
+  { name: "Mehsana", role: "Commercial & Plant Security" },
+  { name: "Sabarkantha", role: "Regional Manpower & Facility" },
+];
+
 export const stats = [
   { value: "15+", label: "Years of Experience" },
   { value: "500+", label: "Clients Served" },
   { value: "2,500+", label: "Trained Professionals" },
   { value: "1,000+", label: "Projects Completed" },
   { value: "24/7", label: "Support & Control Room" },
-  { value: "PAN India", label: "Deployment Coverage" },
+  { value: "5 Districts", label: "Gujarat Coverage" },
 ];
 
 export type ServiceGroup = {
@@ -347,7 +355,7 @@ export const faqs = [
   { q: "How do you monitor attendance and performance?", a: "Biometric or geo-tagged mobile attendance, patrol checkpoint scanning, supervisor visit reports and a monthly MIS with incident summaries and a quality score shared with the client." },
   { q: "What happens if a guard is absent?", a: "The site supervisor arranges a reliever from the nearest reserve pool. Unfilled shifts are not billed, and repeated absence triggers replacement of the deployed person." },
   { q: "Can we replace a guard we are not satisfied with?", a: "Yes. Request a replacement and we will post an alternate person, usually within 24 to 72 hours, with no additional cost." },
-  { q: "Do you operate across India?", a: "We serve clients PAN India through regional operations offices and a supervisor network, with a single point of contact and consolidated billing for multi-city contracts." },
+  { q: "Which areas do you serve in Gujarat?", a: "We provide security, event management, housekeeping, and contract manpower services across 5 key districts in Gujarat: Ahmedabad, Gandhinagar, Kheda, Mehsana, and Sabarkantha." },
   { q: "What is the minimum contract duration?", a: "Manpower contracts are typically annual with a one-month notice clause. Event security and short-term projects are handled on a per-assignment basis." },
   { q: "Who is liable for statutory dues of deployed staff?", a: "We are the principal employer for all deployed personnel and remit PF, ESI and other statutory dues directly, sharing monthly challans and compliance certificates with you." },
 ];
@@ -427,13 +435,13 @@ export const galleryItems = [
 ];
 
 export const jobs = [
-  { role: "Security Guard", type: "Full time", location: "PAN India", detail: "10th pass, physically fit, 21–50 years. Ex-servicemen preferred." },
-  { role: "Security Supervisor", type: "Full time", location: "Metro cities", detail: "12th pass with 2+ years of supervisory experience in guarding operations." },
-  { role: "Housekeeping Staff", type: "Full time", location: "PAN India", detail: "Experience in office, hospital or industrial cleaning is an advantage." },
-  { role: "Bouncer", type: "Full / Part time", location: "Metro cities", detail: "Strong build, minimum height 5'10\", calm temperament, event experience preferred." },
+  { role: "Security Guard", type: "Full time", location: "Gujarat (5 Districts)", detail: "10th pass, physically fit, 21–50 years. Ex-servicemen preferred." },
+  { role: "Security Supervisor", type: "Full time", location: "Ahmedabad & Gandhinagar", detail: "12th pass with 2+ years of supervisory experience in guarding operations." },
+  { role: "Housekeeping Staff", type: "Full time", location: "Gujarat (5 Districts)", detail: "Experience in office, hospital or industrial cleaning is an advantage." },
+  { role: "Bouncer", type: "Full / Part time", location: "Ahmedabad / Events", detail: "Strong build, minimum height 5'10\", calm temperament, event experience preferred." },
   { role: "Office Staff", type: "Full time", location: "Ahmedabad HQ", detail: "Graduate with basic computer proficiency for operations coordination." },
   { role: "HR Executive", type: "Full time", location: "Ahmedabad HQ", detail: "2+ years in payroll, statutory compliance and workforce administration." },
-  { role: "Recruiter", type: "Full time", location: "Ahmedabad / Regional", detail: "Bulk hiring experience for blue-collar and security manpower." },
+  { role: "Recruiter", type: "Full time", location: "Ahmedabad HQ", detail: "Bulk hiring experience for blue-collar and security manpower." },
 ];
 
 export const serviceOptions = [

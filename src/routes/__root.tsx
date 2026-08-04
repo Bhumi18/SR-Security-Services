@@ -86,14 +86,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "PSARA-licensed security guard, event security, housekeeping and contract manpower services across India.",
+          "PSARA-licensed security guard, event security, housekeeping and contract manpower services across 5 districts in Gujarat: Ahmedabad, Gandhinagar, Kheda, Mehsana, and Sabarkantha.",
       },
       { name: "author", content: company.name },
       { name: "robots", content: "index, follow" },
       {
         name: "keywords",
         content:
-          "security agency India, security guard services, PSARA licensed security company, housekeeping services, event security, bouncer services, contract labour supply, facility management company",
+          "security agency Gujarat, security guard services Ahmedabad, Gandhinagar security agency, Kheda security guards, Mehsana manpower supply, Sabarkantha facility management, PSARA licensed Gujarat",
       },
       { property: "og:site_name", content: company.name },
       { property: "og:locale", content: "en_IN" },
@@ -123,10 +123,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           alternateName: "SR Security Services",
           slogan: company.tagline,
           description:
-            "PSARA-licensed, UDYAM-registered (MSME) and AMC-certified security & facility management company providing trained security guards, event security, bouncers, housekeeping and skilled or unskilled contract manpower across India.",
+            "PSARA-licensed, UDYAM-registered (MSME) and AMC-certified security & facility management company providing trained security guards, event security, bouncers, housekeeping and contract manpower across 5 districts in Gujarat: Ahmedabad, Gandhinagar, Kheda, Mehsana, and Sabarkantha.",
           telephone: company.phone,
           email: company.email,
-          areaServed: "IN",
+          areaServed: ["Ahmedabad", "Gandhinagar", "Kheda", "Mehsana", "Sabarkantha", "Gujarat"],
           foundingDate: "2010",
           address: {
             "@type": "PostalAddress",

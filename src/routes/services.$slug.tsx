@@ -17,9 +17,9 @@ export const Route = createFileRoute("/services/$slug")({
   head: ({ params, loaderData }) => {
     const service = loaderData?.service;
     const title = service
-      ? `${service.title} in India | SR Security Services & Facility Management`
+      ? `${service.title} in Gujarat | SR Security Services & Facility Management`
       : "Service | SR Security Services";
-    const description = service?.summary ?? "Professional security and facility services in India.";
+    const description = service?.summary ?? "Professional security and facility services across Ahmedabad, Gandhinagar, Kheda, Mehsana, and Sabarkantha in Gujarat.";
     return {
       meta: [
         { title },
