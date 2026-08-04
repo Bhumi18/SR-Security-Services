@@ -123,7 +123,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           alternateName: "SR Security Services",
           slogan: company.tagline,
           description:
-            "PSARA-licensed and ISO-certified security and facility management company providing trained security guards, event security, bouncers, housekeeping and skilled or unskilled contract manpower across India.",
+            "PSARA-licensed, UDYAM-registered (MSME) and AMC-certified security & facility management company providing trained security guards, event security, bouncers, housekeeping and skilled or unskilled contract manpower across India.",
           telephone: company.phone,
           email: company.email,
           areaServed: "IN",

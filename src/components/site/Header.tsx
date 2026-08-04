@@ -91,7 +91,7 @@ export function Header() {
         <div className="container-page flex h-10 items-center justify-between text-xs">
           <p className="flex items-center gap-2 text-primary-foreground/80">
             <ShieldCheck className="size-3.5 text-accent" aria-hidden="true" />
-            <span>PSARA Licensed · ISO Certified · PAN India Deployment</span>
+            <span>PSARA Licensed · UDYAM Registered · AMC Certified</span>
           </p>
           <div className="flex items-center gap-6 text-primary-foreground/80">
             <span className="flex items-center gap-1.5">

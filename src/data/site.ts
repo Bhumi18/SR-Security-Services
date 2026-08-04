@@ -240,7 +240,8 @@ export const industries = [
 ];
 
 export const whyChooseUs = [
-  { icon: "BadgeCheck", title: "PSARA Compliant", text: "Licensed under the Private Security Agencies (Regulation) Act with state-wise coverage." },
+  { icon: "BadgeCheck", title: "PSARA Licensed", text: "Licensed under the Private Security Agencies (Regulation) Act with full state compliance." },
+  { icon: "Award", title: "UDYAM & AMC Certified", text: "Registered under Ministry of MSME (UDYAM) and Ahmedabad Municipal Corporation (AMC)." },
   { icon: "UserCheck", title: "Background Verified Staff", text: "Police verification, Aadhaar KYC, address and reference checks before deployment." },
   { icon: "GraduationCap", title: "Highly Trained Personnel", text: "Induction, fire safety, first aid and refresher drills at our own training centres." },
   { icon: "Timer", title: "Quick Deployment", text: "Standard postings mobilised within 24–48 hours, emergency cover on the same day." },
@@ -253,7 +254,6 @@ export const whyChooseUs = [
   { icon: "Fingerprint", title: "Attendance Monitoring", text: "Biometric and geo-tagged attendance with reconciled monthly billing." },
   { icon: "Siren", title: "Emergency Response", text: "Defined escalation matrix and rapid response teams for critical incidents." },
   { icon: "Users2", title: "Reliable Workforce", text: "Low attrition through fair wages, timely salary and welfare programmes." },
-  { icon: "Award", title: "Quality Assurance", text: "Monthly audits, client scorecards and documented corrective actions." },
 ];
 
 export const workProcess = [
@@ -266,13 +266,12 @@ export const workProcess = [
 ];
 
 export const certifications = [
-  "ISO Certified",
   "PSARA Licensed",
+  "UDYAM Registered (MSME)",
+  "AMC Registration Certificate",
   "GST Registered",
-  "MSME Registered",
   "Labour Law Compliance",
-  "PF Compliance",
-  "ESI Compliance",
+  "PF & ESI Compliance",
   "Professional Tax Compliance",
 ];
 
@@ -343,7 +342,7 @@ export const faqs = [
   { q: "Do you provide event and crowd security?", a: "Yes. We handle corporate, political, religious, sporting, wedding and concert events with crowd management, entry and parking control, VIP handling and bouncers, backed by a written event security plan." },
   { q: "Do you provide housekeeping staff?", a: "Yes. Office and industrial housekeeping, commercial and deep cleaning, hospital housekeeping, pantry staff, office boys and society cleaning teams, with supervisors and defined cleaning schedules." },
   { q: "Do you supply manpower on a contract basis?", a: "Yes. Skilled, semi-skilled and unskilled contract labour including machine operators, electricians, packers, loaders, warehouse and office staff, with complete payroll and compliance management." },
-  { q: "Are you PSARA licensed?", a: "Yes. We hold a valid PSARA licence for the states we operate in, and we can share the licence copy, ISO certificate, GST and MSME registrations during the proposal stage." },
+  { q: "Are you PSARA licensed?", a: "Yes. We hold a valid PSARA licence for the states we operate in, and we can share the licence copy, UDYAM registration (MSME), AMC certificate and GST registration during the proposal stage." },
   { q: "What training do your guards receive?", a: "A structured induction covering access control, patrolling, frisking, fire safety, first aid, emergency evacuation, register maintenance and customer etiquette — followed by quarterly refresher drills." },
   { q: "How do you monitor attendance and performance?", a: "Biometric or geo-tagged mobile attendance, patrol checkpoint scanning, supervisor visit reports and a monthly MIS with incident summaries and a quality score shared with the client." },
   { q: "What happens if a guard is absent?", a: "The site supervisor arranges a reliever from the nearest reserve pool. Unfilled shifts are not billed, and repeated absence triggers replacement of the deployed person." },

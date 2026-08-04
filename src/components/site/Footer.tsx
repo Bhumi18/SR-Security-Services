@@ -26,9 +26,7 @@ export function Footer() {
             </span>
           </div>
           <p className="mt-5 text-sm leading-relaxed text-primary-foreground/70">
-            {company.name} is a PSARA-licensed, ISO-certified security and facility management
-            company delivering trained guarding, event security, housekeeping and compliant
-            manpower solutions across India since 2010.
+            {company.name} is a PSARA-licensed, UDYAM-registered (MSME) and AMC-certified security & facility management firm delivering trained guarding, event security, housekeeping and compliant manpower solutions across India.
           </p>
           <p className="mt-5 font-display text-sm font-medium text-accent">{company.tagline}</p>
           <div className="mt-6 flex flex-wrap gap-2">

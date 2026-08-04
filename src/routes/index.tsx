@@ -13,6 +13,7 @@ import {
 
 import { CtaBand } from "@/components/site/CtaBand";
 import { Icon } from "@/components/site/Icon";
+import { LicensesBand } from "@/components/site/LicensesBand";
 import { OurClients } from "@/components/site/OurClients";
 import { QuoteForm } from "@/components/site/QuoteForm";
 import { Section, SectionHeading } from "@/components/site/Section";
@@ -86,7 +87,7 @@ function Home() {
           <div className="fade-up max-w-3xl">
             <p className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/5 px-4 py-1.5 text-xs font-semibold tracking-[0.12em] text-accent uppercase">
               <ShieldCheck className="size-3.5" aria-hidden="true" />
-              PSARA Licensed · ISO Certified
+              PSARA Licensed · UDYAM Registered · AMC Certified
             </p>
             <h1 className="mt-6 text-4xl leading-[1.08] font-bold text-primary-foreground md:text-5xl lg:text-6xl">
               India's Trusted Security & Facility Management Company
@@ -175,7 +176,7 @@ function Home() {
                 },
                 {
                   t: "Industry Compliance",
-                  d: "PSARA, ISO, PF, ESI, GST and labour law compliance with monthly documentation shared with every client.",
+                  d: "PSARA, UDYAM (MSME), AMC, PF, ESI, GST and labour law compliance with monthly documentation shared with every client.",
                 },
               ].map((item) => (
                 <li key={item.t} className="flex gap-4">
@@ -271,6 +272,16 @@ function Home() {
             </div>
           ))}
         </div>
+      </Section>
+
+      {/* Licenses & Compliance Band */}
+      <Section id="licenses" className="scroll-mt-20 lg:scroll-mt-24">
+        <SectionHeading
+          eyebrow="Official Certifications & Registrations"
+          title="Government licensed, registered & fully statutory compliant"
+          description="We operate with 100% legal, municipal and statutory transparency. License copies and registration certificates are provided during onboarding."
+        />
+        <LicensesBand />
       </Section>
 
       {/* Work process */}
