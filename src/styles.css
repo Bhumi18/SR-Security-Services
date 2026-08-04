@@ -256,3 +256,13 @@
     transform: none;
   }
 }
+
+/* Client showcase card with shimmer accent */
+@utility client-showcase {
+  position: relative;
+  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  &:hover {
+    transform: translateY(-6px);
+  }
+}

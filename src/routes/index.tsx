@@ -11,14 +11,13 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-import { ClientLogos } from "@/components/site/ClientLogos";
 import { CtaBand } from "@/components/site/CtaBand";
 import { Icon } from "@/components/site/Icon";
+import { OurClients } from "@/components/site/OurClients";
 import { QuoteForm } from "@/components/site/QuoteForm";
 import { Section, SectionHeading } from "@/components/site/Section";
 import { ServiceGrid } from "@/components/site/ServiceGrid";
 import { StatsBand } from "@/components/site/StatsBand";
-import { Testimonials } from "@/components/site/Testimonials";
 import { Button } from "@/components/ui/button";
 import {
   company,
@@ -285,19 +284,14 @@ function Home() {
 
 
 
-      {/* Testimonials + logos */}
-      <Section tone="surface" id="testimonials" className="scroll-mt-20 lg:scroll-mt-24">
+      {/* Our Clients */}
+      <Section tone="surface" id="clients" className="scroll-mt-20 lg:scroll-mt-24">
         <SectionHeading
-          eyebrow="Client Testimonials"
-          title="What our clients say about working with us"
+          eyebrow="Our Clients"
+          title="Trusted by industry leaders across sectors"
+          description="We are proud to partner with prestigious organisations that trust us to protect their people, premises and events."
         />
-        <Testimonials />
-        <div className="mt-20">
-          <p className="text-center text-xs font-semibold tracking-[0.16em] text-muted-foreground uppercase">
-            Trusted by 500+ organisations across India
-          </p>
-          <ClientLogos />
-        </div>
+        <OurClients />
       </Section>
 
       <CtaBand />

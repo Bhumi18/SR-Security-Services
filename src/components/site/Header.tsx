@@ -36,9 +36,11 @@ export function Header() {
     const handleScroll = () => {
       const scrollPos = window.scrollY + 140;
       for (let i = sectionIds.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sectionIds[i]);
+        const id = sectionIds[i];
+        if (!id) continue;
+        const el = document.getElementById(id);
         if (el && el.offsetTop <= scrollPos) {
-          setActiveSection(sectionIds[i]);
+          setActiveSection(id);
           break;
         }
       }
@@ -138,7 +140,7 @@ export function Header() {
             </span>
           </a>
 
-          <nav className="hidden items-center gap-0.5 xl:flex" aria-label="Main navigation">
+          <nav className="hidden items-center gap-1 md:flex" aria-label="Main navigation">
             {nav.map((item) => {
               const isActive = activeSection === item.sectionId;
               return (
@@ -147,7 +149,7 @@ export function Header() {
                   href={item.to}
                   onClick={(e) => handleNavClick(e, item.sectionId)}
                   className={cn(
-                    "rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-accent",
+                    "rounded-md px-2 py-1.5 text-xs font-medium transition-colors hover:text-accent whitespace-nowrap lg:px-3 lg:text-sm",
                     isActive
                       ? "text-primary font-semibold underline decoration-accent decoration-2 underline-offset-8"
                       : "text-charcoal",
@@ -157,14 +159,14 @@ export function Header() {
                 </a>
               );
             })}
-            <Button asChild variant="hero" size="default" className="ml-3">
+            <Button asChild variant="hero" size="sm" className="ml-1 lg:ml-2">
               <a href="/#contact" onClick={(e) => handleNavClick(e, "contact")}>
                 Get Quote
               </a>
             </Button>
           </nav>
 
-          <div className="flex items-center gap-2 xl:hidden">
+          <div className="flex items-center gap-2 md:hidden">
             <Button asChild variant="hero" size="sm" className="hidden sm:inline-flex">
               <a href="/#contact" onClick={(e) => handleNavClick(e, "contact")}>
                 Get Quote
@@ -184,7 +186,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="fixed inset-x-0 top-[calc(4.5rem+0.5rem)] bottom-0 z-40 overflow-y-auto border-t border-border bg-background px-5 pt-4 pb-24 xl:hidden">
+        <div className="fixed inset-x-0 top-[calc(4.5rem+0.5rem)] bottom-0 z-40 overflow-y-auto border-t border-border bg-background px-5 pt-4 pb-24 md:hidden">
           <nav className="flex flex-col" aria-label="Mobile navigation">
             {nav.map((item) => {
               const isActive = activeSection === item.sectionId;
