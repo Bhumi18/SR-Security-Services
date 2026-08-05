@@ -242,7 +242,27 @@ export const GujaratMap: FC<GujaratMapProps> = ({ hoveredDistrict, onHoverDistri
           );
         })}
 
-        {/* Highlighted Covered Districts layer */}
+        {/* Layer 1: Covered Districts polygon shapes */}
+        {COVERED_DISTRICTS.map((d, i) => {
+          const active = hoveredDistrict === d.id;
+          return (
+            <path
+              key={d.id}
+              d={d.path}
+              fill={active ? "url(#gold-active)" : "rgba(201,162,39,0.35)"}
+              stroke={active ? "#FFFFFF" : "rgba(245,215,110,0.85)"}
+              strokeWidth={active ? 2.5 : 1.2}
+              strokeLinejoin="round"
+              filter={active ? "url(#district-glow)" : undefined}
+              onMouseEnter={() => onHoverDistrict(d.id)}
+              onMouseLeave={() => onHoverDistrict(null)}
+              className="cursor-pointer transition-all duration-300 map-district-enter"
+              style={{ animationDelay: `${i * 100 + 200}ms` }}
+            />
+          );
+        })}
+
+        {/* Layer 2: District dots and map labels */}
         {COVERED_DISTRICTS.map((d, i) => {
           const active = hoveredDistrict === d.id;
           return (
@@ -250,20 +270,8 @@ export const GujaratMap: FC<GujaratMapProps> = ({ hoveredDistrict, onHoverDistri
               key={d.id}
               onMouseEnter={() => onHoverDistrict(d.id)}
               onMouseLeave={() => onHoverDistrict(null)}
-              className="cursor-pointer group"
+              className="cursor-pointer pointer-events-auto"
             >
-              {/* District polygon shape */}
-              <path
-                d={d.path}
-                fill={active ? "url(#gold-active)" : "rgba(201,162,39,0.35)"}
-                stroke={active ? "#FFFFFF" : "rgba(245,215,110,0.85)"}
-                strokeWidth={active ? 2.5 : 1.2}
-                strokeLinejoin="round"
-                filter={active ? "url(#district-glow)" : undefined}
-                className="transition-all duration-300 map-district-enter"
-                style={{ animationDelay: `${i * 100 + 200}ms` }}
-              />
-
               {/* Pulsing glow ring around location dot */}
               <circle
                 cx={d.cx}
@@ -299,52 +307,56 @@ export const GujaratMap: FC<GujaratMapProps> = ({ hoveredDistrict, onHoverDistri
               >
                 {d.name}
               </text>
-
-              {/* Hover Tooltip Popup */}
-              {active && (
-                <g className="pointer-events-none map-tooltip-enter">
-                  <rect
-                    x={d.cx - 75}
-                    y={d.cy - 56}
-                    width={150}
-                    height={42}
-                    rx={8}
-                    fill="rgba(11,31,58,0.95)"
-                    stroke="#F5D76E"
-                    strokeWidth={1.2}
-                    className="drop-shadow-lg"
-                  />
-                  <polygon
-                    points={`${d.cx - 6},${d.cy - 14} ${d.cx + 6},${d.cy - 14} ${d.cx},${d.cy - 7}`}
-                    fill="#F5D76E"
-                  />
-                  <text
-                    x={d.cx}
-                    y={d.cy - 37}
-                    textAnchor="middle"
-                    fill="#F5D76E"
-                    fontSize="11.5"
-                    fontWeight="700"
-                    fontFamily="Poppins, Inter, sans-serif"
-                  >
-                    {d.name}
-                  </text>
-                  <text
-                    x={d.cx}
-                    y={d.cy - 22}
-                    textAnchor="middle"
-                    fill="rgba(255,255,255,0.85)"
-                    fontSize="9"
-                    fontWeight="500"
-                    fontFamily="Inter, sans-serif"
-                  >
-                    {d.role}
-                  </text>
-                </g>
-              )}
             </g>
           );
         })}
+
+        {/* Layer 3: Active Hover Tooltip Popup - ALWAYS ON VERY TOP */}
+        {(() => {
+          const activeItem = COVERED_DISTRICTS.find((d) => d.id === hoveredDistrict);
+          if (!activeItem) return null;
+          return (
+            <g className="pointer-events-none map-tooltip-enter">
+              <rect
+                x={activeItem.cx - 80}
+                y={activeItem.cy - 58}
+                width={160}
+                height={44}
+                rx={8}
+                fill="#0B1F3A"
+                stroke="#F5D76E"
+                strokeWidth={1.5}
+                className="drop-shadow-[0_8px_16px_rgba(0,0,0,0.6)]"
+              />
+              <polygon
+                points={`${activeItem.cx - 6},${activeItem.cy - 14} ${activeItem.cx + 6},${activeItem.cy - 14} ${activeItem.cx},${activeItem.cy - 7}`}
+                fill="#F5D76E"
+              />
+              <text
+                x={activeItem.cx}
+                y={activeItem.cy - 38}
+                textAnchor="middle"
+                fill="#F5D76E"
+                fontSize="12"
+                fontWeight="700"
+                fontFamily="Poppins, Inter, sans-serif"
+              >
+                {activeItem.name}
+              </text>
+              <text
+                x={activeItem.cx}
+                y={activeItem.cy - 22}
+                textAnchor="middle"
+                fill="rgba(255,255,255,0.9)"
+                fontSize="9.5"
+                fontWeight="500"
+                fontFamily="Inter, sans-serif"
+              >
+                {activeItem.role}
+              </text>
+            </g>
+          );
+        })()}
       </svg>
 
       {/* Legend Badge */}
