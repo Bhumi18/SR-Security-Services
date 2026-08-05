@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Building2,
-  ExternalLink,
   FileCheck,
   FileText,
+  Lock,
   Maximize2,
+  ShieldAlert,
   ShieldCheck,
   X,
 } from "lucide-react";
@@ -53,9 +54,76 @@ export function LicensesBand() {
     title: string;
     pdf: string;
   } | null>(null);
+  const [isScreenCaptured, setIsScreenCaptured] = useState(false);
+
+  // Anti-screenshot & key combo protection (Win+Shift+S, PrtScn, Cmd+Shift+3/4/5, Ctrl+P, Ctrl+S, DevTools)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const key = e.key.toLowerCase();
+      const isWinShiftS = (e.metaKey || e.ctrlKey) && e.shiftKey && (key === "s" || e.code === "KeyS");
+      const isMacScreenshot = e.metaKey && e.shiftKey && ["3", "4", "5"].includes(e.key);
+      const isPrtScn = e.key === "PrintScreen" || e.code === "PrintScreen" || key === "printscreen";
+      const isPrint = (e.ctrlKey || e.metaKey) && key === "p";
+      const isSave = (e.ctrlKey || e.metaKey) && key === "s";
+      const isDevTools =
+        e.key === "F12" ||
+        ((e.ctrlKey || e.metaKey) && e.shiftKey && (key === "i" || key === "j"));
+
+      if (isWinShiftS || isMacScreenshot || isPrtScn || isPrint || isSave || isDevTools) {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsScreenCaptured(true);
+        navigator.clipboard?.writeText("");
+        setTimeout(() => setIsScreenCaptured(false), 3500);
+      }
+    };
+
+    const handleKeyUp = (e: KeyboardEvent) => {
+      const key = e.key.toLowerCase();
+      if (e.key === "PrintScreen" || e.code === "PrintScreen" || key === "printscreen") {
+        navigator.clipboard?.writeText("");
+      }
+    };
+
+    // Shield document when focus is lost (Snipping Tool, Win+Shift+S, Mobile App Switcher)
+    const handleBlur = () => {
+      if (activeModalPdf || hoveredId) {
+        setIsScreenCaptured(true);
+      }
+    };
+    const handleFocus = () => setIsScreenCaptured(false);
+    const handleVisibility = () => {
+      if (document.hidden) setIsScreenCaptured(true);
+      else setIsScreenCaptured(false);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+    window.addEventListener("blur", handleBlur);
+    window.addEventListener("focus", handleFocus);
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+      window.removeEventListener("blur", handleBlur);
+      window.removeEventListener("focus", handleFocus);
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
+  }, [activeModalPdf, hoveredId]);
 
   return (
-    <div className="mt-12">
+    <div className="mt-12 select-none" style={{ WebkitTouchCallout: "none" }}>
+      {/* Hide PDF during print dialog */}
+      <style>{`
+        @media print {
+          iframe, .pdf-protected-area {
+            display: none !important;
+            visibility: hidden !important;
+          }
+        }
+      `}</style>
+
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {licenses.map((item) => {
           const IconComponent = item.icon;
@@ -103,14 +171,15 @@ export function LicensesBand() {
                   className="inline-flex items-center gap-1 rounded-md bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground transition-colors hover:bg-accent hover:text-accent-foreground cursor-pointer"
                 >
                   <Maximize2 className="size-3" />
-                  Full View
+                  Expand Document
                 </button>
               </div>
 
-              {/* Hover Pop-up Component with Pre-loaded PDF Preview */}
+              {/* Hover Pop-up Component with Pre-loaded Protected PDF Preview */}
               <div
+                onContextMenu={(e) => e.preventDefault()}
                 className={cn(
-                  "absolute inset-0 flex flex-col justify-between rounded-2xl border-2 border-accent bg-[#0B1F3A] p-4 text-white shadow-2xl backdrop-blur-md transition-all duration-300",
+                  "pdf-protected-area absolute inset-0 flex flex-col justify-between select-none rounded-2xl border-2 border-accent bg-[#0B1F3A] p-4 text-white shadow-2xl backdrop-blur-md transition-all duration-300",
                   isHovered
                     ? "opacity-100 scale-100 pointer-events-auto z-30"
                     : "opacity-0 scale-95 pointer-events-none -z-10",
@@ -127,29 +196,49 @@ export function LicensesBand() {
                       <p className="truncate text-[10px] text-white/70">Verified Certificate Document</p>
                     </div>
                   </div>
-                  <a
-                    href={item.pdf}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex shrink-0 items-center gap-1 rounded-md bg-accent px-2 py-1 text-[11px] font-bold text-accent-foreground transition-all hover:bg-accent/90"
-                    title="Open full PDF in new tab"
-                  >
-                    <span>Open PDF</span>
-                    <ExternalLink className="size-3" />
-                  </a>
+                  <span className="inline-flex shrink-0 items-center gap-1 rounded-md border border-accent/30 bg-accent/10 px-2 py-1 text-[10px] font-bold text-accent">
+                    <Lock className="size-3" />
+                    <span>Protected</span>
+                  </span>
                 </div>
 
-                {/* PDF Embedded View with dark skeleton loader background */}
+                {/* PDF Embedded View with watermark and anti-capture screen shield */}
                 <div className="relative my-2.5 flex-1 overflow-hidden rounded-xl border border-white/15 bg-[#071324]">
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-[#071324] text-xs text-accent/80">
                     <FileText className="size-6 animate-pulse text-accent" />
                     <span className="text-[11px] font-medium text-white/70">Loading Certificate...</span>
                   </div>
+
                   <iframe
                     src={`${item.pdf}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
                     title={`${item.title} PDF Document`}
-                    className="relative z-10 h-full w-full border-0 bg-white"
+                    className={cn(
+                      "relative z-10 h-full w-full border-0 bg-white transition-all duration-300",
+                      isScreenCaptured && "blur-xl opacity-10",
+                    )}
                   />
+
+                  {/* Watermark Security Guard Repeating Grid */}
+                  <div className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-around overflow-hidden p-4 opacity-30 select-none">
+                    {Array.from({ length: 5 }).map((_, idx) => (
+                      <div key={idx} className="flex justify-around">
+                        <span className="rotate-[-25deg] font-display text-[10px] font-extrabold tracking-widest text-[#0B1F3A] uppercase">
+                          SR SECURITY SERVICES · PROTECTED COMPLIANCE COPY · DO NOT COPY
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Screen Capture Warning Overlay */}
+                  {isScreenCaptured && (
+                    <div className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-2 bg-[#0B1F3A]/95 p-4 text-center">
+                      <ShieldAlert className="size-7 text-amber-400" />
+                      <p className="text-xs font-bold text-amber-400">Screen Capture Restricted</p>
+                      <p className="text-[10px] text-white/70">
+                        Screenshots & saving are restricted for compliance.
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Pop-up Footer */}
@@ -171,9 +260,12 @@ export function LicensesBand() {
         })}
       </div>
 
-      {/* Fullscreen PDF Modal Viewer */}
+      {/* Fullscreen Protected PDF Modal Viewer */}
       {activeModalPdf && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm animate-in fade-in duration-200">
+        <div
+          onContextMenu={(e) => e.preventDefault()}
+          className="pdf-protected-area fixed inset-0 z-50 flex items-center justify-center select-none bg-black/85 p-4 backdrop-blur-sm animate-in fade-in duration-200"
+        >
           <div className="relative flex h-[88vh] w-full max-w-4xl flex-col rounded-2xl border border-accent/40 bg-[#0B1F3A] p-4 text-white shadow-2xl">
             {/* Modal Header */}
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
@@ -181,19 +273,14 @@ export function LicensesBand() {
                 <ShieldCheck className="size-6 text-accent" />
                 <div>
                   <h3 className="font-display text-lg font-bold text-white">{activeModalPdf.title}</h3>
-                  <p className="text-xs text-white/70">Official Compliance & License Certificate PDF</p>
+                  <p className="text-xs text-white/70">Official Compliance & License Certificate (Read-Only)</p>
                 </div>
               </div>
-              <div className="flex items-center gap-2">
-                <a
-                  href={activeModalPdf.pdf}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-3 py-1.5 text-xs font-bold text-accent-foreground transition-colors hover:bg-accent/90"
-                >
-                  <ExternalLink className="size-3.5" />
-                  Open in New Tab
-                </a>
+              <div className="flex items-center gap-3">
+                <span className="inline-flex items-center gap-1.5 rounded-lg border border-accent/30 bg-accent/10 px-3 py-1.5 text-xs font-semibold text-accent">
+                  <Lock className="size-3.5" />
+                  Protected View
+                </span>
                 <button
                   type="button"
                   onClick={() => setActiveModalPdf(null)}
@@ -204,13 +291,38 @@ export function LicensesBand() {
               </div>
             </div>
 
-            {/* Modal PDF Viewer Body */}
-            <div className="mt-3 flex-1 overflow-hidden rounded-xl bg-white">
+            {/* Modal PDF Viewer Body with Watermark and Capture Shield */}
+            <div className="relative mt-3 flex-1 overflow-hidden rounded-xl bg-white">
               <iframe
-                src={`${activeModalPdf.pdf}#view=FitH`}
+                src={`${activeModalPdf.pdf}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
                 title={`${activeModalPdf.title} Full PDF`}
-                className="h-full w-full border-0"
+                className={cn(
+                  "relative z-10 h-full w-full border-0 transition-all duration-300",
+                  isScreenCaptured && "blur-xl opacity-10",
+                )}
               />
+
+              {/* Watermark Security Guard Repeating Grid */}
+              <div className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-around overflow-hidden p-6 opacity-25 select-none">
+                {Array.from({ length: 8 }).map((_, idx) => (
+                  <div key={idx} className="flex justify-around">
+                    <span className="rotate-[-22deg] font-display text-xs font-extrabold tracking-widest text-[#0B1F3A] uppercase">
+                      SR SECURITY SERVICES & FACILITY MANAGEMENT · PROTECTED COMPLIANCE COPY · DO NOT COPY
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Screen Capture Warning Overlay */}
+              {isScreenCaptured && (
+                <div className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-3 bg-[#0B1F3A]/95 p-6 text-center">
+                  <ShieldAlert className="size-10 text-amber-400" />
+                  <h4 className="font-display text-lg font-bold text-amber-400">Screen Capture Restricted</h4>
+                  <p className="max-w-md text-xs leading-relaxed text-white/80">
+                    Official license certificates are protected under company security compliance. Screenshots, printing, and file downloads are restricted.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
