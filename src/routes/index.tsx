@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -12,6 +13,7 @@ import {
 } from "lucide-react";
 
 import { CtaBand } from "@/components/site/CtaBand";
+import { GujaratMap } from "@/components/site/GujaratMap";
 import { Icon } from "@/components/site/Icon";
 import { LicensesBand } from "@/components/site/LicensesBand";
 import { OurClients } from "@/components/site/OurClients";
@@ -44,14 +46,13 @@ export const Route = createFileRoute("/")({
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: description },
     ],
-    links: [
-      { rel: "canonical", href: "/" },
-      { rel: "preload", as: "image", href: images.heroSecurity, fetchpriority: "high" },
-    ],
+    links: [{ rel: "canonical", href: "/" }],
   }),
 });
 
 function Home() {
+  const [hoveredDistrict, setHoveredDistrict] = useState<string | null>(null);
+
   const contactDetails = [
     {
       icon: MapPin,
@@ -68,22 +69,14 @@ function Home() {
   return (
     <>
       {/* Hero */}
-      <section id="hero" className="relative isolate overflow-hidden scroll-mt-20 lg:scroll-mt-24">
-        <img
-          src={images.heroSecurity}
-          alt="Uniformed security guards of SR Security Services standing outside a corporate office building"
-          width={1920}
-          height={1088}
-          fetchPriority="high"
-          decoding="async"
-          className="absolute inset-0 -z-10 size-full object-cover object-center"
-        />
+      <section id="hero" className="relative isolate overflow-hidden bg-primary scroll-mt-20 lg:scroll-mt-24">
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,oklch(0.2_0.05_258/0.95)_0%,oklch(0.2_0.05_258/0.82)_46%,oklch(0.2_0.05_258/0.45)_100%)]"
+          className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_60%_at_15%_50%,oklch(0.32_0.06_258/0.6),transparent)]"
         />
-        <div className="container-page py-20 md:py-32 lg:py-40">
-          <div className="fade-up max-w-3xl">
+        <div className="container-page py-20 md:py-28 lg:py-36">
+          <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8 xl:gap-16">
+            <div className="fade-up">
             <p className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/5 px-4 py-1.5 text-xs font-semibold tracking-[0.12em] text-accent uppercase">
               <ShieldCheck className="size-3.5" aria-hidden="true" />
               PSARA Licensed · UDYAM Registered · AMC Certified
@@ -93,7 +86,29 @@ function Home() {
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/80 md:text-lg">
               Providing professional security guards, event management, housekeeping, bouncer
-              services, and contract manpower across 5 key districts in Gujarat: Ahmedabad, Gandhinagar, Kheda, Mehsana, and Sabarkantha.
+              services, and contract manpower across 5 key districts in Gujarat:{" "}
+              {[
+                { id: "ahmedabad", name: "Ahmedabad" },
+                { id: "gandhinagar", name: "Gandhinagar" },
+                { id: "kheda", name: "Kheda" },
+                { id: "mehsana", name: "Mehsana" },
+                { id: "sabarkantha", name: "Sabarkantha" },
+              ].map((d, i, arr) => (
+                <span key={d.id}>
+                  <span
+                    onMouseEnter={() => setHoveredDistrict(d.id)}
+                    onMouseLeave={() => setHoveredDistrict(null)}
+                    className={`cursor-pointer border-b border-dotted pb-px transition-all duration-300 ${
+                      hoveredDistrict === d.id
+                        ? "text-accent border-accent"
+                        : "border-primary-foreground/30 hover:text-accent hover:border-accent"
+                    }`}
+                  >
+                    {d.name}
+                  </span>
+                  {i < arr.length - 1 ? (i === arr.length - 2 ? ", and " : ", ") : "."}
+                </span>
+              ))}
             </p>
             <p className="mt-4 font-display text-sm font-medium text-accent md:text-base">
               {company.tagline}
@@ -122,6 +137,15 @@ function Home() {
                 ),
               )}
             </ul>
+          </div>
+
+            {/* Right – Interactive Gujarat Map */}
+            <div className="fade-up hidden lg:block" style={{ animationDelay: "200ms" }}>
+              <GujaratMap
+                hoveredDistrict={hoveredDistrict}
+                onHoverDistrict={setHoveredDistrict}
+              />
+            </div>
           </div>
         </div>
       </section>

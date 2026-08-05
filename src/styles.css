@@ -1,4 +1,4 @@
-@import "tailwindcss" source(none);
+@import "tailwindcss";
 @source "../src";
 @import "tw-animate-css";
 
@@ -265,4 +265,46 @@
   &:hover {
     transform: translateY(-6px);
   }
+}
+
+/* ─── Gujarat map animations ─── */
+
+@keyframes map-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes map-pulse-ring {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.12; }
+}
+
+@keyframes map-tooltip-pop {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@utility map-outline-enter {
+  animation: map-fade-in 1s ease-out both;
+  @media (prefers-reduced-motion: reduce) { animation: none; }
+}
+
+@utility map-district-enter {
+  animation: map-fade-in 0.5s ease-out both;
+  @media (prefers-reduced-motion: reduce) { animation: none; }
+}
+
+@utility map-dot-enter {
+  animation: map-fade-in 0.4s ease-out both;
+  @media (prefers-reduced-motion: reduce) { animation: none; }
+}
+
+@utility map-dot-pulse {
+  animation: map-pulse-ring 2s ease-in-out infinite;
+  @media (prefers-reduced-motion: reduce) { animation: none; }
+}
+
+@utility map-tooltip-enter {
+  animation: map-tooltip-pop 0.2s ease-out both;
+  @media (prefers-reduced-motion: reduce) { animation: none; }
 }
