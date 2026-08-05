@@ -20,12 +20,12 @@ import { OurClients } from "@/components/site/OurClients";
 import { QuoteForm } from "@/components/site/QuoteForm";
 import { Section, SectionHeading } from "@/components/site/Section";
 import { ServiceGrid } from "@/components/site/ServiceGrid";
+import { WhyChooseUsCarousel } from "@/components/site/WhyChooseUsCarousel";
 import { Button } from "@/components/ui/button";
 import {
   company,
   images,
   industries,
-  whyChooseUs,
   workProcess,
 } from "@/data/site";
 
@@ -277,19 +277,7 @@ function Home() {
           title="Fourteen reasons clients stay with us for years"
           description="We compete on reliability and compliance, not on the lowest quotation."
         />
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {whyChooseUs.map((item) => (
-            <div key={item.title} className="card-premium p-6">
-              <span className="grid size-12 place-items-center rounded-xl bg-accent-soft">
-                <Icon name={item.icon} className="size-5 text-accent-foreground" />
-              </span>
-              <h3 className="mt-5 font-display text-base font-semibold text-primary">
-                {item.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
-            </div>
-          ))}
-        </div>
+        <WhyChooseUsCarousel />
       </Section>
 
       {/* Licenses & Compliance Band */}
