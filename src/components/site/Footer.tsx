@@ -88,7 +88,7 @@ export function Footer() {
             </h3>
             <span className="gold-rule mt-3" />
             <p className="mt-4 text-sm leading-relaxed text-primary-foreground/70">
-              {industries.slice(0, 10).join(" · ")}
+              {industries.slice(0, 10).map((item) => item.name).join(" · ")}
             </p>
           </div>
         </div>

@@ -247,12 +247,14 @@ function Home() {
           <div className="marquee-track gap-4 hover:[animation-play-state:paused]">
             {[...industries, ...industries].map((item, i) => (
               <div
-                key={`${item}-${i}`}
-                className="group flex shrink-0 items-center gap-3 rounded-full border border-border/80 bg-card px-5 py-3 shadow-xs transition-all duration-300 hover:border-accent/60 hover:bg-accent-soft/80 hover:shadow-md hover:-translate-y-0.5"
+                key={`${item.name}-${i}`}
+                className="group flex shrink-0 items-center gap-3 rounded-full border border-border/80 bg-card px-4 py-2.5 shadow-xs transition-all duration-300 hover:border-accent/60 hover:bg-accent-soft/80 hover:shadow-md hover:-translate-y-0.5"
               >
-                <span className="size-2 rounded-full bg-accent transition-transform duration-300 group-hover:scale-125" />
+                <span className="grid size-7 place-items-center rounded-full bg-accent-soft text-accent-foreground transition-all duration-300 group-hover:bg-accent group-hover:text-accent-foreground group-hover:scale-110">
+                  <Icon name={item.icon} className="size-3.5" />
+                </span>
                 <span className="font-display text-sm font-semibold text-charcoal transition-colors group-hover:text-primary whitespace-nowrap">
-                  {item}
+                  {item.name}
                 </span>
               </div>
             ))}
