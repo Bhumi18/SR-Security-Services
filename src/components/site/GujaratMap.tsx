@@ -294,15 +294,16 @@ export const GujaratMap: FC<GujaratMapProps> = ({ hoveredDistrict, onHoverDistri
                 style={{ animationDelay: `${i * 100 + 400}ms` }}
               />
 
-              {/* District Name Label directly on map */}
+              {/* District Name Label directly on map (fades out when district is hovered to avoid duplicate name) */}
               <text
                 x={d.cx}
-                y={d.cy + (active ? 22 : 17)}
+                y={d.cy + 17}
                 textAnchor="middle"
-                fill={active ? "#FFFFFF" : "rgba(255,255,255,0.95)"}
-                fontSize={active ? "12" : "10.5"}
+                fill="rgba(255,255,255,0.95)"
+                fontSize="10.5"
                 fontWeight="700"
                 fontFamily="Poppins, Inter, sans-serif"
+                opacity={active ? 0 : 1}
                 className="pointer-events-none transition-all duration-300 select-none drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]"
               >
                 {d.name}
