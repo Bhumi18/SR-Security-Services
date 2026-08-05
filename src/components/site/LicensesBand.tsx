@@ -12,6 +12,7 @@ import {
 import psaraPdf from "@/assets/PSARA.pdf";
 import udyamPdf from "@/assets/UDYAM.pdf";
 import amcPdf from "@/assets/AMC.pdf";
+import { cn } from "@/lib/utils";
 
 export const licenses = [
   {
@@ -106,56 +107,65 @@ export function LicensesBand() {
                 </button>
               </div>
 
-              {/* Hover Pop-up Component with PDF Preview */}
-              {isHovered && (
-                <div className="pointer-events-auto absolute inset-0 z-30 flex flex-col justify-between rounded-2xl border-2 border-accent bg-[#0B1F3A] p-4 text-white shadow-2xl backdrop-blur-md animate-in fade-in zoom-in-95 duration-200">
-                  {/* Pop-up Header */}
-                  <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-2.5">
-                    <div className="flex items-center gap-2 min-w-0">
-                      <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-accent/20 text-accent">
-                        <FileText className="size-4" />
-                      </span>
-                      <div className="min-w-0">
-                        <p className="truncate text-xs font-bold text-accent">{item.title}</p>
-                        <p className="truncate text-[10px] text-white/70">Verified Certificate Document</p>
-                      </div>
-                    </div>
-                    <a
-                      href={item.pdf}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex shrink-0 items-center gap-1 rounded-md bg-accent px-2 py-1 text-[11px] font-bold text-accent-foreground transition-all hover:bg-accent/90"
-                      title="Open full PDF in new tab"
-                    >
-                      <span>Open PDF</span>
-                      <ExternalLink className="size-3" />
-                    </a>
-                  </div>
-
-                  {/* PDF Embedded View */}
-                  <div className="relative my-2.5 flex-1 overflow-hidden rounded-xl border border-white/15 bg-white">
-                    <iframe
-                      src={`${item.pdf}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
-                      title={`${item.title} PDF Document`}
-                      className="h-full w-full border-0"
-                    />
-                  </div>
-
-                  {/* Pop-up Footer */}
-                  <div className="flex items-center justify-between text-[11px] text-white/80 pt-1">
-                    <span className="flex items-center gap-1 text-accent font-medium">
-                      <ShieldCheck className="size-3.5" /> Official Copy
+              {/* Hover Pop-up Component with Pre-loaded PDF Preview */}
+              <div
+                className={cn(
+                  "absolute inset-0 flex flex-col justify-between rounded-2xl border-2 border-accent bg-[#0B1F3A] p-4 text-white shadow-2xl backdrop-blur-md transition-all duration-300",
+                  isHovered
+                    ? "opacity-100 scale-100 pointer-events-auto z-30"
+                    : "opacity-0 scale-95 pointer-events-none -z-10",
+                )}
+              >
+                {/* Pop-up Header */}
+                <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-2.5">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-accent/20 text-accent">
+                      <FileText className="size-4" />
                     </span>
-                    <button
-                      type="button"
-                      onClick={() => setActiveModalPdf({ title: item.title, pdf: item.pdf })}
-                      className="inline-flex items-center gap-1 font-semibold text-white hover:text-accent underline decoration-accent cursor-pointer"
-                    >
-                      Expand Document
-                    </button>
+                    <div className="min-w-0">
+                      <p className="truncate text-xs font-bold text-accent">{item.title}</p>
+                      <p className="truncate text-[10px] text-white/70">Verified Certificate Document</p>
+                    </div>
                   </div>
+                  <a
+                    href={item.pdf}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex shrink-0 items-center gap-1 rounded-md bg-accent px-2 py-1 text-[11px] font-bold text-accent-foreground transition-all hover:bg-accent/90"
+                    title="Open full PDF in new tab"
+                  >
+                    <span>Open PDF</span>
+                    <ExternalLink className="size-3" />
+                  </a>
                 </div>
-              )}
+
+                {/* PDF Embedded View with dark skeleton loader background */}
+                <div className="relative my-2.5 flex-1 overflow-hidden rounded-xl border border-white/15 bg-[#071324]">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-[#071324] text-xs text-accent/80">
+                    <FileText className="size-6 animate-pulse text-accent" />
+                    <span className="text-[11px] font-medium text-white/70">Loading Certificate...</span>
+                  </div>
+                  <iframe
+                    src={`${item.pdf}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                    title={`${item.title} PDF Document`}
+                    className="relative z-10 h-full w-full border-0 bg-white"
+                  />
+                </div>
+
+                {/* Pop-up Footer */}
+                <div className="flex items-center justify-between text-[11px] text-white/80 pt-1">
+                  <span className="flex items-center gap-1 text-accent font-medium">
+                    <ShieldCheck className="size-3.5" /> Official Copy
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setActiveModalPdf({ title: item.title, pdf: item.pdf })}
+                    className="inline-flex items-center gap-1 font-semibold text-white hover:text-accent underline decoration-accent cursor-pointer"
+                  >
+                    Expand Document
+                  </button>
+                </div>
+              </div>
             </div>
           );
         })}
