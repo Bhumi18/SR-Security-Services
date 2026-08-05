@@ -74,15 +74,17 @@ function Home() {
           aria-hidden="true"
           className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_60%_at_15%_50%,oklch(0.32_0.06_258/0.6),transparent)]"
         />
-        <div className="container-page py-20 md:py-28 lg:py-36">
+        <div className="container-page pt-8 pb-16 md:pt-10 md:pb-24 lg:pt-12 lg:pb-28">
           <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8 xl:gap-16">
             <div className="fade-up">
             <p className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/5 px-4 py-1.5 text-xs font-semibold tracking-[0.12em] text-accent uppercase">
               <ShieldCheck className="size-3.5" aria-hidden="true" />
               PSARA Licensed · UDYAM Registered · AMC Certified
             </p>
-            <h1 className="mt-6 text-4xl leading-[1.08] font-bold text-primary-foreground md:text-5xl lg:text-6xl">
-              Trusted Security & Facility Management in Gujarat
+            <h1 className="mt-6 text-3xl leading-[1.08] font-bold text-primary-foreground sm:text-4xl md:text-5xl xl:text-6xl">
+              Trusted Security &<br />
+              <span className="whitespace-nowrap">Facility Management</span><br />
+              in Gujarat
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/80 md:text-lg">
               Providing professional security guards, event management, housekeeping, bouncer

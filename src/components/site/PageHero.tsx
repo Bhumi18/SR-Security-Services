@@ -18,7 +18,7 @@ export function PageHero({
         aria-hidden="true"
         className="pointer-events-none absolute -top-24 -right-24 size-80 rounded-full bg-accent/10 blur-3xl"
       />
-      <div className="container-page relative py-16 md:py-24">
+      <div className="container-page relative pt-8 pb-14 md:pt-10 md:pb-20">
         <nav
           aria-label="Breadcrumb"
           className="flex items-center gap-1.5 text-xs text-primary-foreground/60"
