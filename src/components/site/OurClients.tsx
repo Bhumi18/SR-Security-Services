@@ -57,7 +57,7 @@ export function OurClients() {
             {/* Card inner */}
             <div className="relative flex flex-1 flex-col items-center rounded-3xl border border-border/60 bg-white p-8 transition-all duration-500 group-hover:border-accent/30 group-hover:shadow-[0_8px_40px_-12px_oklch(0.715_0.128_87_/_0.2)] md:p-10">
               {/* Industry tag badge */}
-              <span className="absolute top-5 right-5 inline-flex items-center rounded-full border border-accent/20 bg-accent-soft px-3 py-1 text-[10px] font-bold tracking-[0.12em] uppercase text-accent-foreground">
+              <span className="absolute top-4 right-4 z-20 inline-flex items-center rounded-full border border-accent/30 bg-accent-soft px-3 py-1 text-[10px] font-bold tracking-[0.12em] uppercase text-accent-foreground shadow-xs">
                 {client.tag}
               </span>
 
