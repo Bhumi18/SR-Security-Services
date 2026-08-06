@@ -46,19 +46,44 @@ export function Footer() {
             </h3>
             <span className="gold-rule mt-3" />
             <ul className="mt-4 space-y-2.5 text-sm">
-              {nav.map((item) => (
-                <li key={item.sectionId}>
-                  <a
-                    href={item.to}
-                    className="text-primary-foreground/70 transition-colors hover:text-accent"
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
               <li>
-                <a href="/#contact" className="text-accent transition-colors hover:underline">
-                  Get a Free Quote
+                <a href="/#hero" className="text-primary-foreground/70 transition-colors hover:text-accent">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="/#about" className="text-primary-foreground/70 transition-colors hover:text-accent">
+                  Company Overview
+                </a>
+              </li>
+              <li>
+                <a href="/#why-choose-us" className="text-primary-foreground/70 transition-colors hover:text-accent">
+                  Why Choose Us
+                </a>
+              </li>
+              <li>
+                <a href="/#licenses" className="text-primary-foreground/70 transition-colors hover:text-accent">
+                  Licenses & Certifications
+                </a>
+              </li>
+              <li>
+                <a href="/#process" className="text-primary-foreground/70 transition-colors hover:text-accent">
+                  Our Work Process
+                </a>
+              </li>
+              <li>
+                <a href="/#industries" className="text-primary-foreground/70 transition-colors hover:text-accent">
+                  Industries We Serve
+                </a>
+              </li>
+              <li>
+                <a href="/#clients" className="text-primary-foreground/70 transition-colors hover:text-accent">
+                  Our Clients
+                </a>
+              </li>
+              <li>
+                <a href="/#contact" className="text-accent font-semibold transition-colors hover:underline">
+                  Contact & Free Quote
                 </a>
               </li>
             </ul>

@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Clock, Mail, Menu, Phone, ShieldCheck, X } from "lucide-react";
+import { ChevronDown, Clock, Mail, Menu, Phone, ShieldCheck, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { company, images, nav } from "@/data/site";
@@ -10,6 +10,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("hero");
+  const [expandedMobileGroup, setExpandedMobileGroup] = useState<string | null>(null);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -32,7 +33,13 @@ export function Header() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const sectionIds = nav.map((item) => item.sectionId);
+    const sectionIds = nav
+      .flatMap((item) => [
+        item.sectionId,
+        ...(item.children?.map((c) => c.sectionId) || []),
+      ])
+      .filter(Boolean) as string[];
+
     const handleScroll = () => {
       const scrollPos = window.scrollY + 140;
       for (let i = sectionIds.length - 1; i >= 0; i--) {
@@ -64,8 +71,10 @@ export function Header() {
     }
   }, [location.hash, location.pathname]);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId?: string) => {
     setOpen(false);
+    if (!sectionId) return;
+
     if (location.pathname === "/" || location.pathname === "") {
       e.preventDefault();
       const el = document.getElementById(sectionId);
@@ -137,12 +146,58 @@ export function Header() {
             </span>
           </a>
 
+          {/* Desktop Navigation */}
           <nav className="hidden items-center gap-1 md:flex" aria-label="Main navigation">
             {nav.map((item) => {
-              const isActive = activeSection === item.sectionId;
+              const isActive =
+                (item.sectionId && activeSection === item.sectionId) ||
+                item.children?.some((c) => c.sectionId && activeSection === c.sectionId);
+
+              if (item.children) {
+                return (
+                  <div key={item.label} className="group relative">
+                    <a
+                      href={item.to}
+                      onClick={(e) => handleNavClick(e, item.sectionId)}
+                      className={cn(
+                        "inline-flex items-center gap-1 rounded-md px-2 py-1.5 text-xs font-medium transition-colors hover:text-accent whitespace-nowrap lg:px-3 lg:text-sm cursor-pointer",
+                        isActive
+                          ? "text-primary font-semibold underline decoration-accent decoration-2 underline-offset-8"
+                          : "text-charcoal",
+                      )}
+                    >
+                      <span>{item.label}</span>
+                      <ChevronDown className="size-3.5 text-muted-foreground transition-transform duration-200 group-hover:rotate-180" />
+                    </a>
+
+                    {/* Dropdown Menu */}
+                    <div className="pointer-events-none absolute left-0 top-full pt-2 opacity-0 transition-all duration-200 ease-out group-hover:pointer-events-auto group-hover:opacity-100 group-hover:translate-y-0 translate-y-1 z-50">
+                      <div className="w-56 rounded-2xl border border-border/80 bg-background p-2 shadow-xl backdrop-blur-lg">
+                        {item.children.map((sub) => (
+                          <a
+                            key={sub.label}
+                            href={sub.to}
+                            onClick={(e) => {
+                              if (sub.sectionId) {
+                                handleNavClick(e, sub.sectionId);
+                              } else {
+                                setOpen(false);
+                              }
+                            }}
+                            className="flex items-center rounded-xl px-3 py-2 text-xs font-medium text-primary transition-colors hover:bg-accent-soft hover:text-accent-foreground"
+                          >
+                            {sub.label}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
               return (
                 <a
-                  key={item.sectionId}
+                  key={item.label}
                   href={item.to}
                   onClick={(e) => handleNavClick(e, item.sectionId)}
                   className={cn(
@@ -163,6 +218,7 @@ export function Header() {
             </Button>
           </nav>
 
+          {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 md:hidden">
             <Button asChild variant="hero" size="sm" className="hidden sm:inline-flex">
               <a href="/#contact" onClick={(e) => handleNavClick(e, "contact")}>
@@ -182,14 +238,74 @@ export function Header() {
         </div>
       </div>
 
+      {/* Mobile Drawer */}
       {open && (
         <div className="fixed inset-x-0 top-[calc(4.5rem+0.5rem)] bottom-0 z-40 overflow-y-auto border-t border-border bg-background px-5 pt-4 pb-24 md:hidden">
           <nav className="flex flex-col" aria-label="Mobile navigation">
             {nav.map((item) => {
-              const isActive = activeSection === item.sectionId;
+              const isActive =
+                (item.sectionId && activeSection === item.sectionId) ||
+                item.children?.some((c) => c.sectionId && activeSection === c.sectionId);
+
+              if (item.children) {
+                const isExpanded = expandedMobileGroup === item.label;
+                return (
+                  <div key={item.label} className="border-b border-border py-2">
+                    <div className="flex items-center justify-between py-1.5">
+                      <a
+                        href={item.to}
+                        onClick={(e) => handleNavClick(e, item.sectionId)}
+                        className={cn(
+                          "font-display text-base font-semibold transition-colors",
+                          isActive ? "text-accent" : "text-primary",
+                        )}
+                      >
+                        {item.label}
+                      </a>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setExpandedMobileGroup(isExpanded ? null : item.label)
+                        }
+                        className="p-1 text-primary"
+                        aria-label={`Toggle ${item.label} submenu`}
+                      >
+                        <ChevronDown
+                          className={cn(
+                            "size-5 transition-transform duration-200",
+                            isExpanded && "rotate-180 text-accent",
+                          )}
+                        />
+                      </button>
+                    </div>
+
+                    {isExpanded && (
+                      <div className="mt-1 flex flex-col gap-2 pl-4 border-l-2 border-accent/40 py-2">
+                        {item.children.map((sub) => (
+                          <a
+                            key={sub.label}
+                            href={sub.to}
+                            onClick={(e) => {
+                              if (sub.sectionId) {
+                                handleNavClick(e, sub.sectionId);
+                              } else {
+                                setOpen(false);
+                              }
+                            }}
+                            className="py-1 text-sm font-medium text-muted-foreground hover:text-accent"
+                          >
+                            {sub.label}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
               return (
                 <a
-                  key={item.sectionId}
+                  key={item.label}
                   href={item.to}
                   onClick={(e) => handleNavClick(e, item.sectionId)}
                   className={cn(

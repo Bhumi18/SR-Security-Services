@@ -43,14 +43,49 @@ export const company = {
   ],
 };
 
-export const nav = [
+export type NavSubItem = {
+  label: string;
+  sectionId?: string;
+  to: string;
+};
+
+export type NavItem = {
+  label: string;
+  sectionId?: string;
+  to: string;
+  children?: NavSubItem[];
+};
+
+export const nav: NavItem[] = [
   { label: "Home", sectionId: "hero", to: "/#hero" },
-  { label: "About Us", sectionId: "about", to: "/#about" },
-  { label: "Services", sectionId: "services", to: "/#services" },
+  {
+    label: "About Us",
+    sectionId: "about",
+    to: "/#about",
+    children: [
+      { label: "Company Overview", sectionId: "about", to: "/#about" },
+      { label: "Why Choose Us", sectionId: "why-choose-us", to: "/#why-choose-us" },
+      { label: "Licenses & Certifications", sectionId: "licenses", to: "/#licenses" },
+      { label: "Our Work Process", sectionId: "process", to: "/#process" },
+    ],
+  },
+  {
+    label: "Services",
+    sectionId: "services",
+    to: "/#services",
+    children: [
+      { label: "All Services Overview", sectionId: "services", to: "/#services" },
+      { label: "Security Services", to: "/services/security-services" },
+      { label: "Event Management", to: "/services/event-management" },
+      { label: "Bouncer Services", to: "/services/bouncer-services" },
+      { label: "Housekeeping Services", to: "/services/housekeeping-services" },
+      { label: "Placement & Contract Labour", to: "/services/placement-contract-labour" },
+    ],
+  },
   { label: "Industries", sectionId: "industries", to: "/#industries" },
   { label: "Clients", sectionId: "clients", to: "/#clients" },
   { label: "Contact", sectionId: "contact", to: "/#contact" },
-] as const;
+];
 
 export const coverageDistricts = [
   { name: "Ahmedabad", role: "HQ & Operations Hub" },
