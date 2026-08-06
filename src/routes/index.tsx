@@ -12,6 +12,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
+import { TypewriterText } from "@/components/site/TypewriterText";
 import { CtaBand } from "@/components/site/CtaBand";
 import { GujaratMap } from "@/components/site/GujaratMap";
 import { Icon } from "@/components/site/Icon";
@@ -29,24 +30,17 @@ import {
   workProcess,
 } from "@/data/site";
 
-const title = "Trusted Security & Facility Management in Gujarat | SR Security Services";
-const description =
-  "SR Security Services & Facility Management Pvt. Ltd. provides PSARA-licensed security guards, event security, bouncers, housekeeping and skilled manpower across 5 key districts in Gujarat: Ahmedabad, Gandhinagar, Kheda, Mehsana, and Sabarkantha.";
-
 export const Route = createFileRoute("/")({
   component: Home,
   head: () => ({
     meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
-      { name: "twitter:title", content: title },
-      { name: "twitter:description", content: description },
+      { title: `${company.name} | Security & Facility Management in Gujarat` },
+      {
+        name: "description",
+        content:
+          "PSARA licensed, UDYAM (MSME) registered and AMC certified security guards, event management, housekeeping, bouncers and contract labour across Ahmedabad, Gandhinagar, Kheda, Mehsana and Sabarkantha.",
+      },
     ],
-    links: [{ rel: "canonical", href: "/" }],
   }),
 });
 
@@ -76,46 +70,57 @@ function Home() {
         />
         <div className="container-page pt-8 pb-16 md:pt-10 md:pb-24 lg:pt-12 lg:pb-28">
           <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8 xl:gap-16">
-            <div className="fade-up">
-            <p className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/5 px-4 py-1.5 text-xs font-semibold tracking-[0.12em] text-accent uppercase">
-              <ShieldCheck className="size-3.5" aria-hidden="true" />
-              PSARA Licensed · UDYAM Registered · AMC Certified
-            </p>
-            <h1 className="mt-6 text-3xl leading-[1.08] font-bold text-primary-foreground sm:text-4xl md:text-5xl xl:text-6xl">
-              Trusted Security &<br />
-              <span className="whitespace-nowrap">Facility Management</span><br />
-              in Gujarat
-            </h1>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/80 md:text-lg">
-              Providing professional security guards, event management, housekeeping, bouncer
-              services, and contract manpower across 5 key districts in Gujarat:{" "}
-              {[
-                { id: "ahmedabad", name: "Ahmedabad" },
-                { id: "gandhinagar", name: "Gandhinagar" },
-                { id: "kheda", name: "Kheda" },
-                { id: "mehsana", name: "Mehsana" },
-                { id: "sabarkantha", name: "Sabarkantha" },
-              ].map((d, i, arr) => (
-                <span key={d.id}>
-                  <span
-                    onMouseEnter={() => setHoveredDistrict(d.id)}
-                    onMouseLeave={() => setHoveredDistrict(null)}
-                    className={`cursor-pointer border-b border-dotted pb-px transition-all duration-300 ${
-                      hoveredDistrict === d.id
-                        ? "text-accent border-accent"
-                        : "border-primary-foreground/30 hover:text-accent hover:border-accent"
-                    }`}
-                  >
-                    {d.name}
-                  </span>
-                  {i < arr.length - 1 ? (i === arr.length - 2 ? ", and " : ", ") : "."}
+            <div>
+              <p className="fade-up inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/5 px-4 py-1.5 text-xs font-semibold tracking-[0.12em] text-accent uppercase" style={{ animationDelay: "100ms" }}>
+                <ShieldCheck className="size-3.5" aria-hidden="true" />
+                PSARA Licensed · UDYAM Registered · AMC Certified
+              </p>
+              <h1 className="fade-up mt-6 text-3xl leading-[1.08] font-bold text-primary-foreground sm:text-4xl md:text-5xl xl:text-6xl" style={{ animationDelay: "200ms" }}>
+                Trusted Security &<br />
+                <span className="whitespace-nowrap text-accent">
+                  <TypewriterText
+                    words={[
+                      "Facility Management",
+                      "Security Guarding",
+                      "Event Management",
+                      "Bouncer Services",
+                      "Contract Manpower",
+                    ]}
+                  />
                 </span>
-              ))}
-            </p>
-            <p className="mt-4 font-display text-sm font-medium text-accent md:text-base">
-              {company.tagline}
-            </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                <br />
+                in Gujarat
+              </h1>
+              <p className="fade-up mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/80 md:text-lg" style={{ animationDelay: "350ms" }}>
+                Providing professional security guards, event management, housekeeping, bouncer
+                services, and contract manpower across 5 key districts in Gujarat:{" "}
+                {[
+                  { id: "ahmedabad", name: "Ahmedabad" },
+                  { id: "gandhinagar", name: "Gandhinagar" },
+                  { id: "kheda", name: "Kheda" },
+                  { id: "mehsana", name: "Mehsana" },
+                  { id: "sabarkantha", name: "Sabarkantha" },
+                ].map((d, i, arr) => (
+                  <span key={d.id}>
+                    <span
+                      onMouseEnter={() => setHoveredDistrict(d.id)}
+                      onMouseLeave={() => setHoveredDistrict(null)}
+                      className={`cursor-pointer border-b border-dotted pb-px transition-all duration-300 ${
+                        hoveredDistrict === d.id
+                          ? "text-accent border-accent"
+                          : "border-primary-foreground/30 hover:text-accent hover:border-accent"
+                      }`}
+                    >
+                      {d.name}
+                    </span>
+                    {i < arr.length - 1 ? (i === arr.length - 2 ? ", and " : ", ") : "."}
+                  </span>
+                ))}
+              </p>
+              <p className="fade-up mt-4 font-display text-sm font-medium text-accent md:text-base" style={{ animationDelay: "450ms" }}>
+                {company.tagline}
+              </p>
+            <div className="fade-up mt-9 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: "550ms" }}>
               <Button asChild variant="gold" size="xl">
                 <a href="#contact">
                   Request Free Quote
@@ -129,7 +134,7 @@ function Home() {
                 </a>
               </Button>
             </div>
-            <ul className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-primary-foreground/75">
+            <ul className="fade-up mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-primary-foreground/75" style={{ animationDelay: "650ms" }}>
               {["Background Verified Staff", "5 Gujarat Districts Covered", "24x7 Control Room"].map(
                 (t) => (
                   <li key={t} className="flex items-center gap-2">
