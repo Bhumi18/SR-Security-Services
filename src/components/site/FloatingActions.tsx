@@ -6,18 +6,17 @@ import { company } from "@/data/site";
 export function FloatingActions() {
   const [showTop, setShowTop] = useState(false);
   const [isScrollingDown, setIsScrollingDown] = useState(false);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
 
     const onScroll = () => {
       const currentScrollY = window.scrollY;
-      setShowTop(currentScrollY > 350);
+      setShowTop(currentScrollY > 250);
 
-      // Detect scroll direction (threshold 10px to avoid jitter)
-      if (Math.abs(currentScrollY - lastScrollY) > 10) {
-        setIsScrollingDown(currentScrollY > lastScrollY && currentScrollY > 200);
+      // Detect scroll direction (threshold 6px)
+      if (Math.abs(currentScrollY - lastScrollY) > 6) {
+        setIsScrollingDown(currentScrollY > lastScrollY && currentScrollY > 150);
         lastScrollY = currentScrollY;
       }
     };
@@ -64,72 +63,64 @@ export function FloatingActions() {
   ];
 
   return (
-    <div
-      className={`fixed right-4 bottom-4 z-50 flex flex-col items-end gap-3 sm:right-6 sm:bottom-6 transition-all duration-500 cubic-bezier(0.16,1,0.3,1) ${
-        isScrollingDown
-          ? "translate-x-12 opacity-40 hover:translate-x-0 hover:opacity-100"
-          : "translate-x-0 opacity-100"
-      }`}
-    >
-      {/* 1. WhatsApp Button */}
-      {actionButtons.map((btn, index) => {
-        const IconComponent = btn.icon;
-        return (
-          <div
-            key={btn.id}
-            className="group relative flex items-center justify-end"
-            onMouseEnter={() => setHoveredIndex(index)}
-            onMouseLeave={() => setHoveredIndex(null)}
-            style={{
-              transition: "transform 400ms cubic-bezier(0.16, 1, 0.3, 1), opacity 400ms ease",
-              transitionDelay: `${index * 60}ms`,
-            }}
-          >
-            {/* Slide-out Label Tooltip */}
-            <span className="pointer-events-none absolute right-14 whitespace-nowrap rounded-xl bg-primary/95 px-3 py-1.5 text-xs font-semibold text-white opacity-0 shadow-lg backdrop-blur-md transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:opacity-100 translate-x-3">
-              {btn.label}
-            </span>
-
-            {/* Ambient Pulse Ring for WhatsApp */}
-            {btn.pulse && (
-              <span className="absolute inset-0 size-12 animate-ping rounded-full bg-[#25D366]/40 duration-1000" />
-            )}
-
-            {/* Button Link */}
-            <a
-              href={btn.href}
-              target={btn.target}
-              rel={btn.rel}
-              aria-label={btn.label}
-              className={`relative flex size-12 items-center justify-center rounded-full ${btn.bg} ${btn.glow} transition-all duration-300 ease-out hover:scale-110 active:scale-95`}
+    <div className="fixed right-4 bottom-4 z-50 flex flex-col items-end gap-3 sm:right-6 sm:bottom-6">
+      {/* 3 Action Buttons: Pop OUT on Scroll UP / Pop IN on Scroll DOWN */}
+      <div className="flex flex-col items-end gap-3">
+        {actionButtons.map((btn, index) => {
+          const IconComponent = btn.icon;
+          return (
+            <div
+              key={btn.id}
+              className={`group relative flex items-center justify-end transition-all duration-400 ${
+                isScrollingDown
+                  ? "pointer-events-none scale-0 opacity-0 translate-y-6"
+                  : "scale-100 opacity-100 translate-y-0"
+              }`}
+              style={{
+                transitionTimingFunction: isScrollingDown
+                  ? "cubic-bezier(0.4, 0, 1, 1)"
+                  : "cubic-bezier(0.34, 1.56, 0.64, 1)",
+                transitionDelay: isScrollingDown
+                  ? `${(actionButtons.length - 1 - index) * 40}ms`
+                  : `${index * 50}ms`,
+              }}
             >
-              <IconComponent className="size-5 transition-transform duration-300 group-hover:rotate-6" />
-            </a>
-          </div>
-        );
-      })}
+              {/* Slide-out Label Tooltip */}
+              <span className="pointer-events-none absolute right-14 whitespace-nowrap rounded-xl bg-primary/95 px-3 py-1.5 text-xs font-semibold text-white opacity-0 shadow-lg backdrop-blur-md transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:opacity-100 translate-x-3">
+                {btn.label}
+              </span>
 
-      {/* 4. Scroll to Top Button (Animated Show/Hide) */}
-      <div
-        className={`group relative flex items-center justify-end transition-all duration-500 cubic-bezier(0.34,1.56,0.64,1) ${
-          showTop
-            ? "translate-y-0 scale-100 opacity-100"
-            : "pointer-events-none translate-y-8 scale-50 opacity-0"
-        }`}
-      >
-        <span className="pointer-events-none absolute right-14 whitespace-nowrap rounded-xl bg-primary/95 px-3 py-1.5 text-xs font-semibold text-white opacity-0 shadow-lg backdrop-blur-md transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:opacity-100 translate-x-3">
-          Back to Top
-        </span>
+              {/* Ambient Pulse Ring for WhatsApp */}
+              {btn.pulse && (
+                <span className="absolute inset-0 size-12 animate-ping rounded-full bg-[#25D366]/40 duration-1000" />
+              )}
 
+              {/* Button Link */}
+              <a
+                href={btn.href}
+                target={btn.target}
+                rel={btn.rel}
+                aria-label={btn.label}
+                className={`relative flex size-12 items-center justify-center rounded-full ${btn.bg} ${btn.glow} transition-all duration-300 ease-out hover:scale-110 active:scale-95`}
+              >
+                <IconComponent className="size-5 transition-transform duration-300 group-hover:rotate-6" />
+              </a>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Static Back-to-Top Arrow Button (NO Animations) */}
+      {showTop && (
         <button
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           aria-label="Back to top"
-          className="relative flex size-12 items-center justify-center rounded-full border border-border/80 bg-background text-primary shadow-[var(--shadow-lift)] transition-all duration-300 ease-out hover:border-accent hover:bg-accent-soft hover:text-accent hover:scale-110 active:scale-95"
+          className="flex size-12 items-center justify-center rounded-full border border-border/80 bg-background text-primary shadow-[var(--shadow-lift)] transition-colors duration-200 hover:border-accent hover:bg-accent-soft hover:text-accent active:scale-95 cursor-pointer"
         >
-          <ArrowUp className="size-5 transition-transform duration-300 group-hover:-translate-y-0.5" />
+          <ArrowUp className="size-5" />
         </button>
-      </div>
+      )}
     </div>
   );
 }
