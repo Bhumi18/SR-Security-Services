@@ -200,12 +200,28 @@
   background: var(--color-card);
   box-shadow: var(--shadow-inset-border), var(--shadow-card);
   transition:
-    box-shadow 300ms ease,
-    transform 300ms ease;
+    box-shadow 400ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 400ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 400ms ease;
 
   &:hover {
-    box-shadow: var(--shadow-inset-border), var(--shadow-lift);
-    transform: translateY(-3px);
+    box-shadow: var(--shadow-inset-border), 0 16px 42px -16px oklch(0.715 0.128 87 / 0.22), var(--shadow-lift);
+    transform: translateY(-4px);
+  }
+}
+
+@utility hover-lift {
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 300ms ease;
+  &:hover {
+    transform: translateY(-3px) scale(1.01);
+  }
+}
+
+@utility hover-glow {
+  transition: box-shadow 400ms ease, border-color 400ms ease;
+  &:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 24px -4px oklch(0.715 0.128 87 / 0.25);
   }
 }
 

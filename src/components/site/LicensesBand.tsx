@@ -134,15 +134,15 @@ export function LicensesBand() {
               key={item.id}
               onMouseEnter={() => setHoveredId(item.id)}
               onMouseLeave={() => setHoveredId(null)}
-              className="group relative flex flex-col justify-between rounded-2xl border border-border/80 bg-card p-6 shadow-xs transition-all duration-300 hover:border-accent/60 hover:shadow-lift hover:-translate-y-1"
+              className="group relative flex flex-col justify-between rounded-2xl border border-border/80 bg-card p-6 shadow-xs transition-all duration-400 hover:border-accent/60 hover:shadow-[0_14px_40px_-14px_oklch(0.715_0.128_87_/_0.22)] hover:-translate-y-1.5"
             >
               {/* Top Row: Icon + Tag */}
               <div>
                 <div className="flex items-center justify-between gap-3">
-                  <div className="grid size-12 place-items-center rounded-xl navy-panel text-accent transition-transform duration-300 group-hover:scale-110">
-                    <IconComponent className="size-6" aria-hidden="true" />
+                  <div className="grid size-12 place-items-center rounded-xl navy-panel text-accent transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
+                    <IconComponent className="size-6 transition-transform duration-300 group-hover:scale-105" aria-hidden="true" />
                   </div>
-                  <span className="inline-flex items-center rounded-full border border-accent/20 bg-accent-soft px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase text-accent-foreground">
+                  <span className="inline-flex items-center rounded-full border border-accent/20 bg-accent-soft px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase text-accent-foreground transition-colors group-hover:border-accent/40">
                     {item.tag}
                   </span>
                 </div>

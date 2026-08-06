@@ -124,20 +124,20 @@ export function WhyChooseUsCarousel() {
                 return (
                   <div
                     key={`${item.title}-${itemIdx}`}
-                    className="card-premium flex flex-col justify-between p-6 transition-all duration-300 hover:border-accent/60 hover:-translate-y-1"
+                    className="card-premium group flex flex-col justify-between p-6 transition-all duration-400 hover:border-accent/60 hover:shadow-[0_12px_36px_-12px_oklch(0.715_0.128_87_/_0.22)] hover:-translate-y-1.5"
                   >
                     <div>
                       <div className="flex items-center justify-between gap-2">
-                        <span className="grid size-12 place-items-center rounded-xl bg-accent-soft text-accent-foreground">
-                          <Icon name={item.icon} className="size-5" />
+                        <span className="grid size-12 place-items-center rounded-xl bg-accent-soft text-accent-foreground transition-all duration-300 group-hover:bg-accent group-hover:text-accent-foreground group-hover:scale-110 group-hover:rotate-3">
+                          <Icon name={item.icon} className="size-5 transition-transform duration-300 group-hover:scale-110" />
                         </span>
-                        <span className="inline-flex items-center gap-1 rounded-full border border-accent/20 bg-accent-soft px-2.5 py-0.5 text-[10px] font-bold text-accent-foreground">
+                        <span className="inline-flex items-center gap-1 rounded-full border border-accent/20 bg-accent-soft px-2.5 py-0.5 text-[10px] font-bold text-accent-foreground transition-colors group-hover:border-accent/40">
                           <ShieldCheck className="size-3 text-accent" />
                           SR Advantage
                         </span>
                       </div>
 
-                      <h3 className="mt-5 font-display text-base font-bold text-primary">
+                      <h3 className="mt-5 font-display text-base font-bold text-primary transition-colors group-hover:text-accent">
                         {item.title}
                       </h3>
                       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">

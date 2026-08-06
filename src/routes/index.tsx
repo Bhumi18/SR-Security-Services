@@ -304,10 +304,10 @@ function Home() {
           {workProcess.map((step) => (
             <li
               key={step.step}
-              className="rounded-2xl border border-primary-foreground/12 bg-primary-foreground/5 p-6 transition-colors hover:border-accent/50"
+              className="group rounded-2xl border border-primary-foreground/12 bg-primary-foreground/5 p-6 transition-all duration-300 hover:border-accent/60 hover:bg-primary-foreground/10 hover:-translate-y-1.5 shadow-sm hover:shadow-md"
             >
-              <span className="font-display text-3xl font-bold text-accent/70">{step.step}</span>
-              <h3 className="mt-3 font-display text-base font-semibold text-primary-foreground">
+              <span className="inline-block font-display text-3xl font-bold text-accent/80 transition-transform duration-300 group-hover:scale-110 group-hover:text-accent">{step.step}</span>
+              <h3 className="mt-3 font-display text-base font-semibold text-primary-foreground transition-colors duration-200 group-hover:text-accent">
                 {step.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-primary-foreground/70">{step.text}</p>
