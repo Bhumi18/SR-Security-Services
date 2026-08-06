@@ -5,25 +5,25 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium cursor-pointer transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium cursor-pointer transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3DA5FF] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+        default: "bg-[#0E4DB8] text-white shadow hover:bg-[#3DA5FF]",
         destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
-          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-        /* Primary corporate CTA: navy with gold hover */
-        hero: "bg-primary text-primary-foreground shadow-[var(--shadow-card)] hover:bg-accent hover:text-accent-foreground",
-        /* Gold CTA for use on navy surfaces */
-        gold: "bg-accent text-accent-foreground shadow-[var(--shadow-card)] hover:bg-accent/85",
-        /* Quiet outline that works on navy panels */
+          "border border-[#D9DEE8] bg-white text-[#1F2937] shadow-sm hover:border-[#0E4DB8] hover:text-[#0E4DB8]",
+        secondary: "border border-[#D9DEE8] bg-white text-[#1F2937] shadow-sm hover:bg-[#EBF5FF] hover:border-[#0E4DB8]",
+        ghost: "hover:bg-[#EBF5FF] hover:text-[#0E4DB8]",
+        link: "text-[#0E4DB8] underline-offset-4 hover:text-[#3DA5FF] hover:underline",
+        /* Primary corporate CTA: Royal Blue with Bright Accent Blue hover */
+        hero: "bg-[#0E4DB8] text-white font-semibold shadow-md hover:bg-[#3DA5FF] hover:shadow-[0_8px_20px_-4px_rgba(61,165,255,0.4)] active:scale-98 transition-all duration-200",
+        /* Primary CTA alias -> Royal Blue with Bright Accent Blue hover */
+        gold: "bg-[#0E4DB8] text-white font-bold shadow-md hover:bg-[#3DA5FF] hover:shadow-[0_8px_20px_-4px_rgba(61,165,255,0.4)] active:scale-98 transition-all duration-200",
+        /* Outline button on navy panels: White with Silver border, Bright Accent Blue hover */
         onNavy:
-          "border border-primary-foreground/35 text-primary-foreground hover:border-accent hover:text-accent",
-        subtle: "bg-surface text-primary border border-border hover:border-accent hover:text-accent",
+          "border border-white/30 bg-white/5 text-white font-semibold hover:border-[#3DA5FF] hover:text-[#3DA5FF] hover:bg-[#3DA5FF]/10 active:scale-98 transition-all duration-200",
+        subtle: "bg-white text-[#1F2937] border border-[#D9DEE8] font-medium hover:border-[#0E4DB8] hover:text-[#0E4DB8] hover:shadow-xs active:scale-98 transition-all duration-200",
       },
       size: {
         default: "h-10 px-5 py-2",
@@ -39,7 +39,6 @@ const buttonVariants = cva(
     },
   },
 );
-
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {

@@ -124,20 +124,20 @@ export function WhyChooseUsCarousel() {
                 return (
                   <div
                     key={`${item.title}-${itemIdx}`}
-                    className="card-premium group flex flex-col justify-between p-6 transition-all duration-400 hover:border-accent/60 hover:shadow-[0_12px_36px_-12px_oklch(0.715_0.128_87_/_0.22)] hover:-translate-y-1.5"
+                    className="card-premium group flex flex-col justify-between p-6 transition-all duration-400 hover:border-[#0E4DB8] hover:shadow-[0_12px_36px_-12px_rgba(14,77,184,0.22)] hover:-translate-y-1.5"
                   >
                     <div>
                       <div className="flex items-center justify-between gap-2">
-                        <span className="grid size-12 place-items-center rounded-xl bg-accent-soft text-accent-foreground transition-all duration-300 group-hover:bg-accent group-hover:text-accent-foreground group-hover:scale-110 group-hover:rotate-3">
-                          <Icon name={item.icon} className="size-5 transition-transform duration-300 group-hover:scale-110" />
+                        <span className="grid size-12 place-items-center rounded-xl bg-[#0E4DB8] text-white transition-all duration-300 group-hover:bg-[#3DA5FF] group-hover:scale-110 group-hover:rotate-3 shadow-sm">
+                          <Icon name={item.icon} className="size-5 text-white transition-transform duration-300 group-hover:scale-110" />
                         </span>
-                        <span className="inline-flex items-center gap-1 rounded-full border border-accent/20 bg-accent-soft px-2.5 py-0.5 text-[10px] font-bold text-accent-foreground transition-colors group-hover:border-accent/40">
-                          <ShieldCheck className="size-3 text-accent" />
+                        <span className="inline-flex items-center gap-1 rounded-full border border-[#0E4DB8]/30 bg-[#0E4DB8]/10 px-2.5 py-0.5 text-[10px] font-bold text-[#0E4DB8] transition-colors group-hover:border-[#0E4DB8]">
+                          <ShieldCheck className="size-3 text-[#0E4DB8]" />
                           SR Advantage
                         </span>
                       </div>
 
-                      <h3 className="mt-5 font-display text-base font-bold text-primary transition-colors group-hover:text-accent">
+                      <h3 className="mt-5 font-display text-base font-bold text-primary transition-colors group-hover:text-[#0E4DB8]">
                         {item.title}
                       </h3>
                       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
@@ -167,11 +167,10 @@ export function WhyChooseUsCarousel() {
               key={idx}
               type="button"
               onClick={() => setCurrentPage(idx)}
-              className={`size-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                currentPage === idx
+              className={`size-2.5 rounded-full transition-all duration-300 cursor-pointer ${currentPage === idx
                   ? "w-8 bg-accent"
                   : "bg-border hover:bg-muted-foreground"
-              }`}
+                }`}
               aria-label={`Go to page ${idx + 1}`}
             />
           ))}

@@ -108,13 +108,13 @@ export function Header() {
             </span>
             <a
               href={`mailto:${company.email}`}
-              className="flex items-center gap-1.5 transition-colors hover:text-accent"
+              className="flex items-center gap-1.5"
             >
               <Mail className="size-3.5 text-accent" aria-hidden="true" /> {company.email}
             </a>
             <a
               href={company.phoneHref}
-              className="flex items-center gap-1.5 font-semibold transition-colors hover:text-accent"
+              className="flex items-center gap-1.5 font-semibold"
             >
               <Phone className="size-3.5 text-accent" aria-hidden="true" /> {company.phone}
             </a>
@@ -160,10 +160,10 @@ export function Header() {
                       href={item.to}
                       onClick={(e) => handleNavClick(e, item.sectionId)}
                       className={cn(
-                        "inline-flex items-center gap-1 rounded-md px-2 py-1.5 text-xs font-medium transition-colors hover:text-accent whitespace-nowrap lg:px-3 lg:text-sm cursor-pointer",
+                        "inline-flex items-center gap-1 rounded-md px-2 py-1.5 text-xs font-medium transition-colors hover:text-[#3DA5FF] whitespace-nowrap lg:px-3 lg:text-sm cursor-pointer",
                         isActive
-                          ? "text-primary font-semibold underline decoration-accent decoration-2 underline-offset-8"
-                          : "text-charcoal",
+                          ? "text-[#0E4DB8] font-bold underline decoration-[#0E4DB8] decoration-2 underline-offset-8"
+                          : "text-[#1F2937]",
                       )}
                     >
                       <span>{item.label}</span>
@@ -172,7 +172,7 @@ export function Header() {
 
                     {/* Dropdown Menu */}
                     <div className="pointer-events-none absolute left-0 top-full pt-2 opacity-0 transition-all duration-200 ease-out group-hover:pointer-events-auto group-hover:opacity-100 group-hover:translate-y-0 translate-y-1 z-50">
-                      <div className="w-56 rounded-2xl border border-border/80 bg-background p-2 shadow-xl backdrop-blur-lg">
+                      <div className="w-56 rounded-2xl border border-[#D9DEE8] bg-white p-2 shadow-xl backdrop-blur-lg">
                         {item.children.map((sub) => (
                           <a
                             key={sub.label}
@@ -184,7 +184,7 @@ export function Header() {
                                 setOpen(false);
                               }
                             }}
-                            className="flex items-center rounded-xl px-3 py-2 text-xs font-medium text-primary transition-colors hover:bg-accent-soft hover:text-accent-foreground"
+                            className="flex items-center rounded-xl px-3 py-2 text-xs font-medium text-[#1F2937] transition-colors hover:bg-[#EBF5FF] hover:text-[#0E4DB8]"
                           >
                             {sub.label}
                           </a>
@@ -201,10 +201,10 @@ export function Header() {
                   href={item.to}
                   onClick={(e) => handleNavClick(e, item.sectionId)}
                   className={cn(
-                    "rounded-md px-2 py-1.5 text-xs font-medium transition-colors hover:text-accent whitespace-nowrap lg:px-3 lg:text-sm",
+                    "rounded-md px-2 py-1.5 text-xs font-medium transition-colors hover:text-[#3DA5FF] whitespace-nowrap lg:px-3 lg:text-sm",
                     isActive
-                      ? "text-primary font-semibold underline decoration-accent decoration-2 underline-offset-8"
-                      : "text-charcoal",
+                      ? "text-[#0E4DB8] font-bold underline decoration-[#0E4DB8] decoration-2 underline-offset-8"
+                      : "text-[#1F2937]",
                   )}
                 >
                   {item.label}

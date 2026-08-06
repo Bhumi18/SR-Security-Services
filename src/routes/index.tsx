@@ -64,21 +64,21 @@ function Home() {
   return (
     <>
       {/* Hero */}
-      <section id="hero" className="relative isolate overflow-hidden bg-primary scroll-mt-20 lg:scroll-mt-24">
+      <section id="hero" className="relative isolate overflow-hidden bg-gradient-to-br from-[#0B1F3A] via-[#08162A] to-[#0E4DB8] scroll-mt-20 lg:scroll-mt-24">
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_60%_at_15%_50%,oklch(0.32_0.06_258/0.6),transparent)]"
+          className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_60%_at_15%_50%,rgba(61,165,255,0.2),transparent)]"
         />
         <div className="container-page pt-8 pb-16 md:pt-10 md:pb-24 lg:pt-12 lg:pb-28">
           <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8 xl:gap-16">
-            <div>
-              <p className="fade-up inline-flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/5 px-4 py-1.5 text-xs font-semibold tracking-[0.12em] text-accent uppercase" style={{ animationDelay: "100ms" }}>
-                <ShieldCheck className="size-3.5" aria-hidden="true" />
+            <div className="min-w-0">
+              <p className="fade-up inline-flex items-center gap-2 rounded-full border border-[#3DA5FF]/30 bg-[#3DA5FF]/10 px-4 py-1.5 text-xs font-semibold tracking-[0.12em] text-[#3DA5FF] uppercase" style={{ animationDelay: "100ms" }}>
+                <ShieldCheck className="size-3.5 text-[#3DA5FF]" aria-hidden="true" />
                 PSARA Licensed · UDYAM Registered · AMC Certified
               </p>
-              <h1 className="fade-up mt-6 text-3xl leading-[1.08] font-bold text-primary-foreground sm:text-4xl md:text-5xl xl:text-6xl" style={{ animationDelay: "200ms" }}>
+              <h1 className="fade-up mt-6 text-3xl leading-[1.15] font-bold text-primary-foreground sm:text-4xl md:text-5xl xl:text-6xl" style={{ animationDelay: "200ms" }}>
                 Trusted Security &<br />
-                <span className="whitespace-nowrap text-accent">
+                <span className="inline-block max-w-full min-h-[1.15em] whitespace-nowrap text-[#3DA5FF] overflow-hidden align-bottom">
                   <TypewriterText
                     words={[
                       "Facility Management",
@@ -106,11 +106,10 @@ function Home() {
                     <span
                       onMouseEnter={() => setHoveredDistrict(d.id)}
                       onMouseLeave={() => setHoveredDistrict(null)}
-                      className={`cursor-pointer border-b border-dotted pb-px transition-all duration-300 ${
-                        hoveredDistrict === d.id
-                          ? "text-accent border-accent"
-                          : "border-primary-foreground/30 hover:text-accent hover:border-accent"
-                      }`}
+                      className={`cursor-pointer border-b border-dotted pb-px transition-all duration-300 ${hoveredDistrict === d.id
+                        ? "text-[#3DA5FF] border-[#3DA5FF]"
+                        : "border-primary-foreground/30 hover:text-[#3DA5FF] hover:border-[#3DA5FF]"
+                        }`}
                     >
                       {d.name}
                     </span>
@@ -118,37 +117,37 @@ function Home() {
                   </span>
                 ))}
               </p>
-              <p className="fade-up mt-4 font-display text-sm font-medium text-accent md:text-base" style={{ animationDelay: "450ms" }}>
+              <p className="fade-up mt-4 font-display text-sm font-medium text-[#3DA5FF] md:text-base" style={{ animationDelay: "450ms" }}>
                 {company.tagline}
               </p>
-            <div className="fade-up mt-9 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: "550ms" }}>
-              <Button asChild variant="gold" size="xl">
-                <a href="#contact">
-                  Request Free Quote
-                  <ArrowRight className="size-4" />
-                </a>
-              </Button>
-              <Button asChild variant="onNavy" size="xl">
-                <a href={company.phoneHref}>
-                  <Phone className="size-4" />
-                  Call Now
-                </a>
-              </Button>
+              <div className="fade-up mt-9 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: "550ms" }}>
+                <Button asChild variant="gold" size="xl">
+                  <a href="#contact">
+                    Request Free Quote
+                    <ArrowRight className="size-4" />
+                  </a>
+                </Button>
+                <Button asChild variant="onNavy" size="xl">
+                  <a href={company.phoneHref}>
+                    <Phone className="size-4" />
+                    Call Now
+                  </a>
+                </Button>
+              </div>
+              <ul className="fade-up mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-primary-foreground/75" style={{ animationDelay: "650ms" }}>
+                {["Background Verified Staff", "5 Gujarat Districts Covered", "24x7 Control Room"].map(
+                  (t) => (
+                    <li key={t} className="flex items-center gap-2">
+                      <CheckCircle2 className="size-4 shrink-0 text-accent" aria-hidden="true" />
+                      {t}
+                    </li>
+                  ),
+                )}
+              </ul>
             </div>
-            <ul className="fade-up mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-primary-foreground/75" style={{ animationDelay: "650ms" }}>
-              {["Background Verified Staff", "5 Gujarat Districts Covered", "24x7 Control Room"].map(
-                (t) => (
-                  <li key={t} className="flex items-center gap-2">
-                    <CheckCircle2 className="size-4 shrink-0 text-accent" aria-hidden="true" />
-                    {t}
-                  </li>
-                ),
-              )}
-            </ul>
-          </div>
 
             {/* Right – Interactive Gujarat Map */}
-            <div className="fade-up hidden lg:block" style={{ animationDelay: "200ms" }}>
+            <div className="fade-up hidden min-w-0 w-full lg:block" style={{ animationDelay: "200ms" }}>
               <GujaratMap
                 hoveredDistrict={hoveredDistrict}
                 onHoverDistrict={setHoveredDistrict}
@@ -254,12 +253,12 @@ function Home() {
             {[...industries, ...industries].map((item, i) => (
               <div
                 key={`${item.name}-${i}`}
-                className="group flex shrink-0 items-center gap-3 rounded-full border border-border/80 bg-card px-4 py-2.5 shadow-xs transition-all duration-300 hover:border-accent/60 hover:bg-accent-soft/80 hover:shadow-md hover:-translate-y-0.5"
+                className="group flex shrink-0 items-center gap-3 rounded-full border border-[#D9DEE8] bg-white px-4 py-2.5 shadow-xs transition-all duration-300 hover:border-[#0E4DB8] hover:bg-[#EEF2F7] hover:shadow-md hover:-translate-y-0.5"
               >
-                <span className="grid size-7 place-items-center rounded-full bg-accent-soft text-accent-foreground transition-all duration-300 group-hover:bg-accent group-hover:text-accent-foreground group-hover:scale-110">
-                  <Icon name={item.icon} className="size-3.5" />
+                <span className="grid size-7 place-items-center rounded-full bg-[#0E4DB8] text-white transition-all duration-300 group-hover:bg-[#3DA5FF] group-hover:scale-110 shadow-xs">
+                  <Icon name={item.icon} className="size-3.5 text-white" />
                 </span>
-                <span className="font-display text-sm font-semibold text-charcoal transition-colors group-hover:text-primary whitespace-nowrap">
+                <span className="font-display text-sm font-semibold text-[#1F2937] transition-colors group-hover:text-[#0E4DB8] whitespace-nowrap">
                   {item.name}
                 </span>
               </div>
@@ -330,8 +329,8 @@ function Home() {
             <ul className="mt-8 space-y-6">
               {contactDetails.map((d) => (
                 <li key={d.label} className="flex gap-4">
-                  <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-accent-soft">
-                    <d.icon className="size-5 text-accent-foreground" aria-hidden="true" />
+                  <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#0E4DB8] text-white shadow-sm">
+                    <d.icon className="size-5 text-white" aria-hidden="true" />
                   </span>
                   <div className="min-w-0">
                     <p className="text-xs font-semibold tracking-[0.12em] text-muted-foreground uppercase">

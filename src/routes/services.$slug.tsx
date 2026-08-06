@@ -95,7 +95,7 @@ function ServiceDetail() {
             <ol className="mt-6 space-y-4">
               {workProcess.map((step) => (
                 <li key={step.step} className="flex gap-4">
-                  <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-accent-soft font-display text-xs font-bold text-accent-foreground">
+                  <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-[#0E4DB8] text-white font-display text-xs font-bold shadow-xs">
                     {step.step}
                   </span>
                   <div>

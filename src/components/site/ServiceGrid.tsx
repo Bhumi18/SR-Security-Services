@@ -33,11 +33,11 @@ export function ServiceGrid() {
             <div className="flex flex-col justify-between lg:col-span-6">
               <div>
                 <div className="flex items-center gap-3">
-                  <div className="inline-flex size-10 items-center justify-center rounded-2xl bg-accent-soft text-accent shadow-xs">
+                  <div className="inline-flex size-10 items-center justify-center rounded-2xl bg-[#0E4DB8] text-white shadow-xs">
                     <Icon name={featuredService.icon} className="size-5" />
                   </div>
-                  <span className="inline-flex items-center gap-1 rounded-full border border-accent/30 bg-accent-soft px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-accent-foreground">
-                    <BadgeCheck className="size-3 text-accent" />
+                  <span className="inline-flex items-center gap-1 rounded-full border border-[#0E4DB8]/30 bg-[#0E4DB8]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[#0E4DB8]">
+                    <BadgeCheck className="size-3 text-[#0E4DB8]" />
                     Core Service
                   </span>
                 </div>
@@ -57,7 +57,7 @@ export function ServiceGrid() {
                       key={item}
                       className="flex items-center gap-2 text-xs font-semibold text-primary/90"
                     >
-                      <CheckCircle2 className="size-3.5 shrink-0 text-accent" />
+                      <CheckCircle2 className="size-3.5 shrink-0 text-[#0E4DB8]" />
                       <span className="truncate">{item}</span>
                     </div>
                   ))}
@@ -68,7 +68,7 @@ export function ServiceGrid() {
                 <Link
                   to="/services/$slug"
                   params={{ slug: featuredService.slug }}
-                  className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-primary-foreground shadow-md transition-all duration-300 hover:bg-accent hover:text-accent-foreground hover:scale-105"
+                  className="inline-flex items-center gap-2 rounded-lg bg-[#0E4DB8] px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow-md transition-all duration-300 hover:bg-[#3DA5FF] hover:shadow-[0_8px_20px_-4px_rgba(61,165,255,0.4)] hover:scale-102"
                 >
                   <span>Explore Security Deployments</span>
                   <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
@@ -97,8 +97,8 @@ export function ServiceGrid() {
                   height={400}
                   className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <span className="absolute top-2.5 left-2.5 inline-flex size-8 items-center justify-center rounded-lg bg-primary/95 text-accent shadow-md backdrop-blur-md">
-                  <Icon name={service.icon} className="size-4" />
+                <span className="absolute top-2.5 left-2.5 inline-flex size-8 items-center justify-center rounded-lg bg-[#0B1F3A] text-[#3DA5FF] shadow-md backdrop-blur-md">
+                  <Icon name={service.icon} className="size-4 text-[#3DA5FF]" />
                 </span>
               </div>
 
@@ -119,13 +119,13 @@ export function ServiceGrid() {
                 {service.items.slice(0, 3).map((item) => (
                   <span
                     key={item}
-                    className="rounded-md border border-border/60 bg-surface px-2 py-0.5 text-[10px] font-medium text-primary/85 leading-none"
+                    className="rounded-md border border-[#D9DEE8] bg-surface px-2 py-0.5 text-[10px] font-medium text-[#1F2937] leading-none"
                   >
                     {item}
                   </span>
                 ))}
                 {service.items.length > 3 && (
-                  <span className="rounded-md bg-accent-soft px-1.5 py-0.5 text-[10px] font-semibold text-accent-foreground leading-none">
+                  <span className="rounded-md border border-[#0E4DB8]/20 bg-[#0E4DB8]/10 px-1.5 py-0.5 text-[10px] font-bold text-[#0E4DB8] leading-none">
                     +{service.items.length - 3}
                   </span>
                 )}

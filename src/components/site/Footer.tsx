@@ -23,7 +23,7 @@ export function Footer() {
           <p className="mt-5 text-sm leading-relaxed text-primary-foreground/70">
             {company.name} is a PSARA-licensed, UDYAM-registered (MSME) and AMC-certified security & facility management firm delivering trained guarding, event security, housekeeping and compliant manpower solutions across 5 key districts in Gujarat: Ahmedabad, Gandhinagar, Kheda, Mehsana, and Sabarkantha.
           </p>
-          <p className="mt-5 font-display text-sm font-medium text-accent">{company.tagline}</p>
+          <p className="mt-5 font-display text-sm font-medium text-[#3DA5FF]">{company.tagline}</p>
           <div className="mt-6 flex flex-wrap gap-2">
             {company.social.map((s) => (
               <a
@@ -31,7 +31,7 @@ export function Footer() {
                 href={s.href}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="rounded-full border border-primary-foreground/20 px-3.5 py-1.5 text-xs text-primary-foreground/75 transition-colors hover:border-accent hover:text-accent"
+                className="rounded-full border border-primary-foreground/20 px-3.5 py-1.5 text-xs text-primary-foreground/75 transition-colors hover:border-[#3DA5FF] hover:text-[#3DA5FF]"
               >
                 {s.label}
               </a>
@@ -47,42 +47,42 @@ export function Footer() {
             <span className="gold-rule mt-3" />
             <ul className="mt-4 space-y-2.5 text-sm">
               <li>
-                <a href="/#hero" className="text-primary-foreground/70 transition-colors hover:text-accent">
+                <a href="/#hero" className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]">
                   Home
                 </a>
               </li>
               <li>
-                <a href="/#about" className="text-primary-foreground/70 transition-colors hover:text-accent">
+                <a href="/#about" className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]">
                   Company Overview
                 </a>
               </li>
               <li>
-                <a href="/#why-choose-us" className="text-primary-foreground/70 transition-colors hover:text-accent">
+                <a href="/#why-choose-us" className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]">
                   Why Choose Us
                 </a>
               </li>
               <li>
-                <a href="/#licenses" className="text-primary-foreground/70 transition-colors hover:text-accent">
+                <a href="/#licenses" className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]">
                   Licenses & Certifications
                 </a>
               </li>
               <li>
-                <a href="/#process" className="text-primary-foreground/70 transition-colors hover:text-accent">
+                <a href="/#process" className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]">
                   Our Work Process
                 </a>
               </li>
               <li>
-                <a href="/#industries" className="text-primary-foreground/70 transition-colors hover:text-accent">
+                <a href="/#industries" className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]">
                   Industries We Serve
                 </a>
               </li>
               <li>
-                <a href="/#clients" className="text-primary-foreground/70 transition-colors hover:text-accent">
+                <a href="/#clients" className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]">
                   Our Clients
                 </a>
               </li>
               <li>
-                <a href="/#contact" className="text-accent font-semibold transition-colors hover:underline">
+                <a href="/#contact" className="text-[#3DA5FF] font-semibold transition-colors hover:underline">
                   Contact & Free Quote
                 </a>
               </li>
@@ -100,7 +100,7 @@ export function Footer() {
                   <Link
                     to="/services/$slug"
                     params={{ slug: s.slug }}
-                    className="text-primary-foreground/70 transition-colors hover:text-accent"
+                    className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]"
                   >
                     {s.title}
                   </Link>
@@ -125,7 +125,7 @@ export function Footer() {
           <span className="gold-rule mt-3" />
           <ul className="mt-4 space-y-4 text-sm text-primary-foreground/75">
             <li className="flex gap-3">
-              <MapPin className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
+              <MapPin className="mt-0.5 size-4 shrink-0 text-[#3DA5FF]" aria-hidden="true" />
               <span>
                 {company.address.line1}
                 <br />
@@ -133,19 +133,19 @@ export function Footer() {
               </span>
             </li>
             <li className="flex gap-3">
-              <Phone className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
-              <a href={company.phoneHref} className="transition-colors hover:text-accent">
+              <Phone className="mt-0.5 size-4 shrink-0 text-[#3DA5FF]" aria-hidden="true" />
+              <a href={company.phoneHref} className="transition-colors hover:text-[#3DA5FF]">
                 {company.phone}
               </a>
             </li>
             <li className="flex gap-3">
-              <Mail className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
-              <a href={`mailto:${company.email}`} className="transition-colors hover:text-accent">
+              <Mail className="mt-0.5 size-4 shrink-0 text-[#3DA5FF]" aria-hidden="true" />
+              <a href={`mailto:${company.email}`} className="transition-colors hover:text-[#3DA5FF]">
                 {company.email}
               </a>
             </li>
             <li className="flex gap-3">
-              <Clock className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden="true" />
+              <Clock className="mt-0.5 size-4 shrink-0 text-[#3DA5FF]" aria-hidden="true" />
               <span>{company.hours}</span>
             </li>
           </ul>
@@ -158,13 +158,13 @@ export function Footer() {
             © {new Date().getFullYear()} {company.name} All rights reserved.
           </p>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
-            <Link to="/privacy-policy" className="transition-colors hover:text-accent">
+            <Link to="/privacy-policy" className="text-primary-foreground/80 transition-colors hover:text-[#3DA5FF]">
               Privacy Policy
             </Link>
-            <Link to="/terms-and-conditions" className="transition-colors hover:text-accent">
+            <Link to="/terms-and-conditions" className="text-primary-foreground/80 transition-colors hover:text-[#3DA5FF]">
               Terms & Conditions
             </Link>
-            <Link to="/contact" className="transition-colors hover:text-accent">
+            <Link to="/contact" className="text-primary-foreground/80 transition-colors hover:text-[#3DA5FF]">
               Contact
             </Link>
           </div>

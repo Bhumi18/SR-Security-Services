@@ -57,11 +57,11 @@ export function TypewriterText({
   }, [currentText, isDeleting, currentWordIndex, words, typingSpeed, deletingSpeed, pauseDuration]);
 
   return (
-    <span className={cn("inline-flex items-center", className)}>
-      <span>{currentText}</span>
+    <span className={cn("inline-flex items-baseline min-h-[1em]", className)}>
+      <span>{currentText || "\u00A0"}</span>
       <span
         className={cn(
-          "ml-1 inline-block h-[0.85em] w-[3px] rounded-full bg-accent animate-pulse",
+          "ml-1 inline-block h-[0.75em] w-[3px] rounded-full bg-[#3DA5FF] animate-pulse align-middle",
           cursorClassName,
         )}
         aria-hidden="true"

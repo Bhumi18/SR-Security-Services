@@ -139,19 +139,19 @@ export function LicensesBand() {
               {/* Top Row: Icon + Tag */}
               <div>
                 <div className="flex items-center justify-between gap-3">
-                  <div className="grid size-12 place-items-center rounded-xl navy-panel text-accent transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
-                    <IconComponent className="size-6 transition-transform duration-300 group-hover:scale-105" aria-hidden="true" />
+                  <div className="grid size-12 place-items-center rounded-xl bg-[#0E4DB8] text-white transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
+                    <IconComponent className="size-6 text-white transition-transform duration-300 group-hover:scale-105" aria-hidden="true" />
                   </div>
-                  <span className="inline-flex items-center rounded-full border border-accent/20 bg-accent-soft px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase text-accent-foreground transition-colors group-hover:border-accent/40">
+                  <span className="inline-flex items-center rounded-full border border-[#0E4DB8]/30 bg-[#0E4DB8]/10 px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase text-[#0E4DB8] transition-colors group-hover:border-[#0E4DB8]">
                     {item.tag}
                   </span>
                 </div>
 
                 {/* Title & Subtitle */}
-                <h3 className="mt-5 font-display text-lg font-bold text-primary transition-colors group-hover:text-accent">
+                <h3 className="mt-5 font-display text-lg font-bold text-primary transition-colors group-hover:text-[#0E4DB8]">
                   {item.title}
                 </h3>
-                <p className="mt-1 text-xs font-semibold text-accent/90">
+                <p className="mt-1 text-xs font-bold text-[#0E4DB8]">
                   {item.subtitle}
                 </p>
                 <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
@@ -161,7 +161,7 @@ export function LicensesBand() {
 
               {/* Action bar: Hover indicator / Expand */}
               <div className="mt-6 flex items-center justify-between gap-2 border-t border-border/60 pt-4">
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent transition-colors group-hover:underline">
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0E4DB8] transition-colors group-hover:underline">
                   <FileText className="size-3.5" />
                   Hover to Preview PDF
                 </span>

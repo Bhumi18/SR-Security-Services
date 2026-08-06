@@ -71,11 +71,10 @@ export function FloatingActions() {
           return (
             <div
               key={btn.id}
-              className={`group relative flex items-center justify-end transition-all duration-400 ${
-                isScrollingDown
+              className={`group relative flex items-center justify-end transition-all duration-400 ${isScrollingDown
                   ? "pointer-events-none scale-0 opacity-0 translate-y-6"
                   : "scale-100 opacity-100 translate-y-0"
-              }`}
+                }`}
               style={{
                 transitionTimingFunction: isScrollingDown
                   ? "cubic-bezier(0.4, 0, 1, 1)"

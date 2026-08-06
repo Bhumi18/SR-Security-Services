@@ -180,7 +180,7 @@ export const GujaratMap: FC<GujaratMapProps> = ({ hoveredDistrict, onHoverDistri
   const findDistrict = (id: string) => COVERED_DISTRICTS.find((d) => d.id === id)!;
 
   return (
-    <div className="relative mx-auto w-full max-w-[560px] lg:ml-auto lg:mr-0">
+    <div className="relative mx-auto w-full max-w-[560px] shrink-0 lg:ml-auto lg:mr-0">
       <svg
         viewBox="0 0 600 520"
         className="w-full h-auto drop-shadow-2xl"
@@ -195,13 +195,13 @@ export const GujaratMap: FC<GujaratMapProps> = ({ hoveredDistrict, onHoverDistri
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
-          <linearGradient id="gold-active" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#F5D76E" />
-            <stop offset="100%" stopColor="#C9A227" />
+          <linearGradient id="blue-active" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#3DA5FF" />
+            <stop offset="100%" stopColor="#0E4DB8" />
           </linearGradient>
           <radialGradient id="dot-glow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#C9A227" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="#C9A227" stopOpacity="0" />
+            <stop offset="0%" stopColor="#3DA5FF" stopOpacity="0.7" />
+            <stop offset="100%" stopColor="#0E4DB8" stopOpacity="0" />
           </radialGradient>
         </defs>
 
@@ -234,7 +234,7 @@ export const GujaratMap: FC<GujaratMapProps> = ({ hoveredDistrict, onHoverDistri
               y1={da.cy}
               x2={db.cx}
               y2={db.cy}
-              stroke={active ? "rgba(245,215,110,0.9)" : "rgba(201,162,39,0.35)"}
+              stroke={active ? "rgba(61,165,255,0.95)" : "rgba(14,77,184,0.45)"}
               strokeWidth={active ? 2 : 1}
               strokeDasharray={active ? "none" : "3 3"}
               className="transition-all duration-300"
@@ -249,8 +249,8 @@ export const GujaratMap: FC<GujaratMapProps> = ({ hoveredDistrict, onHoverDistri
             <path
               key={d.id}
               d={d.path}
-              fill={active ? "url(#gold-active)" : "rgba(201,162,39,0.35)"}
-              stroke={active ? "#FFFFFF" : "rgba(245,215,110,0.85)"}
+              fill={active ? "url(#blue-active)" : "rgba(14,77,184,0.4)"}
+              stroke={active ? "#FFFFFF" : "rgba(61,165,255,0.85)"}
               strokeWidth={active ? 2.5 : 1.2}
               strokeLinejoin="round"
               filter={active ? "url(#district-glow)" : undefined}
@@ -287,8 +287,8 @@ export const GujaratMap: FC<GujaratMapProps> = ({ hoveredDistrict, onHoverDistri
                 cx={d.cx}
                 cy={d.cy}
                 r={active ? 5.5 : 4}
-                fill="#F5D76E"
-                stroke={active ? "#0B1F3A" : "rgba(11,31,58,0.7)"}
+                fill="#3DA5FF"
+                stroke={active ? "#FFFFFF" : "#0B1F3A"}
                 strokeWidth={1.5}
                 className="transition-all duration-300 map-dot-enter"
                 style={{ animationDelay: `${i * 100 + 400}ms` }}
@@ -312,44 +312,69 @@ export const GujaratMap: FC<GujaratMapProps> = ({ hoveredDistrict, onHoverDistri
           );
         })}
 
-        {/* Layer 3: Active Hover Tooltip Popup - ALWAYS ON VERY TOP */}
+        {/* Layer 3: Active Hover Tag - Positioned OUTSIDE of all 5 Covered Districts */}
         {(() => {
           const activeItem = COVERED_DISTRICTS.find((d) => d.id === hoveredDistrict);
           if (!activeItem) return null;
           return (
             <g className="pointer-events-none map-tooltip-enter">
-              <rect
-                x={activeItem.cx - 80}
-                y={activeItem.cy - 58}
-                width={160}
-                height={44}
-                rx={8}
-                fill="#0B1F3A"
-                stroke="#F5D76E"
+              {/* Connecting Laser Beam Line from Top-Left Tag Box to District Location Dot */}
+              <line
+                x1={235}
+                y1={50}
+                x2={activeItem.cx}
+                y2={activeItem.cy}
+                stroke="#3DA5FF"
                 strokeWidth={1.5}
-                className="drop-shadow-[0_8px_16px_rgba(0,0,0,0.6)]"
+                strokeDasharray="4 3"
               />
-              <polygon
-                points={`${activeItem.cx - 6},${activeItem.cy - 14} ${activeItem.cx + 6},${activeItem.cy - 14} ${activeItem.cx},${activeItem.cy - 7}`}
-                fill="#F5D76E"
+              <circle
+                cx={activeItem.cx}
+                cy={activeItem.cy}
+                r={8}
+                fill="none"
+                stroke="#3DA5FF"
+                strokeWidth={2}
               />
+
+              {/* Tag Box Card - Positioned in Top-Left Area OUTSIDE the 5 Districts */}
+              <rect
+                x={20}
+                y={22}
+                width={215}
+                height={54}
+                rx={12}
+                fill="#0B1F3A"
+                stroke="#3DA5FF"
+                strokeWidth={1.8}
+                className="drop-shadow-[0_10px_25px_rgba(0,0,0,0.8)]"
+              />
+              {/* Active Indicator Pulse Dot */}
+              <circle
+                cx={40}
+                cy={49}
+                r={5}
+                fill="#3DA5FF"
+              />
+              {/* District Name Header */}
               <text
-                x={activeItem.cx}
-                y={activeItem.cy - 38}
-                textAnchor="middle"
-                fill="#F5D76E"
-                fontSize="12"
+                x={54}
+                y={41}
+                textAnchor="start"
+                fill="#3DA5FF"
+                fontSize="13"
                 fontWeight="700"
                 fontFamily="Poppins, Inter, sans-serif"
               >
-                {activeItem.name}
+                {activeItem.name} District
               </text>
+              {/* Role Subtitle */}
               <text
-                x={activeItem.cx}
-                y={activeItem.cy - 22}
-                textAnchor="middle"
-                fill="rgba(255,255,255,0.9)"
-                fontSize="9.5"
+                x={54}
+                y={58}
+                textAnchor="start"
+                fill="rgba(255,255,255,0.95)"
+                fontSize="10"
                 fontWeight="500"
                 fontFamily="Inter, sans-serif"
               >
@@ -363,7 +388,7 @@ export const GujaratMap: FC<GujaratMapProps> = ({ hoveredDistrict, onHoverDistri
       {/* Legend Badge */}
       <div className="mt-3 flex items-center justify-center gap-6 text-xs text-primary-foreground/80 font-medium">
         <div className="flex items-center gap-2 bg-primary-foreground/5 border border-primary-foreground/10 px-3 py-1.5 rounded-full">
-          <span className="size-3 rounded-full bg-accent inline-block shadow-[0_0_8px_rgba(201,162,39,0.8)]" />
+          <span className="size-3 rounded-full bg-[#3DA5FF] inline-block shadow-[0_0_8px_rgba(61,165,255,0.8)]" />
           <span>Covered Districts (5)</span>
         </div>
         <div className="flex items-center gap-2 bg-primary-foreground/5 border border-primary-foreground/10 px-3 py-1.5 rounded-full">

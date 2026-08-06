@@ -57,7 +57,7 @@ export function OurClients() {
             {/* Card inner */}
             <div className="relative flex flex-1 flex-col items-center rounded-3xl border border-border/60 bg-white p-8 transition-all duration-500 group-hover:border-accent/30 group-hover:shadow-[0_8px_40px_-12px_oklch(0.715_0.128_87_/_0.2)] md:p-10">
               {/* Industry tag badge */}
-              <span className="absolute top-4 right-4 z-20 inline-flex items-center rounded-full border border-accent/30 bg-accent-soft px-3 py-1 text-[10px] font-bold tracking-[0.12em] uppercase text-accent-foreground shadow-xs">
+              <span className="absolute top-4 right-4 z-20 inline-flex items-center rounded-full border border-[#0E4DB8]/30 bg-[#0E4DB8]/10 px-3 py-1 text-[10px] font-bold tracking-[0.12em] uppercase text-[#0E4DB8] shadow-xs">
                 {client.tag}
               </span>
 
@@ -113,7 +113,7 @@ export function OurClients() {
                 href={client.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-xs font-semibold text-primary transition-all duration-300 hover:border-accent hover:bg-accent-soft hover:text-accent-foreground"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#0E4DB8] px-4 py-2 text-xs font-bold text-white shadow-sm transition-all duration-300 hover:bg-[#3DA5FF] hover:shadow-md hover:scale-105"
               >
                 <span>Visit {client.displayUrl}</span>
                 <ExternalLink className="size-3.5" />
