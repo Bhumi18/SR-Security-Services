@@ -20,6 +20,7 @@ import { LicensesBand } from "@/components/site/LicensesBand";
 import { OurClients } from "@/components/site/OurClients";
 import { QuoteForm } from "@/components/site/QuoteForm";
 import { Section, SectionHeading } from "@/components/site/Section";
+import { WorkProcessSection } from "@/components/site/WorkProcessSection";
 import { ServiceGrid } from "@/components/site/ServiceGrid";
 import { WhyChooseUsCarousel } from "@/components/site/WhyChooseUsCarousel";
 import { Button } from "@/components/ui/button";
@@ -298,28 +299,7 @@ function Home() {
       </Section>
 
       {/* Work process */}
-      <Section tone="navy" id="process" className="scroll-mt-20 lg:scroll-mt-24">
-        <SectionHeading
-          onNavy
-          eyebrow="Our Work Process"
-          title="A structured six-step onboarding, every single time"
-          description="No guesswork and no ad-hoc deployment. This is exactly how we move from your first call to a monitored, audited posting."
-        />
-        <ol className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {workProcess.map((step) => (
-            <li
-              key={step.step}
-              className="group rounded-2xl border border-primary-foreground/12 bg-primary-foreground/5 p-6 transition-all duration-300 hover:border-accent/60 hover:bg-primary-foreground/10 hover:-translate-y-1.5 shadow-sm hover:shadow-md"
-            >
-              <span className="inline-block font-display text-3xl font-bold text-accent/80 transition-transform duration-300 group-hover:scale-110 group-hover:text-accent">{step.step}</span>
-              <h3 className="mt-3 font-display text-base font-semibold text-primary-foreground transition-colors duration-200 group-hover:text-accent">
-                {step.title}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-primary-foreground/70">{step.text}</p>
-            </li>
-          ))}
-        </ol>
-      </Section>
+      <WorkProcessSection />
 
 
 
