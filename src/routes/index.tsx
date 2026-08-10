@@ -141,15 +141,19 @@ function Home() {
                   </a>
                 </Button>
               </div>
-              <ul className="fade-up mt-9 flex flex-wrap gap-x-6 gap-y-2.5 text-xs sm:text-sm text-primary-foreground/75" style={{ animationDelay: "650ms" }}>
-                {["Background Verified Staff", "5 Gujarat Districts Covered", "24x7 Control Room"].map(
-                  (t) => (
-                    <li key={t} className="flex items-center gap-2">
-                      <CheckCircle2 className="size-4 shrink-0 text-accent" aria-hidden="true" />
-                      {t}
-                    </li>
-                  ),
-                )}
+              <ul className="fade-up mt-8 flex flex-wrap items-center justify-center sm:justify-start gap-x-3 sm:gap-x-7 gap-y-2.5 text-[11px] sm:text-sm font-medium text-primary-foreground/85" style={{ animationDelay: "650ms" }}>
+                <li className="flex items-center gap-1.5">
+                  <CheckCircle2 className="size-3.5 shrink-0 text-[#3DA5FF]" aria-hidden="true" />
+                  <span>Background Verified Staff</span>
+                </li>
+                <li className="flex items-center gap-1.5">
+                  <CheckCircle2 className="size-3.5 shrink-0 text-[#3DA5FF]" aria-hidden="true" />
+                  <span>5 Gujarat Districts Covered</span>
+                </li>
+                <li className="w-full sm:w-auto flex items-center justify-center sm:justify-start gap-1.5 pt-0.5 sm:pt-0">
+                  <CheckCircle2 className="size-3.5 shrink-0 text-[#3DA5FF]" aria-hidden="true" />
+                  <span>24x7 Control Room</span>
+                </li>
               </ul>
             </div>
 
