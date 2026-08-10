@@ -73,10 +73,16 @@ function Home() {
         <div className="container-page pt-8 pb-16 md:pt-10 md:pb-24 lg:pt-12 lg:pb-28">
           <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8 xl:gap-16">
             <div className="min-w-0">
-              <p className="fade-up inline-flex items-center gap-2 rounded-full border border-[#3DA5FF]/30 bg-[#3DA5FF]/10 px-4 py-1.5 text-xs font-semibold tracking-[0.12em] text-[#3DA5FF] uppercase" style={{ animationDelay: "100ms" }}>
-                <ShieldCheck className="size-3.5 text-[#3DA5FF]" aria-hidden="true" />
-                PSARA Licensed · UDYAM Registered · AMC Certified
-              </p>
+              <div className="fade-up flex max-w-full" style={{ animationDelay: "100ms" }}>
+                <p className="inline-flex max-w-full items-center gap-1 whitespace-nowrap rounded-full border border-[#3DA5FF]/30 bg-[#3DA5FF]/10 px-2.5 py-1 text-[9px] font-semibold tracking-tight text-[#3DA5FF] uppercase sm:gap-1.5 sm:px-4 sm:py-1.5 sm:text-xs sm:tracking-[0.12em]">
+                  <ShieldCheck className="size-3 shrink-0 text-[#3DA5FF] sm:size-3.5" aria-hidden="true" />
+                  <span>PSARA Licensed</span>
+                  <span className="text-[#3DA5FF]/60">•</span>
+                  <span>UDYAM Registered</span>
+                  <span className="text-[#3DA5FF]/60">•</span>
+                  <span>AMC Certified</span>
+                </p>
+              </div>
               <h1 className="fade-up mt-6 text-2xl leading-[1.15] font-bold text-primary-foreground sm:text-4xl md:text-5xl xl:text-6xl" style={{ animationDelay: "200ms" }}>
                 Trusted Security &<br />
                 <span className="inline-block max-w-full min-h-[1.15em] text-[#3DA5FF] align-bottom">
