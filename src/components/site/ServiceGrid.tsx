@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, BadgeCheck, CheckCircle2, ShieldCheck, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -9,8 +9,30 @@ export function ServiceGrid() {
   const [activeMobileIndex, setActiveMobileIndex] = useState<number>(0);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
+  const pillContainerRef = useRef<HTMLDivElement | null>(null);
+  const pillRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
   const [featuredService, ...gridServices] = serviceGroups;
   const currentMobileService = serviceGroups[activeMobileIndex] || serviceGroups[0];
+
+  // Auto-scroll active category pill into center view when activeMobileIndex changes
+  useEffect(() => {
+    if (pillContainerRef.current && pillRefs.current[activeMobileIndex]) {
+      const container = pillContainerRef.current;
+      const target = pillRefs.current[activeMobileIndex];
+      if (container && target) {
+        const containerRect = container.getBoundingClientRect();
+        const targetRect = target.getBoundingClientRect();
+        const relativeLeft = targetRect.left - containerRect.left + container.scrollLeft;
+        const scrollTo = relativeLeft - container.clientWidth / 2 + target.clientWidth / 2;
+
+        container.scrollTo({
+          left: Math.max(0, scrollTo),
+          behavior: "smooth",
+        });
+      }
+    }
+  }, [activeMobileIndex]);
 
   if (!currentMobileService) return null;
 
@@ -43,12 +65,18 @@ export function ServiceGrid() {
       {/* ========================================================================= */}
       <div className="sm:hidden flex flex-col gap-5">
         {/* Horizontal Category Pill Selector Bar */}
-        <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none scroll-smooth">
+        <div
+          ref={pillContainerRef}
+          className="flex gap-2 overflow-x-auto pb-1.5 scrollbar-none scroll-smooth"
+        >
           {serviceGroups.map((s, idx) => {
             const isActive = idx === activeMobileIndex;
             return (
               <button
                 key={s.slug}
+                ref={(el) => {
+                  pillRefs.current[idx] = el;
+                }}
                 onClick={() => setActiveMobileIndex(idx)}
                 className={`flex shrink-0 items-center gap-2 rounded-full px-3.5 py-2 text-xs font-semibold transition-all duration-300 ${
                   isActive
