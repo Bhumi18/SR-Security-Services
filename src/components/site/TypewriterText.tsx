@@ -25,7 +25,7 @@ export function TypewriterText({
   useEffect(() => {
     if (!words || words.length === 0) return;
 
-    const fullWord = words[currentWordIndex];
+    const fullWord = words[currentWordIndex] || "";
 
     let timer: NodeJS.Timeout;
 

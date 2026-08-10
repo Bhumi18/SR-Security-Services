@@ -83,6 +83,7 @@ export const nav: NavItem[] = [
     ],
   },
   { label: "Industries", sectionId: "industries", to: "/#industries" },
+  { label: "Gallery", sectionId: "gallery", to: "/#gallery" },
   { label: "Clients", sectionId: "clients", to: "/#clients" },
   { label: "Contact", sectionId: "contact", to: "/#contact" },
 ];

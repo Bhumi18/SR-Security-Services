@@ -21,6 +21,7 @@ import { OurClients } from "@/components/site/OurClients";
 import { QuoteForm } from "@/components/site/QuoteForm";
 import { Section, SectionHeading } from "@/components/site/Section";
 import { WorkProcessSection } from "@/components/site/WorkProcessSection";
+import { OnSiteGallery } from "@/components/site/OnSiteGallery";
 import { ServiceGrid } from "@/components/site/ServiceGrid";
 import { WhyChooseUsCarousel } from "@/components/site/WhyChooseUsCarousel";
 import { Button } from "@/components/ui/button";
@@ -299,6 +300,9 @@ function Home() {
 
       {/* Work process */}
       <WorkProcessSection />
+
+      {/* On-Site Operations Photo Gallery */}
+      <OnSiteGallery />
 
 
 
