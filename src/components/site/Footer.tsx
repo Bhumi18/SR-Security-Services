@@ -1,13 +1,13 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, MapPin, Phone, ShieldCheck, Clock } from "lucide-react";
 
-import { company, images, industries, nav, serviceGroups } from "@/data/site";
+import { company, images, industries, serviceGroups } from "@/data/site";
 
 export function Footer() {
   return (
     <footer className="navy-panel">
-      <div className="container-page grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4 lg:py-20">
-        <div>
+      <div className="container-page grid gap-10 py-16 md:grid-cols-12 lg:gap-12 lg:py-20">
+        {/* Column 1: Company Profile & Certifications */}
+        <div className="md:col-span-6 lg:col-span-5">
           <div className="flex items-center gap-3">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white p-1.5 shadow-md">
               <img
@@ -39,116 +39,83 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-8 md:col-span-2 lg:col-span-2">
-          <div>
-            <h3 className="font-display text-sm font-semibold tracking-[0.12em] text-primary-foreground uppercase">
-              Quick Links
-            </h3>
-            <span className="gold-rule mt-3" />
-            <ul className="mt-4 space-y-2.5 text-sm">
-              <li>
-                <a href="/#hero" className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="/#about" className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]">
-                  Company Overview
-                </a>
-              </li>
-              <li>
-                <a href="/#why-choose-us" className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]">
-                  Why Choose Us
-                </a>
-              </li>
-              <li>
-                <a href="/#licenses" className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]">
-                  Licenses & Certifications
-                </a>
-              </li>
-              <li>
-                <a href="/#process" className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]">
-                  Our Work Process
-                </a>
-              </li>
-              <li>
-                <a href="/#industries" className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]">
-                  Industries We Serve
-                </a>
-              </li>
-              <li>
-                <a href="/#clients" className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]">
-                  Our Clients
-                </a>
-              </li>
-              <li>
-                <a href="/#contact" className="text-[#3DA5FF] font-semibold transition-colors hover:underline">
-                  Contact & Free Quote
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-display text-sm font-semibold tracking-[0.12em] text-primary-foreground uppercase">
-              Services
-            </h3>
-            <span className="gold-rule mt-3" />
-            <ul className="mt-4 space-y-2.5 text-sm">
-              {serviceGroups.map((s) => (
-                <li key={s.slug}>
-                  <Link
-                    to="/services/$slug"
-                    params={{ slug: s.slug }}
-                    className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]"
-                  >
-                    {s.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            <h3 className="mt-8 font-display text-sm font-semibold tracking-[0.12em] text-primary-foreground uppercase">
-              Industries
-            </h3>
-            <span className="gold-rule mt-3" />
-            <p className="mt-4 text-sm leading-relaxed text-primary-foreground/70">
-              {industries.slice(0, 10).map((item) => item.name).join(" · ")}
-            </p>
-          </div>
-        </div>
-
-        <div>
+        {/* Column 2: Quick Links */}
+        <div className="md:col-span-3 lg:col-span-3">
           <h3 className="font-display text-sm font-semibold tracking-[0.12em] text-primary-foreground uppercase">
-            Contact
+            Quick Links
           </h3>
           <span className="gold-rule mt-3" />
-          <ul className="mt-4 space-y-4 text-sm text-primary-foreground/75">
-            <li className="flex gap-3">
-              <MapPin className="mt-0.5 size-4 shrink-0 text-[#3DA5FF]" aria-hidden="true" />
-              <span>
-                {company.address.line1}
-                <br />
-                {company.address.line2}
-              </span>
-            </li>
-            <li className="flex gap-3">
-              <Phone className="mt-0.5 size-4 shrink-0 text-[#3DA5FF]" aria-hidden="true" />
-              <a href={company.phoneHref} className="transition-colors hover:text-[#3DA5FF]">
-                {company.phone}
+          <ul className="mt-4 space-y-2.5 text-sm">
+            <li>
+              <a href="/#hero" className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]">
+                Home
               </a>
             </li>
-            <li className="flex gap-3">
-              <Mail className="mt-0.5 size-4 shrink-0 text-[#3DA5FF]" aria-hidden="true" />
-              <a href={`mailto:${company.email}`} className="transition-colors hover:text-[#3DA5FF]">
-                {company.email}
+            <li>
+              <a href="/#about" className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]">
+                Company Overview
               </a>
             </li>
-            <li className="flex gap-3">
-              <Clock className="mt-0.5 size-4 shrink-0 text-[#3DA5FF]" aria-hidden="true" />
-              <span>{company.hours}</span>
+            <li>
+              <a href="/#why-choose-us" className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]">
+                Why Choose Us
+              </a>
+            </li>
+            <li>
+              <a href="/#licenses" className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]">
+                Licenses & Certifications
+              </a>
+            </li>
+            <li>
+              <a href="/#process" className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]">
+                Our Work Process
+              </a>
+            </li>
+            <li>
+              <a href="/#gallery" className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]">
+                Photo Gallery
+              </a>
+            </li>
+            <li>
+              <a href="/#clients" className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]">
+                Our Clients
+              </a>
+            </li>
+            <li>
+              <a href="/#contact" className="text-[#3DA5FF] font-semibold transition-colors hover:underline">
+                Contact & Free Quote
+              </a>
             </li>
           </ul>
+        </div>
+
+        {/* Column 3: Core Services & Sectors */}
+        <div className="md:col-span-3 lg:col-span-4">
+          <h3 className="font-display text-sm font-semibold tracking-[0.12em] text-primary-foreground uppercase">
+            Services
+          </h3>
+          <span className="gold-rule mt-3" />
+          <ul className="mt-4 space-y-2.5 text-sm">
+            {serviceGroups.map((s) => (
+              <li key={s.slug}>
+                <Link
+                  to="/services/$slug"
+                  params={{ slug: s.slug }}
+                  className="text-primary-foreground/70 transition-colors hover:text-[#3DA5FF]"
+                >
+                  {s.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <h3 className="mt-8 font-display text-sm font-semibold tracking-[0.12em] text-primary-foreground uppercase">
+            Industries Served
+          </h3>
+          <span className="gold-rule mt-3" />
+          <p className="mt-4 text-xs leading-relaxed text-primary-foreground/70">
+            {industries.slice(0, 10).map((item) => item.name).join(" · ")}
+          </p>
         </div>
       </div>
 
