@@ -77,9 +77,9 @@ function Home() {
                 <ShieldCheck className="size-3.5 text-[#3DA5FF]" aria-hidden="true" />
                 PSARA Licensed · UDYAM Registered · AMC Certified
               </p>
-              <h1 className="fade-up mt-6 text-3xl leading-[1.15] font-bold text-primary-foreground sm:text-4xl md:text-5xl xl:text-6xl" style={{ animationDelay: "200ms" }}>
+              <h1 className="fade-up mt-6 text-2xl leading-[1.15] font-bold text-primary-foreground sm:text-4xl md:text-5xl xl:text-6xl" style={{ animationDelay: "200ms" }}>
                 Trusted Security &<br />
-                <span className="inline-block max-w-full min-h-[1.15em] whitespace-nowrap text-[#3DA5FF] overflow-hidden align-bottom">
+                <span className="inline-block max-w-full min-h-[1.15em] text-[#3DA5FF] align-bottom">
                   <TypewriterText
                     words={[
                       "Facility Management",
@@ -93,7 +93,7 @@ function Home() {
                 <br />
                 in Gujarat
               </h1>
-              <p className="fade-up mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/80 md:text-lg" style={{ animationDelay: "350ms" }}>
+              <p className="fade-up mt-6 max-w-2xl text-sm leading-relaxed text-primary-foreground/80 sm:text-base md:text-lg" style={{ animationDelay: "350ms" }}>
                 Providing professional security guards, event management, housekeeping, bouncer
                 services, and contract manpower across 5 key districts in Gujarat:{" "}
                 {[
@@ -118,24 +118,24 @@ function Home() {
                   </span>
                 ))}
               </p>
-              <p className="fade-up mt-4 font-display text-sm font-medium text-[#3DA5FF] md:text-base" style={{ animationDelay: "450ms" }}>
+              <p className="fade-up mt-4 font-display text-xs font-medium text-[#3DA5FF] sm:text-sm md:text-base" style={{ animationDelay: "450ms" }}>
                 {company.tagline}
               </p>
-              <div className="fade-up mt-9 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: "550ms" }}>
-                <Button asChild variant="gold" size="xl">
+              <div className="fade-up mt-8 flex flex-col gap-3 sm:flex-row sm:w-auto" style={{ animationDelay: "550ms" }}>
+                <Button asChild variant="gold" size="xl" className="w-full sm:w-auto">
                   <a href="#contact">
                     Request Free Quote
                     <ArrowRight className="size-4" />
                   </a>
                 </Button>
-                <Button asChild variant="onNavy" size="xl">
+                <Button asChild variant="onNavy" size="xl" className="w-full sm:w-auto">
                   <a href={company.phoneHref}>
                     <Phone className="size-4" />
                     Call Now
                   </a>
                 </Button>
               </div>
-              <ul className="fade-up mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-primary-foreground/75" style={{ animationDelay: "650ms" }}>
+              <ul className="fade-up mt-9 flex flex-wrap gap-x-6 gap-y-2.5 text-xs sm:text-sm text-primary-foreground/75" style={{ animationDelay: "650ms" }}>
                 {["Background Verified Staff", "5 Gujarat Districts Covered", "24x7 Control Room"].map(
                   (t) => (
                     <li key={t} className="flex items-center gap-2">
@@ -147,8 +147,8 @@ function Home() {
               </ul>
             </div>
 
-            {/* Right – Interactive Gujarat Map */}
-            <div className="fade-up hidden min-w-0 w-full lg:block" style={{ animationDelay: "200ms" }}>
+            {/* Right – Interactive Gujarat Map (Fully Responsive on All Viewports) */}
+            <div className="fade-up min-w-0 w-full max-w-md mx-auto lg:max-w-none block mt-6 lg:mt-0" style={{ animationDelay: "200ms" }}>
               <GujaratMap
                 hoveredDistrict={hoveredDistrict}
                 onHoverDistrict={setHoveredDistrict}
