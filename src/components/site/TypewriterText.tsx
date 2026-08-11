@@ -57,7 +57,7 @@ export function TypewriterText({
   }, [currentText, isDeleting, currentWordIndex, words, typingSpeed, deletingSpeed, pauseDuration]);
 
   return (
-    <span className={cn("inline-flex items-baseline min-h-[1em]", className)}>
+    <span className={cn("inline-flex items-baseline min-h-[1em] whitespace-nowrap", className)}>
       <span>{currentText || "\u00A0"}</span>
       <span
         className={cn(

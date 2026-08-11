@@ -133,9 +133,9 @@ function Home() {
                   <span>AMC Certified</span>
                 </p>
               </div>
-              <h1 className="fade-up mt-6 text-2xl leading-[1.15] font-bold text-primary-foreground sm:text-4xl md:text-5xl xl:text-6xl" style={{ animationDelay: "200ms" }}>
+              <h1 className="fade-up mt-6 text-2xl leading-[1.15] font-bold text-primary-foreground sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl" style={{ animationDelay: "200ms" }}>
                 Trusted Security &<br />
-                <span className="inline-block max-w-full min-h-[1.15em] text-[#3DA5FF] align-bottom">
+                <span className="inline-block max-w-full min-h-[1.15em] text-[#3DA5FF] align-bottom whitespace-nowrap">
                   <TypewriterText
                     words={[
                       "Facility Management",
