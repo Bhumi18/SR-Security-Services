@@ -386,14 +386,14 @@ export const GujaratMap: FC<GujaratMapProps> = ({ hoveredDistrict, onHoverDistri
       </svg>
 
       {/* Legend Badge */}
-      <div className="mt-3 flex items-center justify-center gap-6 text-xs text-primary-foreground/80 font-medium">
-        <div className="flex items-center gap-2 bg-primary-foreground/5 border border-primary-foreground/10 px-3 py-1.5 rounded-full">
-          <span className="size-3 rounded-full bg-[#3DA5FF] inline-block shadow-[0_0_8px_rgba(61,165,255,0.8)]" />
-          <span>Covered Districts (5)</span>
+      <div className="mt-3 flex flex-wrap items-center justify-center sm:justify-start lg:justify-center gap-2.5 sm:gap-4 text-[10px] sm:text-xs text-primary-foreground/80 font-medium max-w-md mx-auto lg:max-w-none">
+        <div className="flex items-center gap-1.5 sm:gap-2 bg-primary-foreground/5 border border-primary-foreground/10 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full whitespace-nowrap">
+          <span className="size-2.5 sm:size-3 rounded-full bg-[#3DA5FF] shrink-0 inline-block shadow-[0_0_8px_rgba(61,165,255,0.8)]" />
+          <span className="whitespace-nowrap">Covered Districts (5)</span>
         </div>
-        <div className="flex items-center gap-2 bg-primary-foreground/5 border border-primary-foreground/10 px-3 py-1.5 rounded-full">
-          <span className="size-3 rounded-full bg-white/20 inline-block" />
-          <span>Other Gujarat State Regions</span>
+        <div className="flex items-center gap-1.5 sm:gap-2 bg-primary-foreground/5 border border-primary-foreground/10 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full whitespace-nowrap">
+          <span className="size-2.5 sm:size-3 rounded-full bg-white/20 shrink-0 inline-block" />
+          <span className="whitespace-nowrap">Other Gujarat State Regions</span>
         </div>
       </div>
     </div>

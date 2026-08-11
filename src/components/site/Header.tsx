@@ -228,20 +228,10 @@ export function Header() {
                 </a>
               );
             })}
-            <Button asChild variant="hero" size="sm" className="ml-1 lg:ml-2">
-              <a href="/#contact" onClick={(e) => handleNavClick(e, "contact")}>
-                Get Quote
-              </a>
-            </Button>
           </nav>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 md:hidden">
-            <Button asChild variant="hero" size="sm" className="hidden sm:inline-flex">
-              <a href="/#contact" onClick={(e) => handleNavClick(e, "contact")}>
-                Get Quote
-              </a>
-            </Button>
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
@@ -337,11 +327,6 @@ export function Header() {
           </nav>
           <div className="mt-6 flex flex-col gap-3">
             <Button asChild variant="hero" size="lg">
-              <a href="/#contact" onClick={(e) => handleNavClick(e, "contact")}>
-                Request Free Quote
-              </a>
-            </Button>
-            <Button asChild variant="subtle" size="lg">
               <a href={company.phoneHref}>Call {company.phone}</a>
             </Button>
           </div>
