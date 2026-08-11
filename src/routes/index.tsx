@@ -59,24 +59,14 @@ function Home() {
   // About Section Video Player Controls
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(true);
-  const [isVideoMuted, setIsVideoMuted] = useState<boolean>(false); // Sound ON by default
-  const [showSoundPrompt, setShowSoundPrompt] = useState<boolean>(false);
+  const [isVideoMuted, setIsVideoMuted] = useState<boolean>(true); // Sound OFF by default on page load
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.muted = false; // Attempt unmuted audio playback
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // If browser policy blocked unmuted autoplay, fallback to muted and show 1-tap unmute prompt
-          if (videoRef.current) {
-            videoRef.current.muted = true;
-            setIsVideoMuted(true);
-            setShowSoundPrompt(true);
-            videoRef.current.play();
-          }
-        });
-      }
+      videoRef.current.muted = true; // Video sound OFF by default on page load
+      videoRef.current.play().catch(() => {
+        // Silently catch autoplay restriction if any
+      });
     }
   }, []);
 
@@ -97,7 +87,6 @@ function Home() {
       const newMuted = !isVideoMuted;
       videoRef.current.muted = newMuted;
       setIsVideoMuted(newMuted);
-      setShowSoundPrompt(false);
     }
   };
 
@@ -261,6 +250,7 @@ function Home() {
                     ref={videoRef}
                     src={srVideo}
                     loop
+                    muted
                     playsInline
                     autoPlay
                     className="size-full object-contain cursor-pointer"
@@ -326,18 +316,6 @@ function Home() {
                     </button>
                   </div>
                 </div>
-
-                {/* Tap to Enable Sound Overlay Prompt */}
-                {showSoundPrompt && isVideoMuted && (
-                  <button
-                    type="button"
-                    onClick={toggleVideoMute}
-                    className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 inline-flex items-center gap-2 rounded-full border border-[#3DA5FF]/60 bg-[#0B1F3A]/95 px-4 py-2 text-xs font-bold text-white shadow-2xl backdrop-blur-lg animate-bounce transition hover:bg-[#0E4DB8] cursor-pointer"
-                  >
-                    <Volume2 className="size-4 text-[#3DA5FF]" />
-                    <span>Tap for Audio 🔊</span>
-                  </button>
-                )}
               </div>
             </div>
 
