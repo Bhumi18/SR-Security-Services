@@ -304,3 +304,7 @@
 .animate-gallery-scale {
   animation: gallery-scale-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+body.nav-open .floating-actions-container {
+  display: none !important;
+}

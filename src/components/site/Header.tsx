@@ -24,9 +24,26 @@ export function Header() {
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    if (open) {
+      document.body.classList.add("nav-open");
+    } else {
+      document.body.classList.remove("nav-open");
+    }
+    window.dispatchEvent(new CustomEvent("nav-toggle", { detail: { open } }));
     return () => {
       document.body.style.overflow = "";
+      document.body.classList.remove("nav-open");
     };
+  }, [open]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768 && open) {
+        setOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, [open]);
 
   // Track active section on scroll

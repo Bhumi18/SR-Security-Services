@@ -6,6 +6,24 @@ import { company } from "@/data/site";
 export function FloatingActions() {
   const [showTop, setShowTop] = useState(false);
   const [isScrollingDown, setIsScrollingDown] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  useEffect(() => {
+    const handleNavToggle = (e: Event) => {
+      const customEvt = e as CustomEvent<{ open: boolean }>;
+      if (customEvt.detail !== undefined) {
+        setIsNavOpen(customEvt.detail.open);
+      }
+    };
+
+    // Initial check in case body already has nav-open
+    if (typeof document !== "undefined" && document.body.classList.contains("nav-open")) {
+      setIsNavOpen(true);
+    }
+
+    window.addEventListener("nav-toggle", handleNavToggle);
+    return () => window.removeEventListener("nav-toggle", handleNavToggle);
+  }, []);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -25,6 +43,8 @@ export function FloatingActions() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  if (isNavOpen) return null;
 
   const actionButtons = [
     {
@@ -63,7 +83,7 @@ export function FloatingActions() {
   ];
 
   return (
-    <div className="fixed right-4 bottom-4 z-50 flex flex-col items-end gap-3 sm:right-6 sm:bottom-6">
+    <div className="floating-actions-container fixed right-4 bottom-4 z-50 flex flex-col items-end gap-3 sm:right-6 sm:bottom-6">
       {/* 3 Action Buttons: Pop OUT on Scroll UP / Pop IN on Scroll DOWN */}
       <div className="flex flex-col items-end gap-3">
         {actionButtons.map((btn, index) => {
