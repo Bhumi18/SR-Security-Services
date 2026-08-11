@@ -89,7 +89,8 @@
   --accent-bright: oklch(0.69 0.165 242);
 
   --charcoal: oklch(0.245 0.022 258);
-  --surface: oklch(0.978 0.005 250);
+  /* Surface = pure white for alternating section contrast */
+  --surface: oklch(1 0 0);
 
   /* Success #16A34A & Error #DC2626 */
   --success: oklch(0.60 0.18 142);

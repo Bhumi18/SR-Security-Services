@@ -19,7 +19,6 @@ import {
 
 import srVideo from "@/assets/sr_video.mp4";
 import { TypewriterText } from "@/components/site/TypewriterText";
-import { CtaBand } from "@/components/site/CtaBand";
 import { GujaratMap } from "@/components/site/GujaratMap";
 import { Icon } from "@/components/site/Icon";
 import { LicensesBand } from "@/components/site/LicensesBand";
@@ -401,7 +400,7 @@ function Home() {
       </Section>
 
       {/* Industries */}
-      <Section id="industries" className="scroll-mt-20 lg:scroll-mt-24">
+      <Section tone="default" id="industries" className="scroll-mt-20 lg:scroll-mt-24">
         <SectionHeading
           eyebrow="Industries We Serve"
           title="Sector-specific deployment, not one-size-fits-all guarding"
@@ -464,12 +463,8 @@ function Home() {
       {/* On-Site Operations Photo Gallery */}
       <OnSiteGallery />
 
-
-
-
-
       {/* Our Clients */}
-      <Section tone="surface" id="clients" className="scroll-mt-20 lg:scroll-mt-24">
+      <Section tone="default" id="clients" className="scroll-mt-20 lg:scroll-mt-24">
         <SectionHeading
           eyebrow="Our Clients"
           title="Trusted by industry leaders across sectors"
@@ -477,8 +472,6 @@ function Home() {
         />
         <OurClients />
       </Section>
-
-      <CtaBand />
 
       {/* Contact & Enquiry */}
       <Section tone="surface" id="contact" className="scroll-mt-20 lg:scroll-mt-24">
