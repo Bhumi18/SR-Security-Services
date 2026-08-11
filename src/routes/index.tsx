@@ -5,7 +5,6 @@ import {
   BadgeCheck,
   CheckCircle2,
   Clock,
-  Film,
   Mail,
   MapPin,
   Maximize2,
@@ -244,8 +243,9 @@ function Home() {
                   className="absolute inset-0 size-full object-cover blur-3xl opacity-35 pointer-events-none scale-110"
                 />
 
-                {/* Layer 2: Main Uncropped Video (object-contain ensures 100% of video, people, & objects are visible) */}
-                <div className="relative z-10 aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden rounded-2xl flex items-center justify-center bg-black/60 backdrop-blur-xs">
+                {/* Layer 2: Main Video Deck Box (Aspect 4/3 parallel with right column about cards) */}
+                <div className="relative z-10 aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden rounded-2xl flex flex-col justify-end p-3 sm:p-4 bg-black/90 shadow-inner">
+                  {/* Uncropped Video (object-contain centers 16:9 video, creating black letterbox bars top & bottom) */}
                   <video
                     ref={videoRef}
                     src={srVideo}
@@ -253,66 +253,48 @@ function Home() {
                     muted
                     playsInline
                     autoPlay
-                    className="size-full object-contain cursor-pointer"
+                    className="absolute inset-0 size-full object-contain cursor-pointer z-0"
                     onClick={toggleVideoPlay}
                   />
-                </div>
 
-                {/* Floating Top Controls Bar */}
-                <div className="absolute top-5 inset-x-5 flex items-center justify-between z-20 pointer-events-auto">
-                  {/* Live Operation Tag */}
-                  <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/65 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md shadow-lg">
-                    <Film className="size-3.5 text-[#3DA5FF]" />
-                    <span className="font-mono text-[11px] font-bold">SR OPERATIONS FILM</span>
-                    {!isVideoMuted && isVideoPlaying && (
-                      <span className="flex items-end gap-0.5 h-3 ml-0.5">
-                        <span className="w-0.5 bg-[#3DA5FF] animate-pulse h-full" />
-                        <span className="w-0.5 bg-[#3DA5FF] animate-pulse h-2/3" />
-                        <span className="w-0.5 bg-[#3DA5FF] animate-pulse h-4/5" />
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Media Controls (Sound, Play/Pause, Fullscreen) */}
-                  <div className="flex items-center gap-1.5">
+                  {/* Vertical Side Controls Column (Sound, Play/Pause, Fullscreen stacked vertically) */}
+                  <div className="absolute right-3 sm:right-4 bottom-3 sm:bottom-4 z-10 flex flex-col items-center gap-2 pointer-events-auto">
+                    {/* Sound Icon Button */}
                     <button
                       type="button"
                       onClick={toggleVideoMute}
-                      className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-bold backdrop-blur-md transition-all duration-300 cursor-pointer ${!isVideoMuted
-                          ? "border-emerald-500/40 bg-emerald-950/85 text-emerald-400 shadow-md shadow-emerald-900/30"
-                          : "border-amber-500/40 bg-amber-950/85 text-amber-400"
-                        }`}
+                      className={`grid size-8.5 sm:size-9 place-items-center rounded-full border backdrop-blur-md transition hover:scale-105 cursor-pointer shadow-lg ${
+                        !isVideoMuted
+                          ? "border-emerald-500/50 bg-emerald-950/90 text-emerald-400 shadow-emerald-900/30"
+                          : "border-white/20 bg-black/80 text-amber-400 hover:bg-white/20"
+                      }`}
                       title={!isVideoMuted ? "Mute Sound" : "Enable Sound"}
                     >
                       {!isVideoMuted ? (
-                        <>
-                          <Volume2 className="size-3.5 text-emerald-400 animate-pulse" />
-                          <span>SOUND ON</span>
-                        </>
+                        <Volume2 className="size-4 text-emerald-400 animate-pulse" />
                       ) : (
-                        <>
-                          <VolumeX className="size-3.5 text-amber-400" />
-                          <span>SOUND OFF</span>
-                        </>
+                        <VolumeX className="size-4 text-amber-400" />
                       )}
                     </button>
 
+                    {/* Play / Pause Button */}
                     <button
                       type="button"
                       onClick={toggleVideoPlay}
-                      className="grid size-8 place-items-center rounded-full border border-white/20 bg-black/65 text-white backdrop-blur-md transition hover:bg-white/20 hover:scale-105 cursor-pointer"
+                      className="grid size-8.5 sm:size-9 place-items-center rounded-full border border-white/20 bg-black/80 text-white backdrop-blur-md transition hover:bg-white/20 hover:scale-105 cursor-pointer shadow-lg"
                       title={isVideoPlaying ? "Pause Video" : "Play Video"}
                     >
-                      {isVideoPlaying ? <Pause className="size-3.5" /> : <Play className="size-3.5 text-emerald-400 ml-0.5" />}
+                      {isVideoPlaying ? <Pause className="size-4" /> : <Play className="size-4 text-emerald-400 ml-0.5" />}
                     </button>
 
+                    {/* Extended Screen / Fullscreen Button */}
                     <button
                       type="button"
                       onClick={toggleVideoFullscreen}
-                      className="grid size-8 place-items-center rounded-full border border-white/20 bg-black/65 text-white backdrop-blur-md transition hover:bg-[#0E4DB8] hover:scale-105 cursor-pointer"
+                      className="grid size-8.5 sm:size-9 place-items-center rounded-full border border-white/20 bg-black/80 text-white backdrop-blur-md transition hover:bg-[#0E4DB8] hover:scale-105 cursor-pointer shadow-lg"
                       title="Fullscreen"
                     >
-                      <Maximize2 className="size-3.5" />
+                      <Maximize2 className="size-4" />
                     </button>
                   </div>
                 </div>
