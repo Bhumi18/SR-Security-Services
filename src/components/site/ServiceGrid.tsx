@@ -105,8 +105,10 @@ export function ServiceGrid() {
               alt={`${currentMobileService.title} by SR Security Services`}
               className="size-full object-cover"
             />
-            <span className="absolute top-2.5 left-2.5 inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-[#0B1F3A]/95 px-2.5 py-1 text-[10px] font-bold text-[#3DA5FF] shadow-md backdrop-blur-md">
-              <ShieldCheck className="size-3 text-[#3DA5FF]" />
+            {/* Top Gradient Overlay for High Contrast */}
+            <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/75 via-black/30 to-transparent pointer-events-none" />
+            <span className="absolute top-2.5 left-2.5 inline-flex items-center gap-1.5 rounded-full border border-[#3DA5FF]/40 bg-[#0B1F3A]/95 px-3 py-1 text-[10px] font-bold text-[#3DA5FF] shadow-lg backdrop-blur-md">
+              <ShieldCheck className="size-3.5 text-[#3DA5FF]" />
               <span>DIVISION 0{activeMobileIndex + 1}</span>
             </span>
           </div>
@@ -207,8 +209,10 @@ export function ServiceGrid() {
                   height={750}
                   className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <span className="absolute top-3.5 left-3.5 inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-primary/95 px-3 py-1 text-xs font-semibold text-accent shadow-md backdrop-blur-md">
-                  <ShieldCheck className="size-3.5 text-accent" />
+                {/* Top Gradient Overlay for High Contrast */}
+                <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/75 via-black/30 to-transparent pointer-events-none z-10" />
+                <span className="absolute top-3.5 left-3.5 z-20 inline-flex items-center gap-1.5 rounded-full border border-[#3DA5FF]/40 bg-[#0B1F3A]/95 px-3.5 py-1.5 text-xs font-bold tracking-wide text-[#3DA5FF] shadow-lg backdrop-blur-md">
+                  <ShieldCheck className="size-4 text-[#3DA5FF]" />
                   <span>PRIMARY GUARDIAN DIVISION</span>
                 </span>
               </div>
@@ -281,8 +285,10 @@ export function ServiceGrid() {
                     height={400}
                     className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                  <span className="absolute top-2.5 left-2.5 inline-flex size-8 items-center justify-center rounded-lg bg-[#0B1F3A] text-[#3DA5FF] shadow-md backdrop-blur-md">
-                    <Icon name={service.icon} className="size-4 text-[#3DA5FF]" />
+                  {/* Top Gradient Overlay for High Contrast */}
+                  <div className="absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-black/75 via-black/30 to-transparent pointer-events-none z-10" />
+                  <span className="absolute top-2.5 left-2.5 z-20 inline-flex size-8.5 items-center justify-center rounded-xl border border-[#3DA5FF]/40 bg-[#0B1F3A]/95 text-[#3DA5FF] shadow-lg backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:bg-[#0E4DB8] group-hover:text-white group-hover:border-white/40">
+                    <Icon name={service.icon} className="size-4.5" />
                   </span>
                 </div>
 
