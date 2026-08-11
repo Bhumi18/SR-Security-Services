@@ -242,8 +242,6 @@ export const industries = [
 ];
 
 export const whyChooseUs = [
-  { icon: "BadgeCheck", title: "PSARA Licensed", text: "Licensed under the Private Security Agencies (Regulation) Act with full state compliance." },
-  { icon: "Award", title: "UDYAM & AMC Certified", text: "Registered under Ministry of MSME (UDYAM) and Ahmedabad Municipal Corporation (AMC)." },
   { icon: "UserCheck", title: "Background Verified Staff", text: "Police verification, Aadhaar KYC, address and reference checks before deployment." },
   { icon: "GraduationCap", title: "Highly Trained Personnel", text: "Induction, fire safety, first aid and refresher drills at our own training centres." },
   { icon: "Timer", title: "Quick Deployment", text: "Standard postings mobilised within 24–48 hours, emergency cover on the same day." },
