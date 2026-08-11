@@ -319,74 +319,70 @@ function Home() {
               </div>
             </div>
 
-            {/* Right Column: Description Narrative + 4 Glass Feature Cards (Col 6 Parallel to Video) */}
-            <div className="lg:col-span-6 flex flex-col justify-between h-full">
-              <div>
-                <p className="text-sm leading-relaxed text-muted-foreground sm:text-base mb-5">
+            {/* Right Column: Description Narrative + 4 Glass Feature Cards (Col 6 Parallel to Video Deck) */}
+            <div className="lg:col-span-6 flex flex-col justify-between self-stretch h-full py-0.5">
+              <div className="flex flex-col justify-between h-full gap-5 lg:gap-6">
+                <p className="text-sm leading-relaxed text-muted-foreground sm:text-base lg:text-[15px] lg:leading-7">
                   SR Security Services Pvt. Ltd. was built on a core corporate promise — security is a discipline, not a headcount. Headquartered in Ahmedabad and covering 5 key districts in Gujarat, we manage background-verified guarding personnel, corporate housekeeping teams, bouncer units, and event crowd controllers with 24x7 control room supervision.
                 </p>
 
-                <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
-                  <div className="rounded-2xl border border-border/80 bg-white p-4 shadow-xs transition duration-300 hover:border-[#0E4DB8]/40 hover:shadow-md">
-                    <div className="flex items-center gap-2.5">
-                      <span className="grid size-8.5 place-items-center rounded-xl bg-[#0E4DB8]/10 text-[#0E4DB8]">
-                        <ShieldCheck className="size-4.5" />
-                      </span>
-                      <h4 className="font-display text-xs font-bold text-primary">Statutory & Regulatory Compliance</h4>
+                <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5 lg:gap-4">
+                  <div className="rounded-2xl border border-border/80 bg-white p-3 sm:p-4 lg:p-4.5 shadow-xs transition duration-300 hover:border-[#0E4DB8]/40 hover:shadow-md flex flex-col justify-between">
+                    <div>
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-2.5">
+                        <span className="grid size-7 sm:size-8.5 place-items-center rounded-xl bg-[#0E4DB8]/10 text-[#0E4DB8] shrink-0">
+                          <ShieldCheck className="size-4 sm:size-4.5" />
+                        </span>
+                        <h4 className="font-display text-[11px] sm:text-xs font-bold text-primary leading-tight">Statutory Compliance</h4>
+                      </div>
+                      <p className="mt-2.5 text-[10px] sm:text-xs leading-relaxed text-muted-foreground">
+                        PSARA, UDYAM MSME, AMC certified with full PF, ESI, GST & Labour law adherence.
+                      </p>
                     </div>
-                    <p className="mt-2.5 text-xs leading-relaxed text-muted-foreground">
-                      PSARA licensed, UDYAM (MSME) registered, AMC certified with complete PF, ESI, GST & Labour law adherence.
-                    </p>
                   </div>
 
-                  <div className="rounded-2xl border border-border/80 bg-white p-4 shadow-xs transition duration-300 hover:border-[#0E4DB8]/40 hover:shadow-md">
-                    <div className="flex items-center gap-2.5">
-                      <span className="grid size-8.5 place-items-center rounded-xl bg-[#0E4DB8]/10 text-[#0E4DB8]">
-                        <BadgeCheck className="size-4.5" />
-                      </span>
-                      <h4 className="font-display text-xs font-bold text-primary">Verified & Vetted Workforce</h4>
+                  <div className="rounded-2xl border border-border/80 bg-white p-3 sm:p-4 lg:p-4.5 shadow-xs transition duration-300 hover:border-[#0E4DB8]/40 hover:shadow-md flex flex-col justify-between">
+                    <div>
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-2.5">
+                        <span className="grid size-7 sm:size-8.5 place-items-center rounded-xl bg-[#0E4DB8]/10 text-[#0E4DB8] shrink-0">
+                          <BadgeCheck className="size-4 sm:size-4.5" />
+                        </span>
+                        <h4 className="font-display text-[11px] sm:text-xs font-bold text-primary leading-tight">Verified Workforce</h4>
+                      </div>
+                      <p className="mt-2.5 text-[10px] sm:text-xs leading-relaxed text-muted-foreground">
+                        Police KYC verification, Aadhaar authentication & reference checks pre-posting.
+                      </p>
                     </div>
-                    <p className="mt-2.5 text-xs leading-relaxed text-muted-foreground">
-                      Police KYC verification, Aadhaar authentication, address & reference validation prior to deployment.
-                    </p>
                   </div>
 
-                  <div className="rounded-2xl border border-border/80 bg-white p-4 shadow-xs transition duration-300 hover:border-[#0E4DB8]/40 hover:shadow-md">
-                    <div className="flex items-center gap-2.5">
-                      <span className="grid size-8.5 place-items-center rounded-xl bg-[#0E4DB8]/10 text-[#0E4DB8]">
-                        <CheckCircle2 className="size-4.5" />
-                      </span>
-                      <h4 className="font-display text-xs font-bold text-primary">Structured Operational Training</h4>
+                  <div className="rounded-2xl border border-border/80 bg-white p-3 sm:p-4 lg:p-4.5 shadow-xs transition duration-300 hover:border-[#0E4DB8]/40 hover:shadow-md flex flex-col justify-between">
+                    <div>
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-2.5">
+                        <span className="grid size-7 sm:size-8.5 place-items-center rounded-xl bg-[#0E4DB8]/10 text-[#0E4DB8] shrink-0">
+                          <CheckCircle2 className="size-4 sm:size-4.5" />
+                        </span>
+                        <h4 className="font-display text-[11px] sm:text-xs font-bold text-primary leading-tight">Structured Training</h4>
+                      </div>
+                      <p className="mt-2.5 text-[10px] sm:text-xs leading-relaxed text-muted-foreground">
+                        Access control, fire safety protocols, emergency response & client etiquette.
+                      </p>
                     </div>
-                    <p className="mt-2.5 text-xs leading-relaxed text-muted-foreground">
-                      Access control, fire safety protocols, emergency evacuation handling & professional client etiquette.
-                    </p>
                   </div>
 
-                  <div className="rounded-2xl border border-border/80 bg-white p-4 shadow-xs transition duration-300 hover:border-[#0E4DB8]/40 hover:shadow-md">
-                    <div className="flex items-center gap-2.5">
-                      <span className="grid size-8.5 place-items-center rounded-xl bg-[#0E4DB8]/10 text-[#0E4DB8]">
-                        <Clock className="size-4.5" />
-                      </span>
-                      <h4 className="font-display text-xs font-bold text-primary">24x7 Control Room Supervision</h4>
+                  <div className="rounded-2xl border border-border/80 bg-white p-3 sm:p-4 lg:p-4.5 shadow-xs transition duration-300 hover:border-[#0E4DB8]/40 hover:shadow-md flex flex-col justify-between">
+                    <div>
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-2.5">
+                        <span className="grid size-7 sm:size-8.5 place-items-center rounded-xl bg-[#0E4DB8]/10 text-[#0E4DB8] shrink-0">
+                          <Clock className="size-4 sm:size-4.5" />
+                        </span>
+                        <h4 className="font-display text-[11px] sm:text-xs font-bold text-primary leading-tight">24x7 Control Desk</h4>
+                      </div>
+                      <p className="mt-2.5 text-[10px] sm:text-xs leading-relaxed text-muted-foreground">
+                        Mobile supervisory officers, surprise night checks & 24/7 response desk.
+                      </p>
                     </div>
-                    <p className="mt-2.5 text-xs leading-relaxed text-muted-foreground">
-                      Mobile supervisory officers, surprise night inspections & round-the-clock incident response desk.
-                    </p>
                   </div>
                 </div>
-              </div>
-
-              <div className="mt-6 flex flex-wrap items-center gap-4">
-                <Button asChild variant="hero" size="lg">
-                  <a href="#services">
-                    Explore Our Services
-                    <ArrowRight className="size-4" />
-                  </a>
-                </Button>
-                <Button asChild variant="outline" size="lg">
-                  <a href="#contact">Contact Operational Desk</a>
-                </Button>
               </div>
             </div>
           </div>
