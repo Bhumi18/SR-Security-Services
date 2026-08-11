@@ -1,17 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   BadgeCheck,
   CheckCircle2,
   Clock,
+  Film,
   Mail,
   MapPin,
+  Maximize2,
   MessageCircle,
+  Pause,
+  Play,
   Phone,
   ShieldCheck,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
 
+import srVideo from "@/assets/sr_video.mp4";
 import { TypewriterText } from "@/components/site/TypewriterText";
 import { CtaBand } from "@/components/site/CtaBand";
 import { GujaratMap } from "@/components/site/GujaratMap";
@@ -48,6 +55,61 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const [hoveredDistrict, setHoveredDistrict] = useState<string | null>(null);
+
+  // About Section Video Player Controls
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(true);
+  const [isVideoMuted, setIsVideoMuted] = useState<boolean>(false); // Sound ON by default
+  const [showSoundPrompt, setShowSoundPrompt] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = false; // Attempt unmuted audio playback
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // If browser policy blocked unmuted autoplay, fallback to muted and show 1-tap unmute prompt
+          if (videoRef.current) {
+            videoRef.current.muted = true;
+            setIsVideoMuted(true);
+            setShowSoundPrompt(true);
+            videoRef.current.play();
+          }
+        });
+      }
+    }
+  }, []);
+
+  const toggleVideoPlay = () => {
+    if (videoRef.current) {
+      if (isVideoPlaying) {
+        videoRef.current.pause();
+        setIsVideoPlaying(false);
+      } else {
+        videoRef.current.play();
+        setIsVideoPlaying(true);
+      }
+    }
+  };
+
+  const toggleVideoMute = () => {
+    if (videoRef.current) {
+      const newMuted = !isVideoMuted;
+      videoRef.current.muted = newMuted;
+      setIsVideoMuted(newMuted);
+      setShowSoundPrompt(false);
+    }
+  };
+
+  const toggleVideoFullscreen = () => {
+    if (videoRef.current) {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        videoRef.current.requestFullscreen();
+      }
+    }
+  };
 
   const contactDetails = [
     {
@@ -170,64 +232,185 @@ function Home() {
 
       {/* About */}
       <Section id="about" className="scroll-mt-20 lg:scroll-mt-24">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div className="relative">
-            <img
-              src={images.aboutTeam}
-              alt="SR Security Services supervisor briefing security guards and housekeeping staff"
-              loading="lazy"
-              width={1408}
-              height={1008}
-              className="w-full rounded-3xl object-cover shadow-[var(--shadow-lift)]"
-            />
-            <div className="card-premium absolute -right-3 -bottom-6 hidden w-52 p-5 sm:block lg:-right-8">
-              <p className="font-display text-3xl font-bold text-primary">15+</p>
-              <p className="mt-1 text-xs text-muted-foreground">
-                Years protecting Gujarat businesses & facilities
-              </p>
-            </div>
-          </div>
-          <div>
-            <SectionHeading
-              align="left"
-              eyebrow="About the Company"
-              title="Fifteen years of disciplined, compliant and dependable service"
-              description="SR Security Services Pvt. Ltd. was founded on a simple principle — security is a discipline, not a headcount. We build every deployment around verified people, written procedures and accountable supervision."
-            />
-            <ul className="mt-8 space-y-4">
-              {[
-                {
-                  t: "Experience & Integrity",
-                  d: "Over 1,000 completed projects across 20 industries, delivered without compromise on ethics or statutory compliance.",
-                },
-                {
-                  t: "Background Verified Workforce",
-                  d: "Police verification, Aadhaar KYC, address and reference checks completed before any person is posted.",
-                },
-                {
-                  t: "Well-Trained Personnel",
-                  d: "Induction and refresher training in access control, fire safety, first aid, emergency response and etiquette.",
-                },
-                {
-                  t: "Industry Compliance",
-                  d: "PSARA, UDYAM (MSME), AMC, PF, ESI, GST and labour law compliance with monthly documentation shared with every client.",
-                },
-              ].map((item) => (
-                <li key={item.t} className="flex gap-4">
-                  <BadgeCheck className="mt-0.5 size-5 shrink-0 text-accent" aria-hidden="true" />
-                  <div>
-                    <p className="font-display text-sm font-semibold text-primary">{item.t}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{item.d}</p>
+        <div className="flex flex-col gap-10 lg:gap-12">
+          {/* Top Full-Width Section Title Heading */}
+          <SectionHeading
+            align="center"
+            eyebrow="About SR Security Services"
+            title="Disciplined Guarding, Professional Facility Management & Compliant Operations"
+          />
+
+          {/* Parallel Side-by-Side Grid: Video Deck (Left) & Description + 4 Feature Cards (Right) */}
+          <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
+            {/* Left Column: Ultra-Modern Cinema Video Player (Col 6) */}
+            <div className="lg:col-span-6">
+              <div className="relative group w-full overflow-hidden rounded-3xl border border-slate-800 bg-slate-950 p-2 sm:p-3 shadow-2xl ring-1 ring-white/15 transition-all duration-500 hover:border-[#0E4DB8]/60 hover:shadow-[0_25px_60px_-15px_rgba(14,77,184,0.35)]">
+                {/* Layer 1: Ambient Blurred Background Glow (Fills edges with glowing colors) */}
+                <video
+                  src={srVideo}
+                  loop
+                  muted
+                  playsInline
+                  autoPlay
+                  className="absolute inset-0 size-full object-cover blur-3xl opacity-35 pointer-events-none scale-110"
+                />
+
+                {/* Layer 2: Main Uncropped Video (object-contain ensures 100% of video, people, & objects are visible) */}
+                <div className="relative z-10 aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden rounded-2xl flex items-center justify-center bg-black/60 backdrop-blur-xs">
+                  <video
+                    ref={videoRef}
+                    src={srVideo}
+                    loop
+                    playsInline
+                    autoPlay
+                    className="size-full object-contain cursor-pointer"
+                    onClick={toggleVideoPlay}
+                  />
+                </div>
+
+                {/* Floating Top Controls Bar */}
+                <div className="absolute top-5 inset-x-5 flex items-center justify-between z-20 pointer-events-auto">
+                  {/* Live Operation Tag */}
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/65 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md shadow-lg">
+                    <Film className="size-3.5 text-[#3DA5FF]" />
+                    <span className="font-mono text-[11px] font-bold">SR OPERATIONS FILM</span>
+                    {!isVideoMuted && isVideoPlaying && (
+                      <span className="flex items-end gap-0.5 h-3 ml-0.5">
+                        <span className="w-0.5 bg-[#3DA5FF] animate-pulse h-full" />
+                        <span className="w-0.5 bg-[#3DA5FF] animate-pulse h-2/3" />
+                        <span className="w-0.5 bg-[#3DA5FF] animate-pulse h-4/5" />
+                      </span>
+                    )}
                   </div>
-                </li>
-              ))}
-            </ul>
-            <Button asChild variant="hero" size="lg" className="mt-9">
-              <a href="#services">
-                Explore Our Services
-                <ArrowRight className="size-4" />
-              </a>
-            </Button>
+
+                  {/* Media Controls (Sound, Play/Pause, Fullscreen) */}
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={toggleVideoMute}
+                      className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-bold backdrop-blur-md transition-all duration-300 cursor-pointer ${!isVideoMuted
+                          ? "border-emerald-500/40 bg-emerald-950/85 text-emerald-400 shadow-md shadow-emerald-900/30"
+                          : "border-amber-500/40 bg-amber-950/85 text-amber-400"
+                        }`}
+                      title={!isVideoMuted ? "Mute Sound" : "Enable Sound"}
+                    >
+                      {!isVideoMuted ? (
+                        <>
+                          <Volume2 className="size-3.5 text-emerald-400 animate-pulse" />
+                          <span>SOUND ON</span>
+                        </>
+                      ) : (
+                        <>
+                          <VolumeX className="size-3.5 text-amber-400" />
+                          <span>SOUND OFF</span>
+                        </>
+                      )}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={toggleVideoPlay}
+                      className="grid size-8 place-items-center rounded-full border border-white/20 bg-black/65 text-white backdrop-blur-md transition hover:bg-white/20 hover:scale-105 cursor-pointer"
+                      title={isVideoPlaying ? "Pause Video" : "Play Video"}
+                    >
+                      {isVideoPlaying ? <Pause className="size-3.5" /> : <Play className="size-3.5 text-emerald-400 ml-0.5" />}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={toggleVideoFullscreen}
+                      className="grid size-8 place-items-center rounded-full border border-white/20 bg-black/65 text-white backdrop-blur-md transition hover:bg-[#0E4DB8] hover:scale-105 cursor-pointer"
+                      title="Fullscreen"
+                    >
+                      <Maximize2 className="size-3.5" />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Tap to Enable Sound Overlay Prompt */}
+                {showSoundPrompt && isVideoMuted && (
+                  <button
+                    type="button"
+                    onClick={toggleVideoMute}
+                    className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 inline-flex items-center gap-2 rounded-full border border-[#3DA5FF]/60 bg-[#0B1F3A]/95 px-4 py-2 text-xs font-bold text-white shadow-2xl backdrop-blur-lg animate-bounce transition hover:bg-[#0E4DB8] cursor-pointer"
+                  >
+                    <Volume2 className="size-4 text-[#3DA5FF]" />
+                    <span>Tap for Audio 🔊</span>
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Right Column: Description Narrative + 4 Glass Feature Cards (Col 6 Parallel to Video) */}
+            <div className="lg:col-span-6 flex flex-col justify-between h-full">
+              <div>
+                <p className="text-sm leading-relaxed text-muted-foreground sm:text-base mb-5">
+                  SR Security Services Pvt. Ltd. was built on a core corporate promise — security is a discipline, not a headcount. Headquartered in Ahmedabad and covering 5 key districts in Gujarat, we manage background-verified guarding personnel, corporate housekeeping teams, bouncer units, and event crowd controllers with 24x7 control room supervision.
+                </p>
+
+                <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+                  <div className="rounded-2xl border border-border/80 bg-white p-4 shadow-xs transition duration-300 hover:border-[#0E4DB8]/40 hover:shadow-md">
+                    <div className="flex items-center gap-2.5">
+                      <span className="grid size-8.5 place-items-center rounded-xl bg-[#0E4DB8]/10 text-[#0E4DB8]">
+                        <ShieldCheck className="size-4.5" />
+                      </span>
+                      <h4 className="font-display text-xs font-bold text-primary">Statutory & Regulatory Compliance</h4>
+                    </div>
+                    <p className="mt-2.5 text-xs leading-relaxed text-muted-foreground">
+                      PSARA licensed, UDYAM (MSME) registered, AMC certified with complete PF, ESI, GST & Labour law adherence.
+                    </p>
+                  </div>
+
+                  <div className="rounded-2xl border border-border/80 bg-white p-4 shadow-xs transition duration-300 hover:border-[#0E4DB8]/40 hover:shadow-md">
+                    <div className="flex items-center gap-2.5">
+                      <span className="grid size-8.5 place-items-center rounded-xl bg-[#0E4DB8]/10 text-[#0E4DB8]">
+                        <BadgeCheck className="size-4.5" />
+                      </span>
+                      <h4 className="font-display text-xs font-bold text-primary">Verified & Vetted Workforce</h4>
+                    </div>
+                    <p className="mt-2.5 text-xs leading-relaxed text-muted-foreground">
+                      Police KYC verification, Aadhaar authentication, address & reference validation prior to deployment.
+                    </p>
+                  </div>
+
+                  <div className="rounded-2xl border border-border/80 bg-white p-4 shadow-xs transition duration-300 hover:border-[#0E4DB8]/40 hover:shadow-md">
+                    <div className="flex items-center gap-2.5">
+                      <span className="grid size-8.5 place-items-center rounded-xl bg-[#0E4DB8]/10 text-[#0E4DB8]">
+                        <CheckCircle2 className="size-4.5" />
+                      </span>
+                      <h4 className="font-display text-xs font-bold text-primary">Structured Operational Training</h4>
+                    </div>
+                    <p className="mt-2.5 text-xs leading-relaxed text-muted-foreground">
+                      Access control, fire safety protocols, emergency evacuation handling & professional client etiquette.
+                    </p>
+                  </div>
+
+                  <div className="rounded-2xl border border-border/80 bg-white p-4 shadow-xs transition duration-300 hover:border-[#0E4DB8]/40 hover:shadow-md">
+                    <div className="flex items-center gap-2.5">
+                      <span className="grid size-8.5 place-items-center rounded-xl bg-[#0E4DB8]/10 text-[#0E4DB8]">
+                        <Clock className="size-4.5" />
+                      </span>
+                      <h4 className="font-display text-xs font-bold text-primary">24x7 Control Room Supervision</h4>
+                    </div>
+                    <p className="mt-2.5 text-xs leading-relaxed text-muted-foreground">
+                      Mobile supervisory officers, surprise night inspections & round-the-clock incident response desk.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 flex flex-wrap items-center gap-4">
+                <Button asChild variant="hero" size="lg">
+                  <a href="#services">
+                    Explore Our Services
+                    <ArrowRight className="size-4" />
+                  </a>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <a href="#contact">Contact Operational Desk</a>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </Section>
