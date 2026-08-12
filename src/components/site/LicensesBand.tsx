@@ -13,6 +13,9 @@ import {
 import psaraPdf from "@/assets/PSARA.pdf";
 import udyamPdf from "@/assets/UDYAM.pdf";
 import amcPdf from "@/assets/AMC.pdf";
+import psaraCert from "@/assets/psara-cert.png";
+import udyamCert from "@/assets/udyam-cert.png";
+import amcCert from "@/assets/amc-cert.png";
 import { cn } from "@/lib/utils";
 
 export const licenses = [
@@ -25,6 +28,7 @@ export const licenses = [
       "Government-issued PSARA license for private security operations, patrolling and guarding across state jurisdictions.",
     tag: "Govt Security License",
     pdf: psaraPdf,
+    certImg: psaraCert,
   },
   {
     id: "udyam",
@@ -35,6 +39,7 @@ export const licenses = [
       "Official UDYAM registration certificate under the Ministry of Micro, Small and Medium Enterprises, Govt of India.",
     tag: "MSME / Govt of India",
     pdf: udyamPdf,
+    certImg: udyamCert,
   },
   {
     id: "amc",
@@ -45,6 +50,7 @@ export const licenses = [
       "Official AMC registration certificate for commercial municipal operations and establishment compliance.",
     tag: "Municipal Authority",
     pdf: amcPdf,
+    certImg: amcCert,
   },
 ];
 
@@ -53,6 +59,7 @@ export function LicensesBand() {
   const [activeModalPdf, setActiveModalPdf] = useState<{
     title: string;
     pdf: string;
+    certImg: string;
   } | null>(null);
   const [isScreenCaptured, setIsScreenCaptured] = useState(false);
 
@@ -165,21 +172,27 @@ export function LicensesBand() {
 
               {/* Action bar: Hover indicator / Expand */}
               <div className="relative z-10 mt-6 flex items-center justify-between gap-2 border-t border-white/10 pt-4">
-                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-300 transition-colors group-hover:text-[#3DA5FF]">
-                  <FileText className="size-3.5 text-[#3DA5FF]" />
-                  <span>Hover to Preview PDF</span>
+                <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-medium text-slate-300 transition-colors group-hover:text-[#3DA5FF] whitespace-nowrap shrink-0">
+                  <FileText className="size-3.5 text-[#3DA5FF] shrink-0" />
+                  <span>
+                    <span className="sm:hidden">Preview PDF</span>
+                    <span className="hidden sm:inline">Hover to Preview PDF</span>
+                  </span>
                 </span>
                 <button
                   type="button"
-                  onClick={() => setActiveModalPdf({ title: item.title, pdf: item.pdf })}
-                  className="inline-flex items-center gap-1.5 rounded-xl border border-[#3DA5FF]/40 bg-[#3DA5FF]/15 px-3 py-1.5 text-xs font-bold text-[#3DA5FF] backdrop-blur-md transition-all duration-300 hover:bg-[#3DA5FF] hover:text-[#0B1F3A] hover:border-[#3DA5FF] hover:shadow-md cursor-pointer"
+                  onClick={() => setActiveModalPdf({ title: item.title, pdf: item.pdf, certImg: item.certImg })}
+                  className="inline-flex items-center gap-1 sm:gap-1.5 rounded-xl border border-[#3DA5FF]/40 bg-[#3DA5FF]/15 px-2.5 py-1.5 sm:px-3 text-[11px] sm:text-xs font-bold text-[#3DA5FF] backdrop-blur-md transition-all duration-300 hover:bg-[#3DA5FF] hover:text-[#0B1F3A] hover:border-[#3DA5FF] hover:shadow-md cursor-pointer whitespace-nowrap shrink-0"
                 >
-                  <Maximize2 className="size-3" />
-                  <span>Expand Document</span>
+                  <Maximize2 className="size-3 shrink-0" />
+                  <span>
+                    <span className="sm:hidden">Expand</span>
+                    <span className="hidden sm:inline">Expand Document</span>
+                  </span>
                 </button>
               </div>
 
-              {/* Hover Pop-up Component with Pre-loaded Protected PDF Preview */}
+              {/* Hover Pop-up Component with Pre-loaded Protected Certificate Preview */}
               <div
                 onContextMenu={(e) => e.preventDefault()}
                 className={cn(
@@ -206,29 +219,24 @@ export function LicensesBand() {
                   </span>
                 </div>
 
-                {/* PDF Embedded View with watermark and anti-capture screen shield */}
-                <div className="relative my-2.5 flex-1 overflow-hidden rounded-xl border border-white/15 bg-[#071324]">
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-[#071324] text-xs text-[#3DA5FF]">
-                    <FileText className="size-6 animate-pulse text-[#3DA5FF]" />
-                    <span className="text-[11px] font-medium text-white/70">Loading Certificate...</span>
-                  </div>
-
-                  <iframe
-                    src={`${item.pdf}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
-                    title={`${item.title} PDF Document`}
+                {/* Ultra-Responsive High-Resolution Certificate Image View */}
+                <div className="relative my-2.5 flex-1 overflow-hidden rounded-xl border border-white/15 bg-white p-1 flex items-center justify-center">
+                  <img
+                    src={item.certImg}
+                    alt={`${item.title} Official Certificate`}
                     className={cn(
-                      "relative z-10 h-full w-full border-0 bg-white transition-all duration-300",
+                      "relative z-10 h-full w-full object-contain transition-all duration-300",
                       isScreenCaptured && "blur-xl opacity-10",
                     )}
                   />
 
                   {/* Watermark Security Guard Overlay */}
-                  <div className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-around overflow-hidden p-3 opacity-25 select-none">
-                    <div className="flex justify-between -rotate-12 font-mono text-[10px] font-bold tracking-widest text-[#3DA5FF] uppercase">
+                  <div className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-around overflow-hidden p-3 opacity-20 select-none">
+                    <div className="flex justify-between -rotate-12 font-mono text-[10px] font-bold tracking-widest text-[#0B1F3A] uppercase">
                       <span>SR SECURITY</span>
                       <span>CONFIDENTIAL</span>
                     </div>
-                    <div className="flex justify-around rotate-12 font-mono text-[10px] font-bold tracking-widest text-[#3DA5FF] uppercase">
+                    <div className="flex justify-around rotate-12 font-mono text-[10px] font-bold tracking-widest text-[#0B1F3A] uppercase">
                       <span>DO NOT COPY</span>
                       <span>VERIFIED COPY</span>
                     </div>
@@ -248,15 +256,19 @@ export function LicensesBand() {
 
                 {/* Pop-up Footer */}
                 <div className="flex items-center justify-between text-[11px] text-white/80 pt-1">
-                  <span className="flex items-center gap-1 text-[#3DA5FF] font-semibold">
-                    <ShieldCheck className="size-3.5" /> Official Copy
+                  <span className="flex items-center gap-1 text-[#3DA5FF] font-semibold whitespace-nowrap shrink-0">
+                    <ShieldCheck className="size-3.5 shrink-0" />
+                    <span>Official Copy</span>
                   </span>
                   <button
                     type="button"
-                    onClick={() => setActiveModalPdf({ title: item.title, pdf: item.pdf })}
-                    className="inline-flex items-center gap-1 font-semibold text-white hover:text-[#3DA5FF] underline decoration-[#3DA5FF] cursor-pointer"
+                    onClick={() => setActiveModalPdf({ title: item.title, pdf: item.pdf, certImg: item.certImg })}
+                    className="inline-flex items-center gap-1 font-semibold text-white hover:text-[#3DA5FF] underline decoration-[#3DA5FF] cursor-pointer whitespace-nowrap shrink-0"
                   >
-                    Expand Document
+                    <span>
+                      <span className="sm:hidden">Expand</span>
+                      <span className="hidden sm:inline">Expand Document</span>
+                    </span>
                   </button>
                 </div>
               </div>
@@ -265,13 +277,13 @@ export function LicensesBand() {
         })}
       </div>
 
-      {/* Fullscreen Protected PDF Modal Viewer */}
+      {/* Fullscreen Protected PDF & Certificate Modal Viewer */}
       {activeModalPdf && (
         <div
           onContextMenu={(e) => e.preventDefault()}
-          className="pdf-protected-area fixed inset-0 z-50 flex items-center justify-center select-none bg-black/85 p-4 backdrop-blur-sm animate-in fade-in duration-200"
+          className="pdf-protected-area fixed inset-0 z-50 flex items-center justify-center select-none bg-black/85 p-3 sm:p-5 backdrop-blur-sm animate-in fade-in duration-200"
         >
-          <div className="relative flex h-[88vh] w-full max-w-4xl flex-col rounded-2xl border border-[#3DA5FF]/40 bg-[#0B1F3A] p-4 text-white shadow-2xl">
+          <div className="relative flex h-[90vh] w-full max-w-4xl flex-col rounded-3xl border border-[#3DA5FF]/40 bg-[#0B1F3A] p-3.5 sm:p-5 text-white shadow-2xl">
             {/* Modal Header */}
             <div className="flex items-center justify-between gap-2 sm:gap-4 border-b border-white/10 pb-3">
               <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1">
@@ -285,7 +297,7 @@ export function LicensesBand() {
                 </div>
               </div>
               <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-                <span className="inline-flex items-center gap-1 sm:gap-1.5 rounded-lg border border-[#3DA5FF]/40 bg-[#3DA5FF]/15 px-2 py-1 sm:px-3 sm:py-1.5 text-[10px] sm:text-xs font-semibold text-[#3DA5FF] whitespace-nowrap">
+                <span className="inline-flex items-center gap-1 sm:gap-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-2 py-1 sm:px-3 sm:py-1.5 text-[10px] sm:text-xs font-semibold text-emerald-400 whitespace-nowrap">
                   <Lock className="size-3 sm:size-3.5" />
                   <span>Protected<span className="hidden sm:inline"> View</span></span>
                 </span>
@@ -300,22 +312,22 @@ export function LicensesBand() {
               </div>
             </div>
 
-            {/* Modal PDF Viewer Body with Watermark and Capture Shield */}
-            <div className="relative mt-3 flex-1 overflow-hidden rounded-xl bg-white">
-              <iframe
-                src={`${activeModalPdf.pdf}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
-                title={`${activeModalPdf.title} Full PDF`}
+            {/* Modal Certificate Viewer Body: 100% Mobile Responsive Render */}
+            <div className="relative mt-3 flex-1 overflow-hidden rounded-2xl bg-[#071324] flex items-center justify-center p-2 sm:p-4">
+              <img
+                src={activeModalPdf.certImg}
+                alt={`${activeModalPdf.title} Full Certificate`}
                 className={cn(
-                  "relative z-10 h-full w-full border-0 transition-all duration-300",
+                  "max-h-full max-w-full object-contain rounded-xl shadow-2xl transition-all duration-300",
                   isScreenCaptured && "blur-xl opacity-10",
                 )}
               />
 
-              {/* Watermark Security Guard Repeating Grid */}
-              <div className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-around overflow-hidden p-6 opacity-25 select-none">
+              {/* Watermark Security Guard Overlay */}
+              <div className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-around overflow-hidden p-6 opacity-20 select-none">
                 {Array.from({ length: 8 }).map((_, idx) => (
                   <div key={idx} className="flex justify-around">
-                    <span className="rotate-[-22deg] font-display text-xs font-extrabold tracking-widest text-[#0B1F3A] uppercase">
+                    <span className="rotate-[-22deg] font-display text-[10px] sm:text-xs font-extrabold tracking-widest text-[#3DA5FF] uppercase">
                       SR SECURITY SERVICES & FACILITY MANAGEMENT · PROTECTED COMPLIANCE COPY · DO NOT COPY
                     </span>
                   </div>
@@ -324,11 +336,11 @@ export function LicensesBand() {
 
               {/* Screen Capture Warning Overlay */}
               {isScreenCaptured && (
-                <div className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-3 bg-[#0B1F3A]/95 p-6 text-center">
-                  <ShieldAlert className="size-10 text-amber-400" />
+                <div className="absolute inset-0 z-40 flex flex-col items-center justify-center gap-3 bg-black/95 p-6 text-center backdrop-blur-lg">
+                  <ShieldAlert className="size-10 text-amber-400 animate-bounce" />
                   <h4 className="font-display text-lg font-bold text-amber-400">Screen Capture Restricted</h4>
                   <p className="max-w-md text-xs leading-relaxed text-white/80">
-                    Official license certificates are protected under company security compliance. Screenshots, printing, and file downloads are restricted.
+                    Official license certificates are protected under company security compliance. Screenshots & saving are restricted.
                   </p>
                 </div>
               )}
