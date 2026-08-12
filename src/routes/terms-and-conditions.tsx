@@ -6,7 +6,7 @@ import { company } from "@/data/site";
 
 const title = "Terms & Conditions | SR Security Services & Facility Management";
 const description =
-  "Terms governing the use of the SR Security Services & Facility Management Pvt. Ltd. website and the basis on which enquiries, quotations and service engagements are handled.";
+  "Terms governing the use of the SR Security Services & Facility Management website and the basis on which enquiries, quotations and service engagements are handled.";
 
 export const Route = createFileRoute("/terms-and-conditions")({
   component: Terms,
