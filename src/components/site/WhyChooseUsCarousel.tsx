@@ -124,30 +124,30 @@ export function WhyChooseUsCarousel() {
                 return (
                   <div
                     key={`${item.title}-${itemIdx}`}
-                    className="card-premium group flex flex-col justify-between p-6 transition-all duration-400 hover:border-[#0E4DB8] hover:shadow-[0_12px_36px_-12px_rgba(14,77,184,0.22)] hover:-translate-y-1.5"
+                    className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border/80 border-t-4 border-t-[#0E4DB8] bg-white p-6 shadow-xs transition-all duration-300 hover:border-[#0E4DB8] hover:shadow-xl hover:-translate-y-1.5"
                   >
                     <div>
                       <div className="flex items-center justify-between gap-2">
-                        <span className="grid size-12 place-items-center rounded-xl bg-[#0E4DB8] text-white transition-all duration-300 group-hover:bg-[#3DA5FF] group-hover:scale-110 group-hover:rotate-3 shadow-sm">
-                          <Icon name={item.icon} className="size-5 text-white transition-transform duration-300 group-hover:scale-110" />
+                        <span className="grid size-11 place-items-center rounded-2xl bg-gradient-to-br from-[#0E4DB8] to-[#0B1F3A] text-white shadow-md shadow-[#0E4DB8]/20 transition-transform duration-300 group-hover:scale-110">
+                          <Icon name={item.icon} className="size-5 text-white" />
                         </span>
-                        <span className="inline-flex items-center gap-1 rounded-full border border-[#0E4DB8]/30 bg-[#0E4DB8]/10 px-2.5 py-0.5 text-[10px] font-bold text-[#0E4DB8] transition-colors group-hover:border-[#0E4DB8]">
+                        <span className="inline-flex items-center gap-1.5 rounded-lg border border-[#0E4DB8]/20 bg-[#0E4DB8]/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[#0E4DB8]">
                           <ShieldCheck className="size-3 text-[#0E4DB8]" />
-                          SR Advantage
+                          <span>SR Advantage</span>
                         </span>
                       </div>
 
                       <h3 className="mt-5 font-display text-base font-bold text-primary transition-colors group-hover:text-[#0E4DB8]">
                         {item.title}
                       </h3>
-                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      <p className="mt-2 text-xs leading-relaxed text-muted-foreground sm:text-sm">
                         {item.text}
                       </p>
                     </div>
 
-                    <div className="mt-6 flex items-center justify-between border-t border-border/60 pt-4 text-xs">
-                      <span className="font-semibold text-primary">Verified Standard</span>
-                      <span className="font-mono text-[11px] text-muted-foreground">
+                    <div className="mt-6 flex items-center justify-between border-t border-border/60 pt-3.5 text-xs">
+                      <span className="text-[11px] font-semibold text-primary/80">Verified Standard</span>
+                      <span className="rounded-md bg-[#0E4DB8]/10 px-2 py-0.5 font-mono text-[11px] font-bold text-[#0E4DB8]">
                         {String(globalIndex + 1).padStart(2, "0")} / {whyChooseUs.length}
                       </span>
                     </div>

@@ -134,44 +134,48 @@ export function LicensesBand() {
               key={item.id}
               onMouseEnter={() => setHoveredId(item.id)}
               onMouseLeave={() => setHoveredId(null)}
-              className="group relative flex flex-col justify-between rounded-2xl border border-border/80 bg-card p-6 shadow-xs transition-all duration-400 hover:border-accent/60 hover:shadow-[0_14px_40px_-14px_oklch(0.715_0.128_87_/_0.22)] hover:-translate-y-1.5"
+              className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-[#0E4DB8]/30 bg-gradient-to-br from-[#0B1F3A] via-[#091B33] to-[#061426] p-6 text-white shadow-xl transition-all duration-500 hover:border-[#3DA5FF]/80 hover:shadow-[0_20px_50px_-15px_rgba(61,165,255,0.35)] hover:-translate-y-2"
             >
-              {/* Top Row: Icon + Tag */}
-              <div>
+              {/* Background ambient glow effect */}
+              <div aria-hidden="true" className="pointer-events-none absolute -right-10 -top-10 size-36 rounded-full bg-[#3DA5FF]/10 blur-2xl transition-all duration-500 group-hover:bg-[#3DA5FF]/20" />
+
+              {/* Top Row: Icon + Official Verification Tag */}
+              <div className="relative z-10">
                 <div className="flex items-center justify-between gap-3">
-                  <div className="grid size-12 place-items-center rounded-xl bg-[#0E4DB8] text-white transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm">
-                    <IconComponent className="size-6 text-white transition-transform duration-300 group-hover:scale-105" aria-hidden="true" />
+                  <div className="grid size-12 place-items-center rounded-2xl bg-gradient-to-br from-[#3DA5FF] to-[#0E4DB8] text-white shadow-lg shadow-[#0E4DB8]/40 border border-white/20 transition-transform duration-300 group-hover:scale-110">
+                    <IconComponent className="size-6 text-white" aria-hidden="true" />
                   </div>
-                  <span className="inline-flex items-center rounded-full border border-[#0E4DB8]/30 bg-[#0E4DB8]/10 px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase text-[#0E4DB8] transition-colors group-hover:border-[#0E4DB8]">
-                    {item.tag}
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-400 shadow-xs">
+                    <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>{item.tag}</span>
                   </span>
                 </div>
 
                 {/* Title & Subtitle */}
-                <h3 className="mt-5 font-display text-lg font-bold text-primary transition-colors group-hover:text-[#0E4DB8]">
+                <h3 className="mt-5 font-display text-lg font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-[#3DA5FF]">
                   {item.title}
                 </h3>
-                <p className="mt-1 text-xs font-bold text-[#0E4DB8]">
+                <p className="mt-1 text-xs font-semibold text-[#3DA5FF]/90">
                   {item.subtitle}
                 </p>
-                <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+                <p className="mt-3 text-xs leading-relaxed text-slate-300/80">
                   {item.description}
                 </p>
               </div>
 
               {/* Action bar: Hover indicator / Expand */}
-              <div className="mt-6 flex items-center justify-between gap-2 border-t border-border/60 pt-4">
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0E4DB8] transition-colors group-hover:underline">
-                  <FileText className="size-3.5" />
-                  Hover to Preview PDF
+              <div className="relative z-10 mt-6 flex items-center justify-between gap-2 border-t border-white/10 pt-4">
+                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-300 transition-colors group-hover:text-[#3DA5FF]">
+                  <FileText className="size-3.5 text-[#3DA5FF]" />
+                  <span>Hover to Preview PDF</span>
                 </span>
                 <button
                   type="button"
                   onClick={() => setActiveModalPdf({ title: item.title, pdf: item.pdf })}
-                  className="inline-flex items-center gap-1 rounded-md bg-secondary px-2.5 py-1 text-xs font-medium text-secondary-foreground transition-colors hover:bg-accent hover:text-accent-foreground cursor-pointer"
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-[#3DA5FF]/40 bg-[#3DA5FF]/15 px-3 py-1.5 text-xs font-bold text-[#3DA5FF] backdrop-blur-md transition-all duration-300 hover:bg-[#3DA5FF] hover:text-[#0B1F3A] hover:border-[#3DA5FF] hover:shadow-md cursor-pointer"
                 >
                   <Maximize2 className="size-3" />
-                  Expand Document
+                  <span>Expand Document</span>
                 </button>
               </div>
 
@@ -179,7 +183,7 @@ export function LicensesBand() {
               <div
                 onContextMenu={(e) => e.preventDefault()}
                 className={cn(
-                  "pdf-protected-area absolute inset-0 flex flex-col justify-between select-none rounded-2xl border-2 border-accent bg-[#0B1F3A] p-4 text-white shadow-2xl backdrop-blur-md transition-all duration-300",
+                  "pdf-protected-area absolute inset-0 flex flex-col justify-between select-none rounded-3xl border-2 border-[#3DA5FF] bg-[#0B1F3A] p-4 text-white shadow-2xl backdrop-blur-md transition-all duration-300",
                   isHovered
                     ? "opacity-100 scale-100 pointer-events-auto z-30"
                     : "opacity-0 scale-95 pointer-events-none -z-10",
@@ -188,15 +192,15 @@ export function LicensesBand() {
                 {/* Pop-up Header */}
                 <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-2.5">
                   <div className="flex items-center gap-2 min-w-0">
-                    <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-accent/20 text-accent">
+                    <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-[#3DA5FF]/20 text-[#3DA5FF]">
                       <FileText className="size-4" />
                     </span>
                     <div className="min-w-0">
-                      <p className="truncate text-xs font-bold text-accent">{item.title}</p>
+                      <p className="truncate text-xs font-bold text-[#3DA5FF]">{item.title}</p>
                       <p className="truncate text-[10px] text-white/70">Verified Certificate Document</p>
                     </div>
                   </div>
-                  <span className="inline-flex shrink-0 items-center gap-1 rounded-md border border-accent/30 bg-accent/10 px-2 py-1 text-[10px] font-bold text-accent">
+                  <span className="inline-flex shrink-0 items-center gap-1 rounded-md border border-[#3DA5FF]/40 bg-[#3DA5FF]/15 px-2 py-1 text-[10px] font-bold text-[#3DA5FF]">
                     <Lock className="size-3" />
                     <span>Protected</span>
                   </span>
@@ -204,8 +208,8 @@ export function LicensesBand() {
 
                 {/* PDF Embedded View with watermark and anti-capture screen shield */}
                 <div className="relative my-2.5 flex-1 overflow-hidden rounded-xl border border-white/15 bg-[#071324]">
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-[#071324] text-xs text-accent/80">
-                    <FileText className="size-6 animate-pulse text-accent" />
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-[#071324] text-xs text-[#3DA5FF]">
+                    <FileText className="size-6 animate-pulse text-[#3DA5FF]" />
                     <span className="text-[11px] font-medium text-white/70">Loading Certificate...</span>
                   </div>
 
@@ -218,21 +222,22 @@ export function LicensesBand() {
                     )}
                   />
 
-                  {/* Watermark Security Guard Repeating Grid */}
-                  <div className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-around overflow-hidden p-4 opacity-30 select-none">
-                    {Array.from({ length: 5 }).map((_, idx) => (
-                      <div key={idx} className="flex justify-around">
-                        <span className="rotate-[-25deg] font-display text-[10px] font-extrabold tracking-widest text-[#0B1F3A] uppercase">
-                          SR SECURITY SERVICES · PROTECTED COMPLIANCE COPY · DO NOT COPY
-                        </span>
-                      </div>
-                    ))}
+                  {/* Watermark Security Guard Overlay */}
+                  <div className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-around overflow-hidden p-3 opacity-25 select-none">
+                    <div className="flex justify-between -rotate-12 font-mono text-[10px] font-bold tracking-widest text-[#3DA5FF] uppercase">
+                      <span>SR SECURITY</span>
+                      <span>CONFIDENTIAL</span>
+                    </div>
+                    <div className="flex justify-around rotate-12 font-mono text-[10px] font-bold tracking-widest text-[#3DA5FF] uppercase">
+                      <span>DO NOT COPY</span>
+                      <span>VERIFIED COPY</span>
+                    </div>
                   </div>
 
-                  {/* Screen Capture Warning Overlay */}
+                  {/* Anti-Screen Capture Shield Overlay */}
                   {isScreenCaptured && (
-                    <div className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-2 bg-[#0B1F3A]/95 p-4 text-center">
-                      <ShieldAlert className="size-7 text-amber-400" />
+                    <div className="absolute inset-0 z-40 flex flex-col items-center justify-center gap-2 bg-black/90 p-4 text-center backdrop-blur-lg">
+                      <ShieldAlert className="size-8 text-amber-400 animate-bounce" />
                       <p className="text-xs font-bold text-amber-400">Screen Capture Restricted</p>
                       <p className="text-[10px] text-white/70">
                         Screenshots & saving are restricted for compliance.
@@ -243,13 +248,13 @@ export function LicensesBand() {
 
                 {/* Pop-up Footer */}
                 <div className="flex items-center justify-between text-[11px] text-white/80 pt-1">
-                  <span className="flex items-center gap-1 text-accent font-medium">
+                  <span className="flex items-center gap-1 text-[#3DA5FF] font-semibold">
                     <ShieldCheck className="size-3.5" /> Official Copy
                   </span>
                   <button
                     type="button"
                     onClick={() => setActiveModalPdf({ title: item.title, pdf: item.pdf })}
-                    className="inline-flex items-center gap-1 font-semibold text-white hover:text-accent underline decoration-accent cursor-pointer"
+                    className="inline-flex items-center gap-1 font-semibold text-white hover:text-[#3DA5FF] underline decoration-[#3DA5FF] cursor-pointer"
                   >
                     Expand Document
                   </button>
@@ -266,18 +271,18 @@ export function LicensesBand() {
           onContextMenu={(e) => e.preventDefault()}
           className="pdf-protected-area fixed inset-0 z-50 flex items-center justify-center select-none bg-black/85 p-4 backdrop-blur-sm animate-in fade-in duration-200"
         >
-          <div className="relative flex h-[88vh] w-full max-w-4xl flex-col rounded-2xl border border-accent/40 bg-[#0B1F3A] p-4 text-white shadow-2xl">
+          <div className="relative flex h-[88vh] w-full max-w-4xl flex-col rounded-2xl border border-[#3DA5FF]/40 bg-[#0B1F3A] p-4 text-white shadow-2xl">
             {/* Modal Header */}
             <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <div className="flex items-center gap-3">
-                <ShieldCheck className="size-6 text-accent" />
+                <ShieldCheck className="size-6 text-[#3DA5FF]" />
                 <div>
                   <h3 className="font-display text-lg font-bold text-white">{activeModalPdf.title}</h3>
                   <p className="text-xs text-white/70">Official Compliance & License Certificate (Read-Only)</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <span className="inline-flex items-center gap-1.5 rounded-lg border border-accent/30 bg-accent/10 px-3 py-1.5 text-xs font-semibold text-accent">
+                <span className="inline-flex items-center gap-1.5 rounded-lg border border-[#3DA5FF]/40 bg-[#3DA5FF]/15 px-3 py-1.5 text-xs font-semibold text-[#3DA5FF]">
                   <Lock className="size-3.5" />
                   Protected View
                 </span>
