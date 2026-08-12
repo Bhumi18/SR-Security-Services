@@ -247,7 +247,7 @@ export function Header() {
 
       {/* Mobile Drawer */}
       {open && (
-        <div className="fixed inset-x-0 top-[calc(4.5rem+0.5rem)] bottom-0 z-40 overflow-y-auto border-t border-border bg-background px-5 pt-4 pb-24 md:hidden">
+        <div className="fixed inset-x-0 top-18 bottom-0 z-40 overflow-y-auto border-t border-border bg-white px-6 pt-5 pb-24 md:hidden shadow-2xl animate-in fade-in duration-200">
           <nav className="flex flex-col" aria-label="Mobile navigation">
             {nav.map((item) => {
               const isActive =
