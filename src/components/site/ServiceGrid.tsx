@@ -106,21 +106,24 @@ export function ServiceGrid() {
               className="size-full object-cover"
             />
             {/* Top Gradient Overlay for High Contrast */}
-            <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/75 via-black/30 to-transparent pointer-events-none" />
-            <span className="absolute top-2.5 left-2.5 inline-flex items-center gap-1.5 rounded-full border border-[#3DA5FF]/40 bg-[#0B1F3A]/95 px-3 py-1 text-[10px] font-bold text-[#3DA5FF] shadow-lg backdrop-blur-md">
-              <ShieldCheck className="size-3.5 text-[#3DA5FF]" />
-              <span>DIVISION 0{activeMobileIndex + 1}</span>
+            <div className="absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-black/75 via-black/30 to-transparent pointer-events-none z-10" />
+            <span className="absolute top-2.5 left-2.5 z-20 inline-flex size-8.5 items-center justify-center rounded-xl border border-[#3DA5FF]/40 bg-[#0B1F3A]/95 text-[#3DA5FF] shadow-lg backdrop-blur-md transition-all duration-300">
+              <Icon name={currentMobileService.icon} className="size-4.5" />
             </span>
           </div>
 
           {/* Title & Badge Header */}
-          <div className="mt-4 flex items-center gap-2.5">
+          <div className="mt-4 flex items-center gap-2 flex-wrap">
             <span className="grid size-9 place-items-center rounded-xl bg-[#0E4DB8] text-white shadow-xs">
               <Icon name={currentMobileService.icon} className="size-4" />
             </span>
-            <span className="inline-flex items-center gap-1 rounded-full border border-[#0E4DB8]/30 bg-[#0E4DB8]/10 px-2.5 py-0.5 text-[10px] font-bold uppercase text-[#0E4DB8]">
-              <BadgeCheck className="size-3" />
-              Verified Division
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-[#0E4DB8]/20 bg-[#0E4DB8]/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[#0E4DB8]">
+              <ShieldCheck className="size-3 text-[#0E4DB8]" />
+              <span>DIVISION 0{activeMobileIndex + 1}</span>
+            </span>
+            <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-600">
+              <BadgeCheck className="size-3 text-emerald-600" />
+              <span>Verified Division</span>
             </span>
           </div>
 
@@ -210,23 +213,26 @@ export function ServiceGrid() {
                   className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
                 {/* Top Gradient Overlay for High Contrast */}
-                <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/75 via-black/30 to-transparent pointer-events-none z-10" />
-                <span className="absolute top-3.5 left-3.5 z-20 inline-flex items-center gap-1.5 rounded-full border border-[#3DA5FF]/40 bg-[#0B1F3A]/95 px-3.5 py-1.5 text-xs font-bold tracking-wide text-[#3DA5FF] shadow-lg backdrop-blur-md">
-                  <ShieldCheck className="size-4 text-[#3DA5FF]" />
-                  <span>PRIMARY GUARDIAN DIVISION</span>
+                <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/75 via-black/30 to-transparent pointer-events-none z-10" />
+                <span className="absolute top-3 left-3 z-20 inline-flex size-9.5 items-center justify-center rounded-xl border border-[#3DA5FF]/40 bg-[#0B1F3A]/95 text-[#3DA5FF] shadow-lg backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:bg-[#0E4DB8] group-hover:text-white group-hover:border-white/40">
+                  <Icon name={featuredService.icon} className="size-5" />
                 </span>
               </div>
 
               {/* Right: Crisp Content Column */}
               <div className="flex flex-col justify-between lg:col-span-6">
                 <div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2.5 flex-wrap">
                     <div className="inline-flex size-10 items-center justify-center rounded-2xl bg-[#0E4DB8] text-white shadow-xs">
                       <Icon name={featuredService.icon} className="size-5" />
                     </div>
-                    <span className="inline-flex items-center gap-1 rounded-full border border-[#0E4DB8]/30 bg-[#0E4DB8]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[#0E4DB8]">
-                      <BadgeCheck className="size-3 text-[#0E4DB8]" />
-                      Core Service
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-[#0E4DB8]/20 bg-[#0E4DB8]/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[#0E4DB8]">
+                      <ShieldCheck className="size-3.5 text-[#0E4DB8]" />
+                      <span>PRIMARY GUARDIAN DIVISION</span>
+                    </span>
+                    <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-emerald-600">
+                      <BadgeCheck className="size-3 text-emerald-600" />
+                      <span>Core Service</span>
                     </span>
                   </div>
 
