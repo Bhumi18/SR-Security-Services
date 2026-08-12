@@ -273,25 +273,29 @@ export function LicensesBand() {
         >
           <div className="relative flex h-[88vh] w-full max-w-4xl flex-col rounded-2xl border border-[#3DA5FF]/40 bg-[#0B1F3A] p-4 text-white shadow-2xl">
             {/* Modal Header */}
-            <div className="flex items-center justify-between border-b border-white/10 pb-3">
-              <div className="flex items-center gap-3">
-                <ShieldCheck className="size-6 text-[#3DA5FF]" />
-                <div>
-                  <h3 className="font-display text-lg font-bold text-white">{activeModalPdf.title}</h3>
-                  <p className="text-xs text-white/70">Official Compliance & License Certificate (Read-Only)</p>
+            <div className="flex items-center justify-between gap-2 sm:gap-4 border-b border-white/10 pb-3">
+              <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1">
+                <ShieldCheck className="size-5 sm:size-6 text-[#3DA5FF] shrink-0" />
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-display text-sm sm:text-lg font-bold text-white leading-tight">{activeModalPdf.title}</h3>
+                  <p className="text-[10px] sm:text-xs text-white/70 leading-tight">
+                    <span className="sm:hidden">Official Certificate</span>
+                    <span className="hidden sm:inline">Official Compliance & License Certificate (Read-Only)</span>
+                  </p>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
-                <span className="inline-flex items-center gap-1.5 rounded-lg border border-[#3DA5FF]/40 bg-[#3DA5FF]/15 px-3 py-1.5 text-xs font-semibold text-[#3DA5FF]">
-                  <Lock className="size-3.5" />
-                  Protected View
+              <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                <span className="inline-flex items-center gap-1 sm:gap-1.5 rounded-lg border border-[#3DA5FF]/40 bg-[#3DA5FF]/15 px-2 py-1 sm:px-3 sm:py-1.5 text-[10px] sm:text-xs font-semibold text-[#3DA5FF] whitespace-nowrap">
+                  <Lock className="size-3 sm:size-3.5" />
+                  <span>Protected<span className="hidden sm:inline"> View</span></span>
                 </span>
                 <button
                   type="button"
                   onClick={() => setActiveModalPdf(null)}
-                  className="grid size-9 place-items-center rounded-lg border border-white/10 text-white/80 transition-colors hover:bg-white/10 hover:text-white cursor-pointer"
+                  className="grid size-8 sm:size-9 place-items-center rounded-lg border border-white/10 text-white/80 transition-colors hover:bg-white/10 hover:text-white cursor-pointer shrink-0"
+                  title="Close Certificate"
                 >
-                  <X className="size-5" />
+                  <X className="size-4 sm:size-5" />
                 </button>
               </div>
             </div>

@@ -67,7 +67,7 @@ export function ServiceGrid() {
         {/* Horizontal Category Pill Selector Bar */}
         <div
           ref={pillContainerRef}
-          className="flex gap-2 overflow-x-auto pb-1.5 scrollbar-none scroll-smooth"
+          className="flex gap-2 overflow-x-auto px-1 py-1.5 scrollbar-none scroll-smooth"
         >
           {serviceGroups.map((s, idx) => {
             const isActive = idx === activeMobileIndex;
@@ -80,7 +80,7 @@ export function ServiceGrid() {
                 onClick={() => setActiveMobileIndex(idx)}
                 className={`flex shrink-0 items-center gap-2 rounded-full px-3.5 py-2 text-xs font-semibold transition-all duration-300 ${
                   isActive
-                    ? "bg-[#0E4DB8] text-white shadow-md shadow-[#0E4DB8]/30 scale-102"
+                    ? "bg-[#0E4DB8] text-white border border-[#0E4DB8] shadow-md shadow-[#0E4DB8]/30"
                     : "bg-white text-primary border border-border/80 hover:border-[#3DA5FF]"
                 }`}
               >
