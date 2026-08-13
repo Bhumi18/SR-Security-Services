@@ -21,7 +21,7 @@ export const images = {
 };
 
 export const company = {
-  name: "SR Security Services Pvt. Ltd.",
+  name: "SR Security Services",
   shortName: "SR Security Services",
   tagline: "Protecting People. Securing Businesses. Building Trust.",
   phone: "+91 98259 02217",
@@ -279,7 +279,7 @@ export const testimonials = [
   {
     name: "Ananya Sharma",
     designation: "HR Manager",
-    org: "Meridian Technologies Pvt. Ltd.",
+    org: "Meridian Technologies",
     quote:
       "Their guards are punctual, well-groomed and genuinely professional. Attendance reporting is accurate and billing has never once been a dispute in three years.",
     initials: "AS",
@@ -319,6 +319,9 @@ export const testimonials = [
 ];
 
 export const clients = [
+  "The National Detective Service",
+  "Shree Vallabh Sadan Haveli",
+  "Shivalik Lakeview",
   "Meridian Technologies",
   "Patel Precision",
   "Sanjeevani Hospital",
