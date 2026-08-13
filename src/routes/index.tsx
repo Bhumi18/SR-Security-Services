@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
+  Award,
   BadgeCheck,
   CheckCircle2,
   Clock,
@@ -13,11 +14,13 @@ import {
   Play,
   Phone,
   ShieldCheck,
+  Sparkles,
   Volume2,
   VolumeX,
 } from "lucide-react";
 
 import srVideo from "@/assets/sr_video.mp4";
+import aboutOwner from "@/assets/about.jpeg";
 import { TypewriterText } from "@/components/site/TypewriterText";
 import { GujaratMap } from "@/components/site/GujaratMap";
 import { Icon } from "@/components/site/Icon";
@@ -471,6 +474,86 @@ function Home() {
           description="We are proud to partner with prestigious organisations that trust us to protect their people, premises and events."
         />
         <OurClients />
+
+        {/* Leadership & Founder Spotlight */}
+        <div className="mt-10 sm:mt-14 relative overflow-hidden rounded-2xl border border-[#0E4DB8]/30 bg-gradient-to-br from-[#0B1F3A] via-[#09182C] to-[#0E4DB8]/80 p-4 sm:p-5 md:p-6 text-white shadow-xl">
+          {/* Ambient background blur glow */}
+          <div
+            className="pointer-events-none absolute -top-24 -right-24 size-72 rounded-full bg-[#3DA5FF]/15 blur-3xl"
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute -bottom-24 -left-24 size-72 rounded-full bg-[#0E4DB8]/20 blur-3xl"
+            aria-hidden="true"
+          />
+
+          <div className="relative z-10 space-y-3 lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-6 lg:items-start">
+            {/* Small Devices Only Top Badge */}
+            <div className="lg:hidden flex items-center mb-3.5 sm:mb-4">
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-[#3DA5FF]/30 bg-[#3DA5FF]/10 px-3 py-0.5 text-xs font-semibold text-[#3DA5FF]">
+                <Sparkles className="size-3" />
+                <span>Founder's Message</span>
+              </div>
+            </div>
+
+            {/* Mobile Header (Photo + Name) / Desktop Left Column */}
+            <div className="lg:col-span-4 flex flex-row lg:flex-col items-center lg:items-center gap-3.5 lg:gap-2.5 text-left lg:text-center">
+              {/* Photo */}
+              <div className="relative group shrink-0 w-16 sm:w-20 lg:w-full lg:max-w-[200px]">
+                <div className="absolute -inset-1 rounded-xl bg-gradient-to-tr from-[#3DA5FF] via-amber-400 to-[#0E4DB8] opacity-60 blur-xs transition-all duration-500 group-hover:opacity-90" />
+                <div className="relative overflow-hidden rounded-xl border border-white/20 bg-slate-950 p-1 shadow-lg">
+                  <img
+                    src={aboutOwner}
+                    alt="SR Security Services Founder"
+                    className="h-16 sm:h-20 lg:h-48 w-full rounded-lg object-cover object-top"
+                  />
+                </div>
+              </div>
+
+              {/* Title */}
+              <div className="space-y-0.5 min-w-0">
+                <h4 className="font-display text-sm sm:text-base font-bold text-white leading-tight">Founder & Management</h4>
+                <p className="text-[11px] font-semibold text-[#3DA5FF]">SR Security Services</p>
+              </div>
+            </div>
+
+            {/* Right Column: Message & Practical Focus Cards */}
+            <div className="lg:col-span-8 space-y-3">
+              {/* Desktop Only Top Badge (Above Content) */}
+              <div className="hidden lg:inline-flex items-center gap-1.5 rounded-full border border-[#3DA5FF]/30 bg-[#3DA5FF]/10 px-3 py-0.5 text-xs font-semibold text-[#3DA5FF]">
+                <Sparkles className="size-3" />
+                <span>Founder's Message</span>
+              </div>
+
+              <blockquote className="text-xs sm:text-sm leading-relaxed text-slate-200 font-normal">
+                "We started SR Security Services with one clear goal: to provide honest, reliable, and well-trained security staff for businesses, industrial sites, and residential societies across Gujarat. We personally ensure every guard we deploy is police-verified, disciplined, and dependable."
+              </blockquote>
+
+              {/* Practical Operational Focus Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+                <div className="rounded-xl border border-white/10 bg-white/5 p-2.5">
+                  <div className="text-xs font-bold text-white flex items-center gap-1.5">
+                    <CheckCircle2 className="size-3.5 text-[#3DA5FF]" />
+                    <span>Direct Field Supervision</span>
+                  </div>
+                  <p className="mt-1 text-[11px] text-slate-300 leading-normal">
+                    Regular supervisory visits and surprise night checks to maintain guard alertness on every site.
+                  </p>
+                </div>
+
+                <div className="rounded-xl border border-white/10 bg-white/5 p-2.5">
+                  <div className="text-xs font-bold text-white flex items-center gap-1.5">
+                    <CheckCircle2 className="size-3.5 text-emerald-400" />
+                    <span>Personal Accountability</span>
+                  </div>
+                  <p className="mt-1 text-[11px] text-slate-300 leading-normal">
+                    Direct access to company management for site feedback, quick resolution, and custom planning.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </Section>
 
       {/* Contact & Enquiry */}
