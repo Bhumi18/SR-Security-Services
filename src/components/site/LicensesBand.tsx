@@ -113,10 +113,9 @@ export function LicensesBand() {
   }, [activeModalPdf, hoveredId]);
 
   return (
-    <section className="relative overflow-hidden bg-[#071324] py-20 text-white" id="compliance">
+    <div className="relative overflow-hidden bg-transparent py-2 text-primary" id="compliance">
       {/* Background accents */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#0E4DB8]/20 via-transparent to-transparent" />
-      <div className="pointer-events-none absolute -top-40 -right-40 size-96 rounded-full bg-[#3DA5FF]/10 blur-3xl" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#0E4DB8]/5 via-transparent to-transparent" />
 
       {/* Hide PDF during print dialog */}
       <style>{`
@@ -128,23 +127,9 @@ export function LicensesBand() {
         }
       `}</style>
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#3DA5FF]/30 bg-[#3DA5FF]/10 px-4 py-1.5 text-xs font-semibold tracking-wider text-[#3DA5FF] uppercase backdrop-blur-md">
-            <ShieldCheck className="size-4" />
-            Verified & Compliant Operations
-          </span>
-          <h2 className="mt-4 font-display text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl">
-            Licensing & <span className="text-[#3DA5FF]">Accreditations</span>
-          </h2>
-          <p className="mt-3 text-base text-slate-300 sm:text-lg">
-            SR Security Services operates with full government authorization, statutory registrations, and commercial certifications.
-          </p>
-        </div>
-
+      <div className="relative mx-auto max-w-7xl">
         {/* Licenses Grid */}
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
+        <div className="mt-4 grid gap-6 md:grid-cols-3">
           {licenses.map((item) => {
             const IconComponent = item.icon;
             const isHovered = hoveredId === item.id;
@@ -154,7 +139,7 @@ export function LicensesBand() {
                 key={item.id}
                 onMouseEnter={() => setHoveredId(item.id)}
                 onMouseLeave={() => setHoveredId(null)}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-[#0E4DB8]/30 bg-gradient-to-br from-[#0B1F3A] via-[#091B33] to-[#061426] p-6 text-white shadow-xl transition-all duration-500 hover:border-[#3DA5FF]/80 hover:shadow-[0_20px_50px_-15px_rgba(61,165,255,0.35)] hover:-translate-y-2"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-[#0E4DB8]/30 bg-gradient-to-br from-[#0B1F3A] via-[#091B33] to-[#061426] p-6 text-white transition-all duration-500 hover:border-[#3DA5FF]/80 hover:shadow-[0_20px_50px_-15px_rgba(61,165,255,0.35)] hover:-translate-y-2"
               >
                 {/* Background glow */}
                 <div className="pointer-events-none absolute -right-10 -top-10 size-40 rounded-full bg-[#3DA5FF]/10 blur-2xl transition-all duration-500 group-hover:bg-[#3DA5FF]/20 group-hover:scale-125" />
@@ -204,11 +189,11 @@ export function LicensesBand() {
                   </button>
                 </div>
 
-                {/* Hover Pop-up Component with Pre-loaded Protected PDF Preview */}
+                {/* Hover Pop-up Component with Pre-loaded Protected PDF Preview (Desktop Only) */}
                 <div
                   onContextMenu={(e) => e.preventDefault()}
                   className={cn(
-                    "pdf-protected-area absolute inset-0 flex flex-col justify-between select-none rounded-3xl border-2 border-[#3DA5FF] bg-[#0B1F3A] p-4 text-white shadow-2xl backdrop-blur-md transition-all duration-300",
+                    "pdf-protected-area absolute inset-0 hidden md:flex flex-col justify-between select-none rounded-3xl border-2 border-[#3DA5FF] bg-[#0B1F3A] p-4 text-white shadow-2xl backdrop-blur-md transition-all duration-300",
                     isHovered
                       ? "opacity-100 scale-100 pointer-events-auto z-30"
                       : "opacity-0 scale-95 pointer-events-none -z-10",
@@ -387,6 +372,6 @@ export function LicensesBand() {
           </div>
         </div>
       )}
-    </section>
+    </div>
   );
 }

@@ -451,7 +451,7 @@ function Home() {
       </Section>
 
       {/* Licenses & Compliance Band */}
-      <Section id="licenses" className="scroll-mt-20 lg:scroll-mt-24">
+      <Section tone="default" id="licenses" className="scroll-mt-20 lg:scroll-mt-24">
         <SectionHeading
           eyebrow="Official Certifications & Registrations"
           title="Government licensed, registered & fully statutory compliant"
