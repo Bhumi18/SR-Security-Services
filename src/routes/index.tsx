@@ -116,13 +116,13 @@ function Home() {
 
   const heroButtons = (
     <div className="flex flex-row items-center justify-center lg:justify-start gap-2.5 sm:gap-4 w-full max-w-md mx-auto lg:mx-0 lg:max-w-none">
-      <Button asChild variant="gold" size="xl" className="flex-1 sm:flex-none lg:min-w-[210px] text-xs sm:text-base px-3 sm:px-6">
+      <Button asChild variant="gold" size="xl" className="flex-1 sm:flex-1 lg:flex-none lg:min-w-[210px] text-xs sm:text-sm md:text-base px-3 sm:px-6">
         <a href="#contact" className="inline-flex items-center justify-center gap-2 whitespace-nowrap">
           <span>Request Free Quote</span>
           <ArrowRight className="size-3.5 sm:size-4 shrink-0" />
         </a>
       </Button>
-      <Button asChild variant="onNavy" size="xl" className="flex-1 sm:flex-none lg:min-w-[210px] text-xs sm:text-base px-3 sm:px-6">
+      <Button asChild variant="onNavy" size="xl" className="flex-1 sm:flex-1 lg:flex-none lg:min-w-[210px] text-xs sm:text-sm md:text-base px-3 sm:px-6">
         <a href={company.phoneHref} className="inline-flex items-center justify-center gap-2 whitespace-nowrap">
           <Phone className="size-3.5 sm:size-4 shrink-0" />
           <span>Call Now</span>
@@ -196,11 +196,7 @@ function Home() {
               <p className="fade-up mt-4 font-display text-xs font-medium text-[#3DA5FF] sm:text-sm md:text-base" style={{ animationDelay: "450ms" }}>
                 {company.tagline}
               </p>
-              {/* Desktop CTA Buttons (visible lg and up) */}
-              <div className="fade-up mt-8 hidden lg:flex" style={{ animationDelay: "550ms" }}>
-                {heroButtons}
-              </div>
-              <ul className="fade-up mt-6 sm:mt-8 flex flex-wrap items-center justify-center sm:justify-start gap-x-3 sm:gap-x-7 gap-y-2 text-[11px] sm:text-sm font-medium text-primary-foreground/85" style={{ animationDelay: "650ms" }}>
+              <ul className="fade-up mt-6 sm:mt-8 flex flex-wrap items-center justify-center sm:justify-start gap-x-3 sm:gap-x-7 gap-y-2 text-[11px] sm:text-sm font-medium text-primary-foreground/85" style={{ animationDelay: "550ms" }}>
                 <li className="flex items-center gap-1.5">
                   <CheckCircle2 className="size-3.5 shrink-0 text-[#3DA5FF]" aria-hidden="true" />
                   <span>Background Verified Staff</span>
@@ -214,6 +210,10 @@ function Home() {
                   <span>24x7 Control Room</span>
                 </li>
               </ul>
+              {/* Desktop CTA Buttons (horizontally aligned with map legend tags on lg+) */}
+              <div className="fade-up mt-8 hidden lg:flex" style={{ animationDelay: "650ms" }}>
+                {heroButtons}
+              </div>
             </div>
 
             {/* Right – Interactive Gujarat Map */}
@@ -222,7 +222,7 @@ function Home() {
                 hoveredDistrict={hoveredDistrict}
                 onHoverDistrict={setHoveredDistrict}
               />
-              {/* Mobile / Small Devices CTA Buttons (placed below the map) */}
+              {/* Mobile / Tablet View CTA Buttons (below map) */}
               <div className="fade-up mt-5 sm:mt-6 flex lg:hidden justify-center" style={{ animationDelay: "300ms" }}>
                 {heroButtons}
               </div>
