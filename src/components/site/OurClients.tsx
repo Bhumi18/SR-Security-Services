@@ -4,7 +4,7 @@ import clientICSI from "@/assets/client-icsi.png";
 import clientWTC from "@/assets/client-wtc.png";
 import clientVallabhSadan from "@/assets/client-vallabh-sadan.png";
 import clientShivalikLakeview from "@/assets/client-shivalik-lakeview.png";
-import clientNDS from "@/assets/client-nds.png";
+import clientClothLookFashions from "@/assets/client-cloth-look-fashions.png";
 
 interface ClientItem {
   logo: string;
@@ -58,14 +58,14 @@ const clientData: ClientItem[] = [
     displayUrl: "Google Maps Location",
   },
   {
-    logo: clientNDS,
-    name: "The National Detective Service",
-    shortName: "NDS",
+    logo: clientClothLookFashions,
+    name: "Cloth Look Fashions International Magazine",
+    shortName: "Cloth Look Fashions",
     description:
-      "Premier private investigation and detective agency, collaborating with SR Security for specialized field intelligence and background verification.",
-    tag: "Investigative Agency",
-    url: "https://detectiveservice.in/",
-    displayUrl: "detectiveservice.in",
+      "Leading International Fashion & Lifestyle Media Platform co-founded by Altaf Sheikh, covering fashion shows, lifestyle, brands & global publications.",
+    tag: "Fashion & Media",
+    url: "https://www.clothlookfashion.com",
+    displayUrl: "clothlookfashion.com",
   },
 ];
 

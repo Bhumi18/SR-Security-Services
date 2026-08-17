@@ -346,7 +346,7 @@ export const testimonials = [
 ];
 
 export const clients = [
-  "The National Detective Service",
+  "Cloth Look Fashions International",
   "Shree Vallabh Sadan Haveli",
   "Shivalik Lakeview",
   "Meridian Technologies",
