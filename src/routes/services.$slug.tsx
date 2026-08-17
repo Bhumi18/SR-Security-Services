@@ -116,7 +116,9 @@ function ServiceDetail() {
               loading="lazy"
               width={1200}
               height={900}
-              className="w-full rounded-3xl object-cover shadow-[var(--shadow-lift)]"
+              className={`w-full rounded-3xl object-cover shadow-[var(--shadow-lift)] ${
+                service.image === "aboutTeam" ? "object-top" : "object-center"
+              }`}
             />
             <div className="card-premium p-7">
               <span className="grid size-12 place-items-center rounded-xl navy-panel">

@@ -6,6 +6,7 @@ import galleryEvents from "@/assets/event-management.png";
 import galleryCommand from "@/assets/gallery-command.jpg";
 import galleryCorporate from "@/assets/gallery-corporate.jpg";
 import galleryTraining from "@/assets/gallery-training.jpg";
+import galleryDetective from "@/assets/detective-services.jpg";
 import logo from "@/assets/logo-cropped.png";
 
 export const images = {
@@ -18,6 +19,7 @@ export const images = {
   galleryCommand,
   galleryCorporate,
   galleryTraining,
+  galleryDetective,
 };
 
 export const company = {
@@ -80,6 +82,7 @@ export const nav: NavItem[] = [
       { label: "Bouncer Services", to: "/services/bouncer-services" },
       { label: "Housekeeping Services", to: "/services/housekeeping-services" },
       { label: "Placement & Contract Labour", to: "/services/placement-contract-labour" },
+      { label: "Detective Services", to: "/services/detective-services" },
     ],
   },
   { label: "Industries", sectionId: "industries", to: "/#industries" },
@@ -214,6 +217,30 @@ export const serviceGroups: ServiceGroup[] = [
       "Warehouse Staff",
       "Office Admin",
       "Contract Staffing",
+    ],
+  },
+  {
+    slug: "detective-services",
+    title: "Detective Services",
+    icon: "Search",
+    summary:
+      "Discreet, confidential personal and corporate investigation services, surveillance, background verification, and matrimonial checks.",
+    image: "galleryDetective",
+    intro:
+      "Our confidential detective division provides professional, discreet, and legal investigation services for individuals, families, corporate entities, and legal counsel. Operating with 100% secrecy, advanced photo/video surveillance, and comprehensive evidence gathering.",
+    items: [
+      "Adultery Detective Services",
+      "Financial Fraud Investigation",
+      "Missing Person Investigation",
+      "Extramarital Affair Investigation",
+      "Photo Audio and Video Surveillance",
+      "Personal Investigation Agency",
+      "Surveillance Investigation",
+      "Person Background Verifications",
+      "Divorce Case Investigation",
+      "Loyalty Test Investigation",
+      "Post Matrimonial Investigation",
+      "Pre Matrimonial Investigation",
     ],
   },
 ];
@@ -447,5 +474,6 @@ export const serviceOptions = [
   "Bouncer Services",
   "Housekeeping Services",
   "Placement & Contract Labour",
+  "Detective Services",
   "Other",
 ];

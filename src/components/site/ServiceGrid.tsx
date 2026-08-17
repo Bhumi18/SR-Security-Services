@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, BadgeCheck, CheckCircle2, ShieldCheck, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, BadgeCheck, CheckCircle2, ShieldCheck, ChevronLeft, ChevronRight, Phone } from "lucide-react";
 
 import { Icon } from "@/components/site/Icon";
-import { images, serviceGroups } from "@/data/site";
+import { company, images, serviceGroups, type ServiceGroup } from "@/data/site";
 
 export function ServiceGrid() {
   const [activeMobileIndex, setActiveMobileIndex] = useState<number>(0);
@@ -103,7 +103,9 @@ export function ServiceGrid() {
             <img
               src={images[currentMobileService.image]}
               alt={`${currentMobileService.title} by SR Security Services`}
-              className="size-full object-cover"
+              className={`size-full object-cover ${
+                currentMobileService.image === "aboutTeam" ? "object-top" : "object-center"
+              }`}
             />
             {/* Top Gradient Overlay for High Contrast */}
             <div className="absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-black/75 via-black/30 to-transparent pointer-events-none z-10" />
@@ -273,77 +275,92 @@ export function ServiceGrid() {
           </article>
         )}
 
-        {/* 2. Uniform Grid of 4 Core Services */}
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {gridServices.map((service) => (
-            <article
-              key={service.slug}
-              className="card-premium group flex flex-col justify-between overflow-hidden border border-border/60 p-4.5 transition-all duration-300 hover:border-accent/40 h-full"
-            >
-              <div className="flex flex-col flex-1">
-                {/* Compact Thumbnail Image */}
-                <div className="relative h-36 w-full shrink-0 overflow-hidden rounded-xl border border-border/40 shadow-xs">
-                  <img
-                    src={images[service.image]}
-                    alt={`${service.title} by SR Security Services`}
-                    loading="lazy"
-                    width={600}
-                    height={400}
-                    className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                  {/* Top Gradient Overlay for High Contrast */}
-                  <div className="absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-black/75 via-black/30 to-transparent pointer-events-none z-10" />
-                  <span className="absolute top-2.5 left-2.5 z-20 inline-flex size-8.5 items-center justify-center rounded-xl border border-[#3DA5FF]/40 bg-[#0B1F3A]/95 text-[#3DA5FF] shadow-lg backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:bg-[#0E4DB8] group-hover:text-white group-hover:border-white/40">
-                    <Icon name={service.icon} className="size-4.5" />
-                  </span>
-                </div>
+        {/* 2. Uniform 5-Card Grid: 3 Cards in Top Row, 2 Cards Centered in Bottom Row */}
+        <div className="flex flex-col gap-6">
+          {/* Row 1: 3 Uniform Service Cards */}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {gridServices.slice(0, 3).map((service) => (
+              <ServiceCard key={service.slug} service={service} />
+            ))}
+          </div>
 
-                {/* Title Block */}
-                <div className="mt-3.5 min-h-[2.5rem] flex items-center">
-                  <h3 className="font-display text-base font-bold tracking-tight text-primary leading-tight">
-                    {service.title}
-                  </h3>
-                </div>
-
-                {/* Summary Description */}
-                <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground line-clamp-2 min-h-[2.25rem]">
-                  {service.summary}
-                </p>
-
-                {/* Key Item Tags */}
-                <div className="mt-3 flex flex-wrap items-center gap-1.5 h-[2.5rem] overflow-hidden content-start">
-                  {service.items.slice(0, 3).map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-md border border-[#D9DEE8] bg-surface px-2 py-0.5 text-[10px] font-medium text-[#1F2937] leading-none"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                  {service.items.length > 3 && (
-                    <span className="rounded-md border border-[#0E4DB8]/20 bg-[#0E4DB8]/10 px-1.5 py-0.5 text-[10px] font-bold text-[#0E4DB8] leading-none">
-                      +{service.items.length - 3}
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              {/* Direct Link Footer */}
-              <div className="mt-4 pt-3 border-t border-border/60 shrink-0">
-                <Link
-                  to="/services/$slug"
-                  params={{ slug: service.slug }}
-                  className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-primary transition-colors hover:text-accent"
-                >
-                  <span>View Details</span>
-                  <ArrowRight className="size-3 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </article>
-          ))}
+          {/* Row 2: 2 Uniform Service Cards Centered */}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 lg:w-2/3 lg:mx-auto w-full">
+            {gridServices.slice(3).map((service) => (
+              <ServiceCard key={service.slug} service={service} />
+            ))}
+          </div>
         </div>
       </div>
     </div>
+  );
+}
+
+function ServiceCard({ service }: { service: ServiceGroup }) {
+  return (
+    <article className="card-premium group flex flex-col justify-between overflow-hidden border border-border/60 bg-white p-5 transition-all duration-300 hover:border-accent/40 hover:shadow-xl hover:-translate-y-1 h-full">
+      <div className="flex flex-col flex-1">
+        {/* Compact Thumbnail Image Container */}
+        <div className="relative h-44 w-full shrink-0 overflow-hidden rounded-xl border border-border/40 shadow-xs">
+          <img
+            src={images[service.image]}
+            alt={`${service.title} by SR Security Services`}
+            loading="lazy"
+            width={600}
+            height={400}
+            className={`size-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${
+              service.image === "aboutTeam" ? "object-top" : "object-center"
+            }`}
+          />
+          {/* Top Gradient Overlay */}
+          <div className="absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-black/75 via-black/30 to-transparent pointer-events-none z-10" />
+          <span className="absolute top-2.5 left-2.5 z-20 inline-flex size-8.5 items-center justify-center rounded-xl border border-[#3DA5FF]/40 bg-[#0B1F3A]/95 text-[#3DA5FF] shadow-lg backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:bg-[#0E4DB8] group-hover:text-white">
+            <Icon name={service.icon} className="size-4" />
+          </span>
+        </div>
+
+        {/* Title Block */}
+        <div className="mt-4 flex items-center justify-between gap-2">
+          <h3 className="font-display text-base font-bold tracking-tight text-primary leading-tight">
+            {service.title}
+          </h3>
+        </div>
+
+        {/* Summary Description */}
+        <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground line-clamp-2">
+          {service.summary}
+        </p>
+
+        {/* Key Capability Tags */}
+        <div className="mt-3.5 flex flex-wrap items-center gap-1.5 pt-3 border-t border-border/60">
+          {service.items.slice(0, 3).map((item) => (
+            <span
+              key={item}
+              className="rounded-md border border-[#D9DEE8] bg-surface px-2 py-0.5 text-[10px] font-medium text-[#1F2937] leading-none"
+            >
+              {item}
+            </span>
+          ))}
+          {service.items.length > 3 && (
+            <span className="rounded-md border border-[#0E4DB8]/20 bg-[#0E4DB8]/10 px-1.5 py-0.5 text-[10px] font-bold text-[#0E4DB8] leading-none">
+              +{service.items.length - 3}
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* Card Footer Action */}
+      <div className="mt-4 pt-3 border-t border-border/60 shrink-0">
+        <Link
+          to="/services/$slug"
+          params={{ slug: service.slug }}
+          className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0E4DB8] transition-colors hover:text-[#3DA5FF]"
+        >
+          <span>View Details</span>
+          <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+        </Link>
+      </div>
+    </article>
   );
 }
 
