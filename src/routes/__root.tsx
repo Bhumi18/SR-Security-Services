@@ -82,7 +82,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SR Security Services & Facility Management Pvt. Ltd." },
+      { title: "SR Security Services & Facility Management" },
       {
         name: "description",
         content:

@@ -34,21 +34,21 @@ export const Route = createFileRoute("/services/$slug")({
       links: [{ rel: "canonical", href: `/services/${params.slug}` }],
       scripts: service
         ? [
-            {
-              type: "application/ld+json",
-              children: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "Service",
-                name: service.title,
-                description: service.summary,
-                areaServed: "IN",
-                provider: {
-                  "@type": "Organization",
-                  name: "SR Security Services & Facility Management Pvt. Ltd.",
-                },
-              }),
-            },
-          ]
+          {
+            type: "application/ld+json",
+            children: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Service",
+              name: service.title,
+              description: service.summary,
+              areaServed: "IN",
+              provider: {
+                "@type": "Organization",
+                name: "SR Security Services & Facility Management",
+              },
+            }),
+          },
+        ]
         : [],
     };
   },
@@ -116,9 +116,8 @@ function ServiceDetail() {
               loading="lazy"
               width={1200}
               height={900}
-              className={`w-full rounded-3xl object-cover shadow-[var(--shadow-lift)] ${
-                service.image === "aboutTeam" ? "object-top" : "object-center"
-              }`}
+              className={`w-full rounded-3xl object-cover shadow-[var(--shadow-lift)] ${service.image === "aboutTeam" ? "object-top" : "object-center"
+                }`}
             />
             <div className="card-premium p-7">
               <span className="grid size-12 place-items-center rounded-xl navy-panel">

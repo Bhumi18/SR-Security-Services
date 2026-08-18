@@ -275,17 +275,30 @@ export function ServiceGrid() {
           </article>
         )}
 
-        {/* 2. Uniform 5-Card Grid: 3 Cards in Top Row, 2 Cards Centered in Bottom Row */}
-        <div className="flex flex-col gap-6">
+        {/* 2. Secondary Service Cards Layout */}
+        {/* Tablet View (sm to lg: 2 + 2 + 1 centered) */}
+        <div className="grid sm:grid lg:hidden gap-6 grid-cols-2">
+          {gridServices.slice(0, 4).map((service) => (
+            <ServiceCard key={service.slug} service={service} />
+          ))}
+          {gridServices[4] && (
+            <div className="col-span-2 max-w-md mx-auto w-full">
+              <ServiceCard service={gridServices[4]} />
+            </div>
+          )}
+        </div>
+
+        {/* Desktop View (lg+: 3 top + 2 centered bottom) */}
+        <div className="hidden lg:flex flex-col gap-6">
           {/* Row 1: 3 Uniform Service Cards */}
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 grid-cols-3">
             {gridServices.slice(0, 3).map((service) => (
               <ServiceCard key={service.slug} service={service} />
             ))}
           </div>
 
           {/* Row 2: 2 Uniform Service Cards Centered */}
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 lg:w-2/3 lg:mx-auto w-full">
+          <div className="grid gap-6 grid-cols-2 w-2/3 mx-auto">
             {gridServices.slice(3).map((service) => (
               <ServiceCard key={service.slug} service={service} />
             ))}

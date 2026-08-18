@@ -276,11 +276,10 @@ function Home() {
                     <button
                       type="button"
                       onClick={toggleVideoMute}
-                      className={`grid size-8.5 sm:size-9 place-items-center rounded-full border backdrop-blur-md transition hover:scale-105 cursor-pointer shadow-lg ${
-                        !isVideoMuted
+                      className={`grid size-8.5 sm:size-9 place-items-center rounded-full border backdrop-blur-md transition hover:scale-105 cursor-pointer shadow-lg ${!isVideoMuted
                           ? "border-emerald-500/50 bg-emerald-950/90 text-emerald-400 shadow-emerald-900/30"
                           : "border-white/20 bg-black/80 text-amber-400 hover:bg-white/20"
-                      }`}
+                        }`}
                       title={!isVideoMuted ? "Mute Sound" : "Enable Sound"}
                     >
                       {!isVideoMuted ? (
@@ -318,7 +317,7 @@ function Home() {
             <div className="lg:col-span-6 flex flex-col justify-between self-stretch h-full py-0.5">
               <div className="flex flex-col justify-between h-full gap-5 lg:gap-6">
                 <p className="text-sm leading-relaxed text-muted-foreground sm:text-base lg:text-[15px] lg:leading-7">
-                  SR Security Services Pvt. Ltd. was built on a core corporate promise — security is a discipline, not a headcount. Headquartered in Ahmedabad and covering 5 key districts in Gujarat, we manage background-verified guarding personnel, corporate housekeeping teams, bouncer units, and event crowd controllers with 24x7 control room supervision.
+                  SR Security Services was built on a core corporate promise — security is a discipline, not a headcount. Headquartered in Ahmedabad and covering 5 key districts in Gujarat, we manage background-verified guarding personnel, corporate housekeeping teams, bouncer units, and event crowd controllers with 24x7 control room supervision.
                 </p>
 
                 <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5 lg:gap-4">

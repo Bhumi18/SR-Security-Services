@@ -6,7 +6,7 @@ import { company } from "@/data/site";
 
 const title = "Privacy Policy | SR Security Services & Facility Management";
 const description =
-  "How SR Security Services & Facility Management Pvt. Ltd. collects, uses, stores and protects the information you share through this website.";
+  "How SR Security Services & Facility Management collects, uses, stores and protects the information you share through this website.";
 
 export const Route = createFileRoute("/privacy-policy")({
   component: Privacy,
