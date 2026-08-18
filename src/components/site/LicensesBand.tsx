@@ -24,7 +24,7 @@ export const licenses = [
     subtitle: "Private Security Agencies (Regulation) Act",
     description:
       "Government-issued PSARA license for private security operations, patrolling and guarding across state jurisdictions.",
-    tag: "Govt Security License",
+    tag: "PSARA License",
     pdf: psaraPdf,
   },
   {
@@ -34,7 +34,7 @@ export const licenses = [
     subtitle: "Ministry of MSME, Government of India",
     description:
       "Official UDYAM registration certificate under the Ministry of Micro, Small and Medium Enterprises, Govt of India.",
-    tag: "MSME / Govt of India",
+    tag: "MSME Registered",
     pdf: udyamPdf,
   },
   {
@@ -44,7 +44,7 @@ export const licenses = [
     subtitle: "Ahmedabad Municipal Corporation",
     description:
       "Official AMC registration certificate for commercial municipal operations and establishment compliance.",
-    tag: "Municipal Authority",
+    tag: "AMC Municipal",
     pdf: amcPdf,
   },
 ];
@@ -129,7 +129,7 @@ export function LicensesBand() {
 
       <div className="relative mx-auto max-w-7xl">
         {/* Licenses Grid */}
-        <div className="mt-4 grid gap-6 md:grid-cols-3">
+        <div className="mt-4 grid gap-4 sm:gap-5 lg:gap-6 md:grid-cols-3">
           {licenses.map((item) => {
             const IconComponent = item.icon;
             const isHovered = hoveredId === item.id;
@@ -139,52 +139,52 @@ export function LicensesBand() {
                 key={item.id}
                 onMouseEnter={() => setHoveredId(item.id)}
                 onMouseLeave={() => setHoveredId(null)}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-[#0E4DB8]/30 bg-gradient-to-br from-[#0B1F3A] via-[#091B33] to-[#061426] p-6 text-white transition-all duration-500 hover:border-[#3DA5FF]/80 hover:shadow-[0_20px_50px_-15px_rgba(61,165,255,0.35)] hover:-translate-y-2"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-[#0E4DB8]/30 bg-gradient-to-br from-[#0B1F3A] via-[#091B33] to-[#061426] p-4.5 sm:p-5 lg:p-6 text-white transition-all duration-500 hover:border-[#3DA5FF]/80 hover:shadow-[0_20px_50px_-15px_rgba(61,165,255,0.35)] hover:-translate-y-2"
               >
                 {/* Background glow */}
                 <div className="pointer-events-none absolute -right-10 -top-10 size-40 rounded-full bg-[#3DA5FF]/10 blur-2xl transition-all duration-500 group-hover:bg-[#3DA5FF]/20 group-hover:scale-125" />
 
                 {/* Content Top */}
                 <div className="relative z-10">
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="grid size-12 place-items-center rounded-2xl bg-gradient-to-br from-[#3DA5FF] to-[#0E4DB8] text-white shadow-lg shadow-[#0E4DB8]/40 border border-white/20 transition-transform duration-300 group-hover:scale-110">
-                      <IconComponent className="size-6 text-white" aria-hidden="true" />
+                  <div className="flex items-start justify-between gap-2.5 sm:gap-3">
+                    <div className="grid size-10.5 sm:size-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-[#3DA5FF] to-[#0E4DB8] text-white shadow-lg shadow-[#0E4DB8]/40 border border-white/20 transition-transform duration-300 group-hover:scale-110">
+                      <IconComponent className="size-5.5 sm:size-6 text-white" aria-hidden="true" />
                     </div>
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-400 shadow-xs">
-                      <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="inline-flex items-center gap-1 sm:gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[8.5px] sm:text-[9px] xl:text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-400 shadow-xs whitespace-nowrap shrink-0">
+                      <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
                       <span>{item.tag}</span>
                     </span>
                   </div>
 
-                  <h3 className="mt-5 font-display text-lg font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-[#3DA5FF]">
+                  <h3 className="mt-4 sm:mt-5 font-display text-base sm:text-lg font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-[#3DA5FF]">
                     {item.title}
                   </h3>
-                  <p className="mt-1 text-xs font-semibold text-[#3DA5FF]/90">
+                  <p className="mt-1 text-[11px] sm:text-xs font-semibold text-[#3DA5FF]/90">
                     {item.subtitle}
                   </p>
-                  <p className="mt-3 text-xs leading-relaxed text-slate-300/80">
+                  <p className="mt-2.5 sm:mt-3 text-xs leading-relaxed text-slate-300/80">
                     {item.description}
                   </p>
                 </div>
 
                 {/* Action bar: Hover indicator / Expand */}
-                <div className="relative z-10 mt-6 flex items-center justify-between gap-2 border-t border-white/10 pt-4">
-                  <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-medium text-slate-300 transition-colors group-hover:text-[#3DA5FF] whitespace-nowrap shrink-0">
+                <div className="relative z-10 mt-5 sm:mt-6 flex items-center justify-between gap-1.5 sm:gap-2 border-t border-white/10 pt-3.5 sm:pt-4">
+                  <span className="inline-flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-[11px] xl:text-xs font-medium text-slate-300 transition-colors group-hover:text-[#3DA5FF] whitespace-nowrap min-w-0">
                     <FileText className="size-3.5 text-[#3DA5FF] shrink-0" />
-                    <span>
-                      <span className="sm:hidden">Preview PDF</span>
-                      <span className="hidden sm:inline">Hover to Preview PDF</span>
+                    <span className="truncate">
+                      <span className="xl:hidden">Preview PDF</span>
+                      <span className="hidden xl:inline">Hover to Preview PDF</span>
                     </span>
                   </span>
                   <button
                     type="button"
                     onClick={() => setActiveModalPdf({ title: item.title, pdf: item.pdf })}
-                    className="inline-flex items-center gap-1 sm:gap-1.5 rounded-xl border border-[#3DA5FF]/40 bg-[#3DA5FF]/15 px-2.5 py-1.5 sm:px-3 text-[11px] sm:text-xs font-bold text-[#3DA5FF] backdrop-blur-md transition-all duration-300 hover:bg-[#3DA5FF] hover:text-[#0B1F3A] hover:border-[#3DA5FF] hover:shadow-md cursor-pointer whitespace-nowrap shrink-0"
+                    className="inline-flex items-center gap-1 sm:gap-1.5 rounded-xl border border-[#3DA5FF]/40 bg-[#3DA5FF]/15 px-2 py-1.5 sm:px-2.5 xl:px-3 text-[10px] sm:text-[11px] xl:text-xs font-bold text-[#3DA5FF] backdrop-blur-md transition-all duration-300 hover:bg-[#3DA5FF] hover:text-[#0B1F3A] hover:border-[#3DA5FF] hover:shadow-md cursor-pointer whitespace-nowrap shrink-0"
                   >
                     <Maximize2 className="size-3 shrink-0" />
                     <span>
-                      <span className="sm:hidden">Expand</span>
-                      <span className="hidden sm:inline">Expand Document</span>
+                      <span className="xl:hidden">Expand</span>
+                      <span className="hidden xl:inline">Expand Document</span>
                     </span>
                   </button>
                 </div>
