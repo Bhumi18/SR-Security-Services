@@ -277,8 +277,8 @@ function Home() {
                       type="button"
                       onClick={toggleVideoMute}
                       className={`grid size-8.5 sm:size-9 place-items-center rounded-full border backdrop-blur-md transition hover:scale-105 cursor-pointer shadow-lg ${!isVideoMuted
-                          ? "border-emerald-500/50 bg-emerald-950/90 text-emerald-400 shadow-emerald-900/30"
-                          : "border-white/20 bg-black/80 text-amber-400 hover:bg-white/20"
+                        ? "border-emerald-500/50 bg-emerald-950/90 text-emerald-400 shadow-emerald-900/30"
+                        : "border-white/20 bg-black/80 text-amber-400 hover:bg-white/20"
                         }`}
                       title={!isVideoMuted ? "Mute Sound" : "Enable Sound"}
                     >
@@ -525,7 +525,7 @@ function Home() {
               </div>
 
               <blockquote className="text-xs sm:text-sm leading-relaxed text-slate-200 font-normal">
-                "We started SR Security Services with one clear goal: to provide honest, reliable, and well-trained security staff for businesses, industrial sites, and residential societies across Gujarat. We personally ensure every guard we deploy is police-verified, disciplined, and dependable."
+                "We started SR Security Services with one clear goal: to provide honest, reliable, and well-trained security staff for businesses, industrial sites, and residential societies across 5 key districts in Gujarat: Ahmedabad, Gandhinagar, Kheda, Mehsana, and Sabarkantha. We personally ensure every guard we deploy is police-verified, disciplined, and dependable."
               </blockquote>
 
               {/* Practical Operational Focus Cards */}
